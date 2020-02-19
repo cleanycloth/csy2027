@@ -1,4 +1,4 @@
-##CSY2027 Year 2 Group Project (Computing)
+CSY2027 Year 2 Group Project (Computing)
 
 Hello!! Remember, this is group 5. 
 ---
