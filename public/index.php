@@ -11,7 +11,26 @@
     <body>
         <!-- Header -->
         <header>
-            <a href="#"><h1>NN Games</h1></a>
+            <a href="/csy2027"><h1>NN Games</h1></a>
+
+            <div class="user-options">
+                <!-- Signed Out -->
+                <!-- 
+                <ul>
+                    <li><a href="#">Sign in</a></li> |
+                    <li><a href="#">Register</a></li>
+                </ul>
+                -->
+
+                <!-- Signed In -->
+                <!--
+                <ul>
+                    <p>Welcome, user!</p> |
+                    <li><a href="#">My Account</a></li> |
+                    <li><a href="#">Sign out</a></li>
+                </ul>
+                -->
+            </div>
         </header>
 
         <!-- Navigation Bar -->
@@ -22,7 +41,7 @@
                 <li><a href="#">Nintendo</a></li>
                 <li><a href="#">PC</a></li>
                 <li><a href="#">Pre-Owned</a></li>
-                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Accessories</a></li> 
             </ul>
         </nav>
 
@@ -33,7 +52,7 @@
 
         <!-- Footer -->
         <footer>
-            &copy; 2020 NN Games - All Rights Reserved...whatever that means.
+            &copy; <?=date("Y");?> NN Games - All Rights Reserved
         </footer>
     </body>
 </html>
