@@ -52,21 +52,11 @@
 
         <!-- Main -->
         <main class="site-main">
-            <!-- Main carousel -->
-            <img src="images/#.php" alt="Banner" /> <!-- ADD SYLING TO CSS --> 
+        <!-- Main carousel -->
 
-            <!-- New Releases -->
-            <div class="carousel-container">
-                <p> New Releases </p>
-                <div> </div>
-            </div>
-
-            <!-- Staff Pick -->
-            <div class="#">
-                <p> Staff Pick </p>
-            </div>
-
-            <!-- Featured Groups -->
+        <!-- New Releases -->
+        
+        <!-- Staff Pick -->
 
         </main>
 

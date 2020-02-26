@@ -15,9 +15,6 @@
                 <a href="/csy2027"><h1>NN Games</h1></a>
             </div>
 
-            <!-- search bar  -->
-          
-
             <div class="user-options">
                 <!-- Signed Out -->
                 <!-- 
@@ -41,7 +38,13 @@
         <!-- Navigation Bar -->
         <nav class="site-nav">
             <ul>
-                <li><a href="#">PlayStation</a></li>
+                <li class="dropdown"><a href="#">PlayStation</a>
+                    <ul>
+                        <li><a href="#">Item 1</a></li>
+                        <li><a href="#">Item 2</a></li>
+                        <li><a href="#">Item 3</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Xbox</a></li>
                 <li><a href="#">Nintendo</a></li>
                 <li><a href="#">PC</a></li>
@@ -51,28 +54,27 @@
         </nav>
 
         <!-- Main -->
+        <h1>Testing Heading</h1>
         <main class="site-main">
-            <!-- Main carousel -->
-            <img src="images/#.php" alt="Banner" /> <!-- ADD SYLING TO CSS --> 
-
-            <!-- New Releases -->
-            <div class="carousel-container">
-                <p> New Releases </p>
-                <div> </div>
+            <div class="featured">
+                <div class="featured-item">
+                    <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
+                    <p>Featured Group 1</p>
+                    <a href="#">Show all</a>
+                </div>
+                <div class="featured-item">
+                    <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
+                    <p>Featured Group 2</p>
+                    <a href="#">Show all</a>
+                </div>
+                <div class="featured-item">
+                    <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
+                    <p>Featured Group 3</p>
+                    <a href="#">Show all</a>
+                </div>
             </div>
 
-            <!-- Staff Pick -->
-            <div class="#">
-                <p> Staff Pick </p>
-            </div>
-
-            <!-- Featured Groups -->
-
-        </main>
-
-        <!-- Footer -->
         <footer class="site-footer">
-            &copy; <?=date("Y");?> NN Games - All Rights Reserved
+            Copyright &copy; <?=date('Y');?> NNGames - All Rights Reserved
         </footer>
     </body>
-</html>
