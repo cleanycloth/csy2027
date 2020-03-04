@@ -25,4 +25,4 @@ If you have any issues with anything above, let Aidan know on the Discord server
 
 ## Changelog
 
-NEW: Collaborate on Visual Studio Code! Install the Visual Studio Live View extension, sign in with GitHub or Microsoft, and [use this link.](https://prod.liveshare.vsengsaas.visualstudio.com/join?CE59C8E51462FCA9E33CA452BE2AFF98A457)
+VSC Live isn't working very well so we've thrown that out for now.
