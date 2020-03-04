@@ -15,21 +15,23 @@
                 <a href="/csy2027"><h1>NN Games</h1></a>
             </div>
 
+            <div class="search">
+
+            </div>
+
             <div class="user-options">
                 <!-- Signed Out -->
-                <!-- 
                 <ul>
-                    <li><a href="#">Sign in</a></li> |
-                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Sign in <i class="fas fa-sign-in-alt"></i></a></li> |
+                    <li><a href="#">Register <i class="fas fa-user-plus"></i></a></li>
                 </ul>
-                -->
 
                 <!-- Signed In -->
                 <!--
                 <ul>
                     <p>Welcome, user!</p> |
-                    <li><a href="#">My Account</a></li> |
-                    <li><a href="#">Sign out</a></li>
+                    <li><a href="#">My Account <i class="fas fa-user"></i></a></li> |
+                    <li><a href="#">Sign out <i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
                 -->
             </div>
@@ -38,20 +40,20 @@
         <!-- Navigation Bar -->
         <nav class="site-nav">
             <ul>
-                <!--
-                <li class="dropdown"><a href="#">PlayStation</a>
+                <li><a href="#">Xbox</a></li>
+                <li><a href="#">Nintendo</a></li>
+                <li><a href="#">PC</a></li>
+                <li><a href="#">Pre-Owned</a></li>
+                <li><a href="#">Accessories</a></li> 
+                <li class="dropdown">
+                    <!-- <i class="fas fa-chevron-up"></i> -->
+                    <a href="#">Dropdown</a>
                     <ul>
                         <li><a href="#">Item 1</a></li>
                         <li><a href="#">Item 2</a></li>
                         <li><a href="#">Item 3</a></li>
                     </ul>
                 </li>
--->
-                <li><a href="#">Xbox</a></li>
-                <li><a href="#">Nintendo</a></li>
-                <li><a href="#">PC</a></li>
-                <li><a href="#">Pre-Owned</a></li>
-                <li><a href="#">Accessories</a></li> 
             </ul>
         </nav>
 
