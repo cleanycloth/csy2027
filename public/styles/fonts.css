@@ -1,18 +1,27 @@
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@font-face {
-    font-family: 'ibmvga8';
-    src: url('ibmvga8.ttf');
-}
+@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
 
 /* IBM font provided by
 https://int10h.org/oldschool-pc-fonts*/
+@font-face {
+    font-family: 'IBM-VGA8';
+    src: url('../fonts/Px437_IBM_VGA8.ttf')
+}
 
+/* Set Fonts */
 html {
     font-family: 'Roboto', sans-serif;
 }
 
 .errorcode {
-    font-family: 'ibmvga8', sans-serif;
+    font-family: 'IBM-VGA8', sans-serif;
     text-align: center;
     font-weight: lighter;
+}
+
+header .logo {
+    /* font-family: 'Orbitron', sans-serif; */
+    font-family: 'Audiowide', cursive;
 }
