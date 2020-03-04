@@ -106,4 +106,7 @@ nav ul li:hover ul {
 footer {
     background-color: #7A7373;
     color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

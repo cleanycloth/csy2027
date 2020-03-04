@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@font-face {
+    font-family: 'ibmvga8';
+    src: url('ibmvga8.ttf');
+}
+
+/* IBM font provided by
+https://int10h.org/oldschool-pc-fonts*/
 
 html {
     font-family: 'Roboto', sans-serif;
+}
+
+.errorcode {
+    font-family: 'ibmvga8', sans-serif;
+    text-align: center;
+    font-weight: lighter;
 }
