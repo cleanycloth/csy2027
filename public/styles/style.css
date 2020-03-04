@@ -19,18 +19,25 @@ header {
 /* Navigiation Bar */
 nav {
     background-color: #535BFF;
+    height: 5em;
+    overflow: hidden;
 }
 /* Navigation Bar - Items */
 nav ul {
+    margin: auto 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    height: 100%;
     list-style-type: none;
 }
 nav ul li {
     padding: 1em 0;
     overflow: hidden;
+    height: 100%;
 }
+
 nav ul li a {
     text-decoration: none;
     color: white;
@@ -47,13 +54,12 @@ nav ul li a:active {
 /* Dropdown */
 nav ul li ul {
     display: none;
+    position: absolute;
     background-color: black;
-    height: 50em;
-    overflow: hidden;
+    margin-top: 1em;
 }
 nav ul li:hover ul {
     display: block;
-    transition: 1s ease;
 }
 
 

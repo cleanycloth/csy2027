@@ -38,6 +38,7 @@
         <!-- Navigation Bar -->
         <nav class="site-nav">
             <ul>
+                <!--
                 <li class="dropdown"><a href="#">PlayStation</a>
                     <ul>
                         <li><a href="#">Item 1</a></li>
@@ -45,6 +46,7 @@
                         <li><a href="#">Item 3</a></li>
                     </ul>
                 </li>
+-->
                 <li><a href="#">Xbox</a></li>
                 <li><a href="#">Nintendo</a></li>
                 <li><a href="#">PC</a></li>
