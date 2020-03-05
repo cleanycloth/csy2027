@@ -9,14 +9,20 @@ html {
     background-color: #E3E3E4
 }
 
+h1 {
+    margin-left: 1em;
+}
+
 /* Header */
 header {
     background-color: #AC9F9F;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     text-decoration: none;
-    justify-content: space-between;
 }
+
+/* Header - Logo */
 header .logo {
     padding: 1em 0;
     margin-left: 1em;
@@ -25,14 +31,47 @@ header .logo a {
     color: #535BFF;
     text-decoration: none;
 }
-header .user-options {
-    background-color: rgb(204, 187, 187);
+/* Header - Search Bar */
+header .search {
     margin: auto 1em auto 0;
+    justify-self: center;
+}
+header .search input[type=search] {
+    padding: 0.5em;
+    font-size: 1.2em;
+    width: 400px;
+}
+header .search button {
+    background-color: #535BFF;
+    color: white;
+    border: none;
+    padding: 0.5em;
+    width: 2.25em;
+    height: 2.25em;
+    font-size: 1.2em;
+    border: 1px solid #535BFF;
+    border-radius: 1.2em;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+header .search button:hover {
+    background-color: rgb(83, 114, 255);
+}
+header .search button:active {
+    background-color: rgb(77, 85, 241);
+}
+/* Header - User Options */
+header .user-options {
+    background-color: rgb(204, 194, 194);
+    margin: auto 1em auto 1em;
     height: 3em;
+    justify-self: end;
+    font-size: 0.9em;
 }
 header .user-options ul {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     list-style-type: none;
     text-decoration: none;
     padding: 1em;
@@ -61,16 +100,14 @@ nav ul {
     list-style-type: none;
     width: 100%;
 }
-nav ul li {
-    transition-duration: 0.1s;
-}
 nav ul li a {
     display: block;
     text-align: center;
     color: white;
 	padding: 0.5em 1em;
-	font-size: 1.5em;
+	font-size: 1.25em;
     text-decoration: none;
+    transition-duration: 0.1s;
 }
 nav ul li i {
     transition-duration: 0.1s;
@@ -78,10 +115,10 @@ nav ul li i {
 nav ul li:hover i {
     transform: rotate(180deg);
 }
-nav ul li:hover {
+nav ul li a:hover {
     background-color: rgb(83, 114, 255);
 }
-nav ul li:active {
+nav ul li a:active {
     background-color: rgb(77, 85, 241);
 }
 
@@ -97,9 +134,50 @@ nav ul .dropdown:hover ul {
     top: 100%;
     width: 100%;
     background-color: rgb(154, 159, 255);
+    z-index: 1;
+}
+nav ul .dropdown:hover ul li a:hover {
+    background-color: rgb(175, 179, 255);
+}
+nav ul .dropdown:hover ul li a:active {
+    background-color: rgb(140, 145, 250);
 }
 
 /* Main */
+/* Main - Carousels */
+.site-main .main-carousel {
+    margin-bottom: 4em;
+}
+.site-main .main-carousel div img {
+    width: 100%;
+    height: auto;
+}
+.site-main .main-carousel div p {
+    text-align: center;
+    background-color: rgb(240, 238, 238);
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0.4em;
+}
+.site-main .main-carousel div a {
+    text-decoration: none;
+}
+
+.site-main .product-carousel {
+    width: 50%;
+    margin: 0 auto 4em auto;
+    text-align: center;
+}
+.site-main .product-carousel p {
+    margin-top: 0.5em;
+    color: black;
+}
+.site-main .product-carousel a {
+    text-decoration: none;
+}
+
+/* Main - Featured Items */
 .site-main .featured {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -107,14 +185,12 @@ nav ul .dropdown:hover ul {
     margin: 1em auto;
     width: 70%;
 }
-
 .site-main .featured .featured-item {
     margin: 0 auto;
 }
-
 .site-main .featured .featured-item img {
-    width: 325px;
-    height: 200px;
+    width: 390px;
+    height: 270px;
 }
 .site-main .featured .featured-item p {
     font-size: 1.1em;
@@ -122,11 +198,24 @@ nav ul .dropdown:hover ul {
     margin: 0.5em 0;
 }
 .site-main .featured .featured-item a {
+    display: block;
+    width: 40%;
+    text-align: center;
     text-decoration: none;
-    color: black;
+    background-color: #898989;
+    color: white;
+    padding: 0.6em;
+    border: 1px solid #898989;
+    border-radius: 8px;
+    transition-duration: 0.1s;
 }
 .site-main .featured .featured-item a:hover {
-    text-decoration: underline;
+    background-color: #a0a0a0;
+    border-color: #a0a0a0;
+}
+.site-main .featured .featured-item a:active {
+    background-color: #727272;
+    border-color: #727272;    
 }
 
 /* Product */
@@ -143,4 +232,42 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
+}
+
+/* Sliick Slider */
+.slick-dots li button:before {
+    font-size: 10px;
+}
+
+.slick-next:before, .slick-prev:before {
+    font-size: 32px;
+    color: black;
+}
+
+.slick-slide img {
+    margin: 0 auto;
+}
+
+/* Scroll Bar */
+/* https://css-tricks.com/almanac/properties/s/scrollbar/ */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+body::-webkit-scrollbar-track {
+    background-color: rgb(182, 182, 182);
+    box-shadow: inset 0 0 2px;
+}
+body::-webkit-scrollbar-thumb:vertical {
+    /* background-color: #535BFF; */
+    /* Gradient generated at: https://cssgradient.io/ */
+    background: linear-gradient(0deg, rgba(83,91,255,1) 0%, rgba(124,129,242,1) 50%, rgba(83,91,255,1) 100%);
+    border: 1px solid rgb(98, 106, 253);
+    border-radius: 8px;
+}
+body::-webkit-scrollbar-thumb:horizontal {
+    /* background-color: #535BFF; */
+    /* Gradient generated at: https://cssgradient.io/ */
+    background: linear-gradient(90deg, rgba(83,91,255,1) 0%, rgba(124,129,242,1) 50%, rgba(83,91,255,1) 100%);
+    border: 1px solid rgb(98, 106, 253);
+    border-radius: 8px;
 }
