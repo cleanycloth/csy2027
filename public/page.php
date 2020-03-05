@@ -3,7 +3,7 @@
     <head>
         <!-- Font Awesome Icons - https://fontawesome.com/ -->
         <script src="https://kit.fontawesome.com/04ac565eb5.js" crossorigin="anonymous"></script>
-        <!-- Slick Slider - https://kenwheeler.github.io/slick/ -->
+        <!-- Slick Slider Styling - https://kenwheeler.github.io/slick/ -->
         <link rel="stylesheet" type="text/css" href="js/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="js/slick/slick-theme.css"/>
         <!-- NN Games Stylesheets -->
@@ -16,7 +16,7 @@
         <!-- Header -->
         <header class="site-header">    
             <div class="logo">
-                <a href="/csy2027"><h1>NN Games</h1></a>
+                <a href="/"><h1>NN Games</h1></a>
             </div>
 
             <div class="search">
@@ -67,132 +67,25 @@
 
         <!-- Main -->
         <main class="site-main">
-            <div class="main-carousel slider">
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/1920x500" alt="Placeholder Image">
-                        <p>Slide 1</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/1920x500" alt="Placeholder Image">
-                        <p>Slide 2</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/1920x500" alt="Placeholder Image">
-                        <p>Slide 3</p>
-                    </a>
-                </div>
-            </div>
-            
-            <h1>LATEST RELEASES</h1>
-            <div class="product-carousel slider">
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 1</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 2</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 3</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 4</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 5</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 6</p>
-                    </a>
-                </div>
-            </div>
-
-            <h1>STAFF PICKS</h1>
-            <div class="product-carousel slider">
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 1</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 2</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 3</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 4</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 5</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                        <p>Product 6</p>
-                    </a>
-                </div>
-            </div>
-
-            <div class="featured">
-                <div class="featured-item">
-                    <img src="https://via.placeholder.com/390x270" alt="Placeholder Image">
-                    <p>Featured Item 1</p>
-                    <a href="#">Shop all</a>
-                </div>
-                <div class="featured-item">
-                    <img src="https://via.placeholder.com/390x270" alt="Placeholder Image">
-                    <p>Featured Item 2</p>
-                    <a href="#">Pre-order now</a>
-                </div>
-                <div class="featured-item">
-                    <img src="https://via.placeholder.com/390x270" alt="Placeholder Image">
-                    <p>Featured Item 3</p>
-                    <a href="#">Find out more</a>
-                </div>
+            <div class="content">
+                    <h1>Heading 1</h1>
+                    <h2>Heading 2</h2>
+                    <h3></h3>
+                    <h4></h4>
+                    <h5></h5>
+                    <h6></h6>
             </div>
         </main>
 
+        <!-- Footer -->
         <footer class="site-footer">
             Copyright &copy; <?=date('Y');?> NNGames - All Rights Reserved
         </footer>
 
+        <!-- jQuery - https://jquery.com/ -->
         <script type="text/javascript" src="js/jquery/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="js/jquery/jquery-migrate-1.4.1.min.js"></script>
+        <!-- Slick Slider - https://kenwheeler.github.io/slick/ -->
         <script type="text/javascript" src="js/slick/slick.min.js"></script>
         <script type="text/javascript" src="js/carousels.js"></script>
     </body>
