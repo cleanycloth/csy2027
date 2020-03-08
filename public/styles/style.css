@@ -6,11 +6,15 @@
 }
 
 html {
-    background-color: #E3E3E4
+    background-color: #E3E3E4;
 }
 
 h1 {
     margin-left: 1em;
+}
+
+body {
+    position: relative;
 }
 
 /* Header */
@@ -20,12 +24,15 @@ header {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     text-decoration: none;
+    position: relative;
+    z-index: 1;
 }
 
 /* Header - Logo */
 header .logo {
-    padding: 1em 0;
-    margin-left: 1em;
+    padding: 1rem 0;
+    /*margin-left: 1em;*/
+    width: max-content;
 }
 header .logo a {
     color: #535BFF;
@@ -33,7 +40,7 @@ header .logo a {
 }
 /* Header - Search Bar */
 header .search {
-    margin: auto 1em auto 0;
+    margin: auto 1rem auto 0;
     justify-self: center;
 }
 header .search input[type=search] {
@@ -66,7 +73,7 @@ header .user-options {
     margin: auto 1em auto 1em;
     height: 3em;
     justify-self: end;
-    font-size: 0.9em;
+    font-size: 0.9rem;
 }
 header .user-options ul {
     display: flex;
@@ -90,6 +97,8 @@ header .user-options ul li a:hover {
 /* Navigiation Bar */
 nav {
     background-color: #535BFF;
+    position: relative;
+    z-index: 1;
 }
 /* Navigation Bar - Items */
 nav ul {
@@ -134,7 +143,6 @@ nav ul .dropdown:hover ul {
     top: 100%;
     width: 100%;
     background-color: rgb(154, 159, 255);
-    z-index: 1;
 }
 nav ul .dropdown:hover ul li a:hover {
     background-color: rgb(175, 179, 255);
@@ -145,8 +153,12 @@ nav ul .dropdown:hover ul li a:active {
 
 /* Main */
 /* Main - Carousels */
+.site-main {
+    position: relative;
+    z-index: 0;
+}
 .site-main .main-carousel {
-    margin-bottom: 4em;
+    margin-bottom: 4rem;
 }
 .site-main .main-carousel div img {
     width: 100%;
@@ -157,8 +169,8 @@ nav ul .dropdown:hover ul li a:active {
     background-color: rgb(240, 238, 238);
     color: black;
     font-weight: bold;
-    font-size: 1.2em;
-    padding: 0.4em;
+    font-size: 1.2rem;
+    padding: 0.4rem;
 }
 .site-main .main-carousel div a {
     text-decoration: none;
@@ -166,11 +178,11 @@ nav ul .dropdown:hover ul li a:active {
 
 .site-main .product-carousel {
     width: 50%;
-    margin: 0 auto 4em auto;
+    margin: 0 auto 4rem auto;
     text-align: center;
 }
 .site-main .product-carousel p {
-    margin-top: 0.5em;
+    margin-top: 0.5rem;
     color: black;
 }
 .site-main .product-carousel a {
@@ -182,7 +194,7 @@ nav ul .dropdown:hover ul li a:active {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    margin: 1em auto;
+    margin: 1em auto 4em auto;
     width: 70%;
 }
 .site-main .featured .featured-item {
@@ -218,6 +230,68 @@ nav ul .dropdown:hover ul li a:active {
     border-color: #727272;    
 }
 
+.site-main .content {
+    height: 100%;
+    width: 50%;
+    padding: 4rem;
+    background-color: rgb(245, 245, 245);
+    margin: 0 auto;
+    box-shadow: 0 0 1em black;
+}
+.site-main .content h1 {
+    margin-left: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.site-main .content p {
+    margin-bottom: 1rem;
+}
+.site-main form {
+    margin: 0 auto;
+}
+.site-main form div {
+    width: max-content;
+    display: block;
+}
+.site-main form div, .site-main form input[type=submit], .site-main form button {
+    margin: 0 auto 0.6em auto;
+}
+.site-main form label {
+    margin-right: 0.4em;
+}
+.site-main form input[type=text], .site-main form input[type=password] {
+    padding: 0.4em;
+    width: 12vw;
+}
+.site-main form input[type=submit], .site-main form button {
+    display: block;
+    text-align: center;
+    background-color: #535BFF;
+    color: white;
+    border: none;
+    font-size: 1em;
+    padding: 0.4em;
+    width: 6em;
+    border: 1px solid #535BFF;
+    border-radius: 8px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+.site-main form input[type=submit]:hover, .site-main form button:hover {
+    background-color: rgb(83, 114, 255);
+}
+.site-main form input[type=submit]:active, .site-main form button:active {
+    background-color: rgb(77, 85, 241);
+}
+.site-main form .buttons {
+    display: flex;
+    flex-direction: row;
+}
+.site-main form .buttons input[type=submit], .site-main form .buttons button {
+    margin: 0 0.2em;
+}
+
+
 /* Product */
 .productsec {
     display : flex;
@@ -232,6 +306,7 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
+    position: relative;
 }
 
 /* Sliick Slider */
@@ -258,16 +333,16 @@ body::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2px;
 }
 body::-webkit-scrollbar-thumb:vertical {
-    /* background-color: #535BFF; */
     /* Gradient generated at: https://cssgradient.io/ */
     background: linear-gradient(0deg, rgba(83,91,255,1) 0%, rgba(124,129,242,1) 50%, rgba(83,91,255,1) 100%);
     border: 1px solid rgb(98, 106, 253);
     border-radius: 8px;
 }
 body::-webkit-scrollbar-thumb:horizontal {
-    /* background-color: #535BFF; */
     /* Gradient generated at: https://cssgradient.io/ */
     background: linear-gradient(90deg, rgba(83,91,255,1) 0%, rgba(124,129,242,1) 50%, rgba(83,91,255,1) 100%);
     border: 1px solid rgb(98, 106, 253);
     border-radius: 8px;
 }
+
+/* Mobile Layout */

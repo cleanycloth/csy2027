@@ -68,12 +68,28 @@
         <!-- Main -->
         <main class="site-main">
             <div class="content">
-                    <h1>Heading 1</h1>
-                    <h2>Heading 2</h2>
-                    <h3></h3>
-                    <h4></h4>
-                    <h5></h5>
-                    <h6></h6>
+                <h1>Heading</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos laudantium delectus enim amet modi voluptas blanditiis rerum, dolore, sed dignissimos consectetur id, voluptatibus voluptates vel! Commodi hic eligendi aspernatur labore delectus amet rerum atque ducimus perferendis, earum vitae officiis optio iusto dignissimos nostrum mollitia, eos maiores adipisci sequi similique? Laboriosam.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos laudantium delectus enim amet modi voluptas blanditiis rerum, dolore, sed dignissimos consectetur id, voluptatibus voluptates vel! Commodi hic eligendi aspernatur labore delectus amet rerum atque ducimus perferendis, earum vitae officiis optio iusto dignissimos nostrum mollitia, eos maiores adipisci sequi similique? Laboriosam.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos laudantium delectus enim amet modi voluptas blanditiis rerum, dolore, sed dignissimos consectetur id, voluptatibus voluptates vel! Commodi hic eligendi aspernatur labore delectus amet rerum atque ducimus perferendis, earum vitae officiis optio iusto dignissimos nostrum mollitia, eos maiores adipisci sequi similique? Laboriosam.</p>
+            
+                <form action="" method="post">
+                    <div>    
+                        <label for="form-field1">Form Field 1</label> 
+                        <input type="text" name="form-field1">
+                    </div>                   
+                    <div>    
+                        <label for="form-field2">Form Field 2</label> 
+                        <input type="password" name="form-field2">
+                    </div>
+                    <input type="submit" name="submit" value="Button">
+                    <button>Button</button>
+
+                    <div class="buttons">
+                        <button>Button</button>
+                        <button>Button</button>
+                    </div>
+                </form>
             </div>
         </main>
 
