@@ -211,7 +211,7 @@ nav ul .dropdown:hover ul li a:active {
 }
 .site-main .featured .featured-item a {
     display: block;
-    width: 40%;
+    width: max-content;
     text-align: center;
     text-decoration: none;
     background-color: #898989;
@@ -246,10 +246,18 @@ nav ul .dropdown:hover ul li a:active {
 .site-main .content p {
     margin-bottom: 1rem;
 }
+
+/* Main - Forms */
 .site-main form {
     margin: 0 auto;
 }
-.site-main form div {
+.site-main form .fields {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 0.8em;
+    width: max-content;
+}
+.site-main form .buttons {
     width: max-content;
     display: block;
 }
@@ -257,11 +265,16 @@ nav ul .dropdown:hover ul li a:active {
     margin: 0 auto 0.6em auto;
 }
 .site-main form label {
-    margin-right: 0.4em;
+    padding: 0.4em 0 0.4em 0;
+    text-align: right;
 }
-.site-main form input[type=text], .site-main form input[type=password] {
+.site-main form input[type=text], .site-main form input[type=password], .site-main form input[type=email], .site-main form input[type=date] {
     padding: 0.4em;
     width: 12vw;
+}
+.site-main form textarea {
+    resize: none;
+    height: 8rem;
 }
 .site-main form input[type=submit], .site-main form button {
     display: block;
@@ -270,8 +283,8 @@ nav ul .dropdown:hover ul li a:active {
     color: white;
     border: none;
     font-size: 1em;
-    padding: 0.4em;
-    width: 6em;
+    padding: 0.6em;
+    width: max-content;
     border: 1px solid #535BFF;
     border-radius: 8px;
     transition-duration: 0.1s;
