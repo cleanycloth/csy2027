@@ -16,10 +16,7 @@
             <div class="logo">
                 <a href="/csy2027"><h1>NN Games</h1></a>
             </div>
-
-            <!-- search bar  -->
           
-
             <div class="user-options">
                 <!-- Signed Out -->
                 <!-- 
@@ -54,38 +51,35 @@
 
         <!-- Main -->
         <main class="site-main">
-        <section>
-        <h2>Product Name<h2> 
-        <div class="productsec">  
-            <div class="pcolumn">
-            <div class="product-carousel slider">
-                <div>
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
+            <h1>Product Name</h1> 
+            <div class="productsec">  
+                <div class="pcolumn">
+                    <div class="product-carousel slider">
+                        <div>
+                            <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
+                        </div>
+                        <div>
+                            <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
+                        </div>
+                    </div>
                 </div>
-                <div>
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                </div>
-                <div>
-                        <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-                </div>
-            </div>
-            </div>
-            <div class="pcolumn">
-            <h1>Description</h1>
-            <h3>Platform: Platform</h3>
-            <h3>Genre: Genre</h3>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <div class="pcolumn">
-                <div class ="purchasebox">
-                <p> Price : £50.00 </p>
-                <a href="#">Add to basket</a>
+                <div class="pcolumn">
+                    <h1>Description</h1>
+                    <h4>Platform: Platform</h4>
+                    <h4>Genre: Genre</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+                <div class="pcolumn">
+                    <div class="purchasebox">
+                        <h2>Price</h2>
+                        <p>£50.00</p>
+                        <a href="#">Add to basket</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        </section>
-
         </main>
 
         <!-- Footer -->
@@ -93,9 +87,9 @@
             &copy; <?=date("Y");?> NN Games - All Rights Reserved
         </footer>
 
-        
-         <!-- jQuery - https://jquery.com/ -->
-         <script type="text/javascript" src="js/jquery/jquery-3.4.1.min.js"></script>
+
+        <!-- jQuery - https://jquery.com/ -->
+        <script type="text/javascript" src="js/jquery/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="js/jquery/jquery-migrate-1.4.1.min.js"></script>
         <!-- Slick Slider - https://kenwheeler.github.io/slick/ -->
         <script type="text/javascript" src="js/slick/slick.min.js"></script>
