@@ -262,6 +262,7 @@ nav ul .dropdown:hover ul li a:active {
 .site-main form input[type=text], .site-main form input[type=password] {
     padding: 0.4em;
     width: 12vw;
+<<<<<<< Updated upstream
 }
 .site-main form input[type=submit], .site-main form button {
     display: block;
@@ -293,12 +294,91 @@ nav ul .dropdown:hover ul li a:active {
 
 
 /* Product */
+=======
+}
+.site-main form input[type=submit], .site-main form button {
+    display: block;
+    text-align: center;
+    background-color: #535BFF;
+    color: white;
+    border: none;
+    font-size: 1em;
+    padding: 0.4em;
+    width: 6em;
+    border: 1px solid #535BFF;
+    border-radius: 8px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+.site-main form input[type=submit]:hover, .site-main form button:hover {
+    background-color: rgb(83, 114, 255);
+}
+.site-main form input[type=submit]:active, .site-main form button:active {
+    background-color: rgb(77, 85, 241);
+}
+.site-main form .buttons {
+    display: flex;
+    flex-direction: row;
+}
+.site-main form .buttons input[type=submit], .site-main form .buttons button {
+    margin: 0 0.2em;
+}
+
+/*Product*/
+>>>>>>> Stashed changes
 .productsec {
-    display : flex;
+    display : grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap:5px;   
+    margin: 0em auto;
+    height: 70%;
 }
 .pcolumn {
-    flex : 1/3;
+margin: 0em auto;
 }
+.pcolumn p{
+font-size: 0.3em;
+font-family: 'Roboto', sans-serif;
+}
+h2{
+    font-size: 3em;
+}
+.pcolumn h1{
+    margin:0em auto;
+    font-size:0.6em;
+}
+<<<<<<< Updated upstream
+=======
+.pcolumn h3{
+    font-size:0.4em;
+    font-family: 'Roboto', sans-serif;
+}
+.site-main .pcolumn .product-carousel {
+    width: 50%;
+    margin: 1 auto 1em auto;
+    text-align: center;
+}
+.pcolumn .purchasebox {
+    text-align: center;
+    text-decoration: none;
+    border-color: black;
+    position: center;
+    margin:1em;
+}
+.pcolumn .purchasebox a {
+    display: block;
+    width: 100%;
+    background-color: #898989;
+    color: white;
+    padding: 0.6em;
+    border: 1px solid #898989;
+    border-radius: 8px;
+    transition-duration: 0.1s;
+    font-size:0.3em;
+    font-family: 'Roboto', sans-serif;
+}
+>>>>>>> Stashed changes
 
 /* Footer */
 footer {
