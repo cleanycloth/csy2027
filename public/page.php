@@ -74,15 +74,23 @@
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos laudantium delectus enim amet modi voluptas blanditiis rerum, dolore, sed dignissimos consectetur id, voluptatibus voluptates vel! Commodi hic eligendi aspernatur labore delectus amet rerum atque ducimus perferendis, earum vitae officiis optio iusto dignissimos nostrum mollitia, eos maiores adipisci sequi similique? Laboriosam.</p>
             
                 <form action="" method="post">
-                    <div>    
-                        <label for="form-field1">Form Field 1</label> 
-                        <input type="text" name="form-field1">
-                    </div>                   
-                    <div>    
-                        <label for="form-field2">Form Field 2</label> 
-                        <input type="password" name="form-field2">
+                    <div class="fields">    
+                        <label for="text-field">Text Field</label> 
+                        <input type="text" name="text-field">
+
+                        <label for="password-field">Password Field</label> 
+                        <input type="password" name="password-field">
+
+                        <label for="email-field">Email Field</label> 
+                        <input type="email" name="email-field">
+
+                        <label for="date-field">Date Field</label> 
+                        <input type="date" name="date-field">
+
+                        <label for="textarea-field">Textarea Field</label> 
+                        <textarea name="textarea-field"></textarea>
                     </div>
-                    <input type="submit" name="submit" value="Button">
+                    <input type="submit" name="submit" value="Submit Button">
                     <button>Button</button>
 
                     <div class="buttons">
