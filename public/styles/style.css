@@ -19,7 +19,7 @@ body {
 
 /* Header */
 header {
-    background-color: #AC9F9F;
+    background-color: rgb(174, 174, 174);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
@@ -69,7 +69,7 @@ header .search button:active {
 }
 /* Header - User Options */
 header .user-options {
-    background-color: rgb(204, 194, 194);
+    background-color: rgb(194, 194, 194);
     margin: auto 1em auto 1em;
     height: 3em;
     justify-self: end;
@@ -346,7 +346,7 @@ nav ul .dropdown:hover ul li a:active {
 
 /* Footer */
 footer {
-    background-color: #7A7373;
+    background-color: rgb(113, 113, 113);
     color: white;
     text-align: center;
     padding: 1em;
