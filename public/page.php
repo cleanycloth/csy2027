@@ -73,22 +73,122 @@
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos laudantium delectus enim amet modi voluptas blanditiis rerum, dolore, sed dignissimos consectetur id, voluptatibus voluptates vel! Commodi hic eligendi aspernatur labore delectus amet rerum atque ducimus perferendis, earum vitae officiis optio iusto dignissimos nostrum mollitia, eos maiores adipisci sequi similique? Laboriosam.</p>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos laudantium delectus enim amet modi voluptas blanditiis rerum, dolore, sed dignissimos consectetur id, voluptatibus voluptates vel! Commodi hic eligendi aspernatur labore delectus amet rerum atque ducimus perferendis, earum vitae officiis optio iusto dignissimos nostrum mollitia, eos maiores adipisci sequi similique? Laboriosam.</p>
             
-                <form action="" method="post">
-                    <div>    
-                        <label for="form-field1">Form Field 1</label> 
-                        <input type="text" name="form-field1">
-                    </div>                   
-                    <div>    
-                        <label for="form-field2">Form Field 2</label> 
-                        <input type="password" name="form-field2">
+                <h1>Example Form</h1>
+                <form action="" method="get">
+                    <output>ERROR</output>
+                    <div class="fields">    
+                        <label for="text-field">Text Field</label> 
+                        <input type="text" name="text-field">
+
+                        <label class="required" for="text-field2">Required Text Field</label> 
+                        <input type="text" name="text-field2" required>
+
+                        <label for="password-field">Password Field</label> 
+                        <input type="password" name="password-field">
+
+                        <label for="email-field">Email Field</label> 
+                        <input type="email" name="email-field">
+
+                        <label for="date-field">Date Field</label> 
+                        <input type="date" name="date-field">
+
+                        <label for="time-field">Time Field</label> 
+                        <input type="time" name="time-field">
+
+                        <label for="upload-field">Upload Field</label>
+                        <input type="file" name="upload-field" id="upload-field">
+
+                        <label for="phone-field">Phone Field</label>
+                        <input type="tel" name="phone-field">
+
+                        <label for="url-field">URL Field</label>
+                        <input type="url" id="url-field">
+                        
+                        <label for="number-field">Number Field</label>
+                        <input type="number" id="number-field">
+
+                        <label for="card-date">Card Date</label>
+                        <div class="card-date" id="card-date">
+                            <input type="text" name="expiry-month"> /
+                            <input type="text" name="expiry-year">
+                        </div>
+
+                        <label for="radio-buttons">Make a choice</label>
+                        <div class="radio-buttons" id="radio-buttons">
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-1" value="1">
+                                <label for="radio-1">Radio Button Field</label>
+                            </div>
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-2" value="2">
+                                <label for="radio-2">Radio Button Field</label>
+                            </div>
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-3" value="3">
+                                <label for="radio-3">Radio Button Field</label>
+                            </div>
+                        </div>
+
+                        <label for="checkboxes">Select some options</label>
+                        <div class="checkboxes" id="checkboxes">
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-1" value="1">
+                                <label for="check-1">Checkbox Field</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-2" value="2">
+                                <label for="check-2">Checkbox Field</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-3" value="3">
+                                <label for="check-3">Checkbox Field</label>
+                            </div>
+                        </div>
+
+                        <label for="radio-buttons2">Make a choice</label>
+                        <div class="radio-buttons-row" id="radio-buttons2">
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-1" value="1">
+                                <label for="radio-1">Radio Button Field</label>
+                            </div>
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-2" value="2">
+                                <label for="radio-2">Radio Button Field</label>
+                            </div>
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-3" value="3">
+                                <label for="radio-3">Radio Button Field</label>
+                            </div>
+                        </div>
+                        
+                        <label for="checkboxes2">Select some options</label>
+                        <div class="checkboxes-row" id="checkboxes2">
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-1" value="1">
+                                <label for="check-1">Checkbox Field</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-2" value="2">
+                                <label for="check-2">Checkbox Field</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-3" value="3">
+                                <label for="check-3">Checkbox Field</label>
+                            </div>
+                        </div>
+
+                        <label for="textarea-field">Textarea Field</label> 
+                        <textarea name="textarea-field"></textarea>
                     </div>
-                    <input type="submit" name="submit" value="Button">
-                    <button>Button</button>
+                    <input type="submit" name="submit" value="Submit Button">
+                    <button type="reset">Reset Button</button>
 
                     <div class="buttons">
-                        <button>Button</button>
+                        <input type="button" value="Button">
                         <button>Button</button>
                     </div>
+
+                    <p>Already have an account? You can login <a href="">here</a>.</p>
                 </form>
             </div>
         </main>
