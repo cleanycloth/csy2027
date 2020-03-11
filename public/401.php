@@ -53,8 +53,9 @@
         <!-- Main -->
         <main class="site-main">
             <div class="#">
-                <p class="errorcode" style="font-size:72px;">ERROR_CODE!</p>
-                <p class="errorcode" style="font-size:34px;">Error_description_here</p>
+                <p class="errorcode" style="font-size:72px;">401: Unauthorised</p>
+                <p class="errorcode" style="font-size:34px;">The Troll at the bridge asks for a password.</p>
+                <!--<img class="errorimage" src="images/hal.png" alt="Picture of HAL9000.">-->
             </div>
 
         </main>

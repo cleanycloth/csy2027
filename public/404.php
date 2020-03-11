@@ -53,8 +53,9 @@
         <!-- Main -->
         <main class="site-main">
             <div class="#">
-                <p class="errorcode" style="font-size:72px;">ERROR_CODE!</p>
-                <p class="errorcode" style="font-size:34px;">Error_description_here</p>
+                <p class="errorcode" style="font-size:72px;">404: Page Not Found</p>
+                <p class="errorcode" style="font-size:34px;">Your webpage is in another castle.</p>
+                <img class="errorimage" src="images/toad.png" alt="Picture of Toad from Super Mario Bros.">
             </div>
 
         </main>

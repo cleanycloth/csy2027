@@ -53,8 +53,9 @@
         <!-- Main -->
         <main class="site-main">
             <div class="#">
-                <p class="errorcode" style="font-size:72px;">ERROR_CODE!</p>
-                <p class="errorcode" style="font-size:34px;">Error_description_here</p>
+                <p class="errorcode" style="font-size:72px;">403: Forbidden</p>
+                <p class="errorcode" style="font-size:34px;">I'm sorry, I'm afraid I can't do that.</p>
+                <img class="errorimage" src="images/hal.png" alt="Picture of HAL9000.">
             </div>
 
         </main>
