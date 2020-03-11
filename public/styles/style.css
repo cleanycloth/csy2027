@@ -329,6 +329,12 @@ nav ul .dropdown:hover ul li a:active {
     margin-top: 1em;
     text-align: center;
 }
+.site-main form p a {
+    text-decoration: none;
+}
+.site-main form p a:hover {
+    text-decoration: underline;
+}
 
 /* Product */
 .productsec {
