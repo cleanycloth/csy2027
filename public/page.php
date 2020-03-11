@@ -143,10 +143,10 @@
                         <textarea name="textarea-field"></textarea>
                     </div>
                     <input type="submit" name="submit" value="Submit Button">
-                    <button>Button</button>
+                    <button type="reset">Reset Button</button>
 
                     <div class="buttons">
-                        <button>Button</button>
+                        <input type="button" value="Button">
                         <button>Button</button>
                     </div>
 
