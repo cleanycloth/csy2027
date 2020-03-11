@@ -251,6 +251,14 @@ nav ul .dropdown:hover ul li a:active {
 .site-main form {
     margin: 0 auto;
 }
+.site-main form output {
+    display: block;
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 auto 1em auto;
+    width: max-content;
+}
 .site-main form .fields {
     display: grid;
     grid-template-columns: max-content max-content;
@@ -268,13 +276,25 @@ nav ul .dropdown:hover ul li a:active {
     padding: 0.4em 0 0.4em 0;
     text-align: right;
 }
-.site-main form input[type=text], .site-main form input[type=password], .site-main form input[type=email], .site-main form input[type=date] {
+.site-main form .required::after {
+    color: red;
+    content: ' *';
+}
+.site-main form input[type=text], .site-main form input[type=password], .site-main form input[type=email], .site-main form input[type=date], .site-main form input[type=time], .site-main form input[type=tel], .site-main form input[type=url], .site-main form input[type=number] {
     padding: 0.4em;
-    width: 12vw;
+    width: 14vw;
+}
+.site-main form input[type=file] {
+    padding: 0.4em 0;
+}
+.site-main form .radio-buttons, .site-main form .checkboxes {
+    margin: 0;
+    padding: 0.4em 0;
 }
 .site-main form textarea {
     resize: none;
-    height: 8rem;
+    width: 14vw;
+    height: 10rem;
 }
 .site-main form input[type=submit], .site-main form button {
     display: block;
@@ -290,20 +310,22 @@ nav ul .dropdown:hover ul li a:active {
     transition-duration: 0.1s;
     cursor: pointer;
 }
-.site-main form input[type=submit]:hover, .site-main form button:hover {
+.site-main form input[type=submit]:hover, .site-main form input[type=reset]:hover, .site-main form button:hover {
     background-color: rgb(83, 114, 255);
 }
-.site-main form input[type=submit]:active, .site-main form button:active {
+.site-main form input[type=submit]:active, .site-main form input[type=reset]:active, .site-main form button:active {
     background-color: rgb(77, 85, 241);
 }
 .site-main form .buttons {
     display: flex;
     flex-direction: row;
 }
-.site-main form .buttons input[type=submit], .site-main form .buttons button {
+.site-main form .buttons input[type=submit], .site-main form .buttons input[type=reset], .site-main form .buttons button {
     margin: 0 0.2em;
 }
-
+.site-main form p {
+    text-align: center;
+}
 
 /* Product */
 .productsec {
