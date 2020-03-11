@@ -296,7 +296,7 @@ nav ul .dropdown:hover ul li a:active {
     width: 14vw;
     height: 10rem;
 }
-.site-main form input[type=submit], .site-main form button {
+.site-main form input[type=button], .site-main form input[type=submit], .site-main form input[type=reset], .site-main form button {
     display: block;
     text-align: center;
     background-color: #535BFF;
@@ -311,10 +311,10 @@ nav ul .dropdown:hover ul li a:active {
     transition-duration: 0.1s;
     cursor: pointer;
 }
-.site-main form input[type=submit]:hover, .site-main form input[type=reset]:hover, .site-main form button:hover {
+.site-main form input[type=button]:hover, .site-main form input[type=submit]:hover, .site-main form input[type=reset]:hover, .site-main form button:hover {
     background-color: rgb(83, 114, 255);
 }
-.site-main form input[type=submit]:active, .site-main form input[type=reset]:active, .site-main form button:active {
+.site-main form input [type=button]:active, .site-main form input[type=submit]:active, .site-main form input[type=reset]:active, .site-main form button:active {
     background-color: rgb(77, 85, 241);
 }
 .site-main form .buttons {
@@ -322,7 +322,7 @@ nav ul .dropdown:hover ul li a:active {
     flex-direction: row;
     margin-top: 1em;
 }
-.site-main form .buttons input[type=submit], .site-main form .buttons input[type=reset], .site-main form .buttons button {
+.site-main form .buttons input[type=button], .site-main form .buttons input[type=submit], .site-main form .buttons input[type=reset], .site-main form .buttons button {
     margin: 0 0.2em;
 }
 .site-main form p {
