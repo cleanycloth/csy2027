@@ -107,6 +107,12 @@
                         <label for="number-field">Number Field</label>
                         <input type="number" id="number-field">
 
+                        <label for="card-date">Card Date</label>
+                        <div class="card-date" id="card-date">
+                            <input type="text" name="expiry-month"> /
+                            <input type="text" name="expiry-year">
+                        </div>
+
                         <label for="radio-buttons">Make a choice</label>
                         <div class="radio-buttons" id="radio-buttons">
                             <div class="radio-button">
@@ -125,6 +131,38 @@
 
                         <label for="checkboxes">Select some options</label>
                         <div class="checkboxes" id="checkboxes">
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-1" value="1">
+                                <label for="check-1">Checkbox Field</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-2" value="2">
+                                <label for="check-2">Checkbox Field</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="checkbox-choice" id="check-3" value="3">
+                                <label for="check-3">Checkbox Field</label>
+                            </div>
+                        </div>
+
+                        <label for="radio-buttons2">Make a choice</label>
+                        <div class="radio-buttons-row" id="radio-buttons2">
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-1" value="1">
+                                <label for="radio-1">Radio Button Field</label>
+                            </div>
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-2" value="2">
+                                <label for="radio-2">Radio Button Field</label>
+                            </div>
+                            <div class="radio-button">
+                                <input type="radio" name="radio-choice" id="radio-3" value="3">
+                                <label for="radio-3">Radio Button Field</label>
+                            </div>
+                        </div>
+                        
+                        <label for="checkboxes2">Select some options</label>
+                        <div class="checkboxes-row" id="checkboxes2">
                             <div class="checkbox">
                                 <input type="checkbox" name="checkbox-choice" id="check-1" value="1">
                                 <label for="check-1">Checkbox Field</label>
