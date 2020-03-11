@@ -324,6 +324,7 @@ nav ul .dropdown:hover ul li a:active {
     margin: 0 0.2em;
 }
 .site-main form p {
+    margin-top: 1em;
     text-align: center;
 }
 
