@@ -89,7 +89,7 @@
             </div>
             
             <h1>LATEST RELEASES</h1>
-            <div class="product-carousel slider">
+            <div class="featured-product-carousel slider">
                 <div>
                     <a href="#">
                         <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
@@ -129,7 +129,7 @@
             </div>
 
             <h1>STAFF PICKS</h1>
-            <div class="product-carousel slider">
+            <div class="featured-product-carousel slider">
                 <div>
                     <a href="#">
                         <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">

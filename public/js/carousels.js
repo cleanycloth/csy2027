@@ -12,11 +12,19 @@ $(document).ready(function(){
         slidesToScroll: 1
     });
 
-    $('.product-carousel').slick({
+    $('.featured-product-carousel').slick({
         dots: true,
         infinite: true,
         draggable: true,
         slidesToShow: 3,
+        slidesToScroll: 1
+    });
+
+    $('.product-carousel').slick({
+        dots: true,
+        infinite: true,
+        draggable: true,
+        slidesToShow: 1,
         slidesToScroll: 1
     });
 });
