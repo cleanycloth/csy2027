@@ -250,6 +250,8 @@ nav ul .dropdown:hover ul li a:active {
 /* Main - Forms */
 .site-main form {
     margin: 0 auto;
+    overflow: hidden;
+    width: 34vw;
 }
 .site-main form output {
     display: block;
@@ -287,9 +289,23 @@ nav ul .dropdown:hover ul li a:active {
 .site-main form input[type=file] {
     padding: 0.4em 0;
 }
-.site-main form .radio-buttons, .site-main form .checkboxes {
+.site-main form .card-date {
+    margin: 0;
+}
+.site-main form .card-date input {
+    width: 2.2em;
+}
+.site-main form .radio-buttons, .site-main form .checkboxes, .site-main form .checkboxes-row, .site-main form .radio-buttons-row {
     margin: 0;
     padding: 0.4em 0;
+}
+.site-main form .checkboxes-row, .site-main form .radio-buttons-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.site-main form .checkboxes-row .checkbox, .site-main form .radio-buttons-row .radio-button {
+    margin: 0 1em 0 0;
 }
 .site-main form textarea {
     resize: none;
