@@ -304,6 +304,7 @@ nav ul .dropdown:hover ul li a:active {
     border: none;
     font-size: 1em;
     padding: 0.6em;
+    margin-top: 1em;
     width: max-content;
     border: 1px solid #535BFF;
     border-radius: 8px;
@@ -319,6 +320,7 @@ nav ul .dropdown:hover ul li a:active {
 .site-main form .buttons {
     display: flex;
     flex-direction: row;
+    margin-top: 1em;
 }
 .site-main form .buttons input[type=submit], .site-main form .buttons input[type=reset], .site-main form .buttons button {
     margin: 0 0.2em;
