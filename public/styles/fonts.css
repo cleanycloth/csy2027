@@ -1,6 +1,5 @@
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
 
 /* IBM font provided by
@@ -15,13 +14,20 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Audiowide', cursive;
+}
+
+header .logo {
+    font-family: 'Audiowide', cursive;
+}
+
+.productsec h1, .productsec h2, .productsec h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
 .errorcode {
     font-family: 'IBM-VGA8', sans-serif;
     text-align: center;
     font-weight: lighter;
-}
-
-header .logo {
-    /* font-family: 'Orbitron', sans-serif; */
-    font-family: 'Audiowide', cursive;
 }
