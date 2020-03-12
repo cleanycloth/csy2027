@@ -193,18 +193,22 @@ nav ul .dropdown:hover ul li a:active {
 }
 @keyframes showButton {
     from {
-        top: 100%; 
+        top: 100%;
+        opacity: 0;
     }
     to {
         top: 92%;
+        opacity: 100%;
     }
 }
 @keyframes hideButton {
     from {
         top: 92%; 
+        opacity: 100%;
     }
     to {
         top: 100%;
+        opacity: 0;
     }
 }
 
