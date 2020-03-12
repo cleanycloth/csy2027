@@ -7,6 +7,7 @@
 
 html {
     background-color: #E3E3E4;
+    scroll-behavior: smooth;
 }
 
 h1 {
@@ -19,7 +20,7 @@ body {
 
 /* Header */
 header {
-    background-color: #AC9F9F;
+    background-color: rgb(174, 174, 174);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
@@ -69,7 +70,7 @@ header .search button:active {
 }
 /* Header - User Options */
 header .user-options {
-    background-color: rgb(204, 194, 194);
+    background-color: rgb(194, 194, 194);
     margin: auto 1em auto 1em;
     height: 3em;
     justify-self: end;
@@ -157,6 +158,11 @@ nav ul .dropdown:hover ul li a:active {
     position: relative;
     z-index: 0;
 }
+
+.site-main h1 {
+    margin-top: 1em;
+}
+
 .site-main .main-carousel {
     margin-bottom: 4rem;
 }
@@ -176,16 +182,16 @@ nav ul .dropdown:hover ul li a:active {
     text-decoration: none;
 }
 
-.site-main .product-carousel {
+.site-main .featured-product-carousel {
     width: 50%;
     margin: 0 auto 4rem auto;
     text-align: center;
 }
-.site-main .product-carousel p {
+.site-main .featured-product-carousel p {
     margin-top: 0.5rem;
     color: black;
 }
-.site-main .product-carousel a {
+.site-main .featured-product-carousel a {
     text-decoration: none;
 }
 
@@ -211,7 +217,7 @@ nav ul .dropdown:hover ul li a:active {
 }
 .site-main .featured .featured-item a {
     display: block;
-    width: 40%;
+    width: max-content;
     text-align: center;
     text-decoration: none;
     background-color: #898989;
@@ -246,10 +252,28 @@ nav ul .dropdown:hover ul li a:active {
 .site-main .content p {
     margin-bottom: 1rem;
 }
+
+/* Main - Forms */
 .site-main form {
     margin: 0 auto;
+    overflow: hidden;
+    width: 34vw;
 }
-.site-main form div {
+.site-main form output {
+    display: block;
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 auto 1em auto;
+    width: max-content;
+}
+.site-main form .fields {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 0.8em;
+    width: max-content;
+}
+.site-main form .buttons {
     width: max-content;
     display: block;
 }
@@ -257,56 +281,150 @@ nav ul .dropdown:hover ul li a:active {
     margin: 0 auto 0.6em auto;
 }
 .site-main form label {
-    margin-right: 0.4em;
+    padding: 0.4em 0 0.4em 0;
+    text-align: right;
 }
-.site-main form input[type=text], .site-main form input[type=password] {
+.site-main form .required::after {
+    color: red;
+    content: ' *';
+}
+.site-main form input[type=text], .site-main form input[type=password], .site-main form input[type=email], .site-main form input[type=date], .site-main form input[type=time], .site-main form input[type=tel], .site-main form input[type=url], .site-main form input[type=number] {
     padding: 0.4em;
-    width: 12vw;
+    width: 14vw;
 }
-.site-main form input[type=submit], .site-main form button {
+.site-main form input[type=file] {
+    padding: 0.4em 0;
+}
+.site-main form .card-date {
+    margin: 0;
+}
+.site-main form .card-date input {
+    width: 2.2em;
+}
+.site-main form .radio-buttons, .site-main form .checkboxes, .site-main form .checkboxes-row, .site-main form .radio-buttons-row {
+    margin: 0;
+    padding: 0.4em 0;
+}
+.site-main form .checkboxes-row, .site-main form .radio-buttons-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.site-main form .checkboxes-row .checkbox, .site-main form .radio-buttons-row .radio-button {
+    margin: 0 1em 0 0;
+}
+.site-main form textarea {
+    resize: none;
+    width: 14vw;
+    height: 10rem;
+}
+.site-main form input[type=button], .site-main form input[type=submit], .site-main form input[type=reset], .site-main form button {
     display: block;
     text-align: center;
     background-color: #535BFF;
     color: white;
     border: none;
     font-size: 1em;
-    padding: 0.4em;
-    width: 6em;
+    padding: 0.6em;
+    margin-top: 1em;
+    width: max-content;
     border: 1px solid #535BFF;
     border-radius: 8px;
     transition-duration: 0.1s;
     cursor: pointer;
 }
-.site-main form input[type=submit]:hover, .site-main form button:hover {
+.site-main form input[type=button]:hover, .site-main form input[type=submit]:hover, .site-main form input[type=reset]:hover, .site-main form button:hover {
     background-color: rgb(83, 114, 255);
 }
-.site-main form input[type=submit]:active, .site-main form button:active {
+.site-main form input [type=button]:active, .site-main form input[type=submit]:active, .site-main form input[type=reset]:active, .site-main form button:active {
     background-color: rgb(77, 85, 241);
 }
 .site-main form .buttons {
     display: flex;
     flex-direction: row;
+    margin-top: 1em;
 }
-.site-main form .buttons input[type=submit], .site-main form .buttons button {
+.site-main form .buttons input[type=button], .site-main form .buttons input[type=submit], .site-main form .buttons input[type=reset], .site-main form .buttons button {
     margin: 0 0.2em;
 }
-
+.site-main form p {
+    margin-top: 1em;
+    text-align: center;
+}
+.site-main form p a {
+    text-decoration: none;
+}
+.site-main form p a:hover {
+    text-decoration: underline;
+}
 
 /* Product */
 .productsec {
-    display : flex;
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-rows: 1fr;
+    gap: 5em;  
+    margin: 1em auto;
+    width: 90%;
 }
 .pcolumn {
-    flex : 1/3;
+    margin: 0 auto;
+}
+
+.pcolumn h1 {
+    margin: 0 auto;
+}
+
+.pcolumn .product-carousel {
+    width: 24em;
+    margin: 0 auto 4rem auto;
+    text-align: center;
+}
+
+.pcolumn .purchasebox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(201, 201, 201);
+    padding: 2em;
+    height: max-content;
+    font-size: 1.2em;
+}
+
+.pcolumn .purchasebox p {
+    margin-bottom: 1.2em;
+}
+.pcolumn .purchasebox a {
+    display: block;
+    width: max-content;
+    text-align: center;
+    text-decoration: none;
+    background-color: #898989;
+    color: white;
+    padding: 0.6em;
+    border: 1px solid #898989;
+    border-radius: 8px;
+    transition-duration: 0.1s;
+}
+.pcolumn .purchasebox a:hover {
+    background-color: #a0a0a0;
+    border-color: #a0a0a0;
+}
+.pcolumn .purchasebox a:active {
+    background-color: #727272;
+    border-color: #727272;    
 }
 
 /* Footer */
 footer {
-    background-color: #7A7373;
+    background-color: rgb(113, 113, 113);
     color: white;
     text-align: center;
     padding: 1em;
     position: relative;
+    z-index: 1;
 }
 
 /* Sliick Slider */
@@ -343,6 +461,56 @@ body::-webkit-scrollbar-thumb:horizontal {
     background: linear-gradient(90deg, rgba(83,91,255,1) 0%, rgba(124,129,242,1) 50%, rgba(83,91,255,1) 100%);
     border: 1px solid rgb(98, 106, 253);
     border-radius: 8px;
+}
+
+/* Return To Top Button */
+.return-to-top {
+    position: fixed;
+    text-align: center;
+    left: 96%;
+    background-color: #535BFF;
+    color: white;
+    font-size: 2em;
+    border: 1px solid #535BFF;
+    border-radius: 2em;
+    padding: 0.4em;
+    height: 2em;
+    width: 2em;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    z-index: 2;    
+}
+.return-to-top:hover {
+    background-color: rgb(83, 114, 255);
+}
+.return-to-top:active {
+    background-color: rgb(77, 85, 241);
+}
+.return-to-top.show {
+    animation: showButton 250ms forwards;
+}
+.return-to-top.hide {
+    animation: hideButton 250ms forwards;
+}
+@keyframes showButton {
+    from {
+        top: 100%;
+        opacity: 0;
+    }
+    to {
+        top: 92%;
+        opacity: 100%;
+    }
+}
+@keyframes hideButton {
+    from {
+        top: 92%; 
+        opacity: 100%;
+    }
+    to {
+        top: 100%;
+        opacity: 0;
+    }
 }
 
 /* Mobile Layout */
