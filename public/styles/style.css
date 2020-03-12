@@ -7,6 +7,7 @@
 
 html {
     background-color: #E3E3E4;
+    scroll-behavior: smooth;
 }
 
 h1 {
@@ -423,6 +424,7 @@ footer {
     text-align: center;
     padding: 1em;
     position: relative;
+    z-index: 1;
 }
 
 /* Sliick Slider */
@@ -459,6 +461,56 @@ body::-webkit-scrollbar-thumb:horizontal {
     background: linear-gradient(90deg, rgba(83,91,255,1) 0%, rgba(124,129,242,1) 50%, rgba(83,91,255,1) 100%);
     border: 1px solid rgb(98, 106, 253);
     border-radius: 8px;
+}
+
+/* Return To Top Button */
+.return-to-top {
+    position: fixed;
+    text-align: center;
+    left: 96%;
+    background-color: #535BFF;
+    color: white;
+    font-size: 2em;
+    border: 1px solid #535BFF;
+    border-radius: 2em;
+    padding: 0.4em;
+    height: 2em;
+    width: 2em;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    z-index: 2;    
+}
+.return-to-top:hover {
+    background-color: rgb(83, 114, 255);
+}
+.return-to-top:active {
+    background-color: rgb(77, 85, 241);
+}
+.return-to-top.show {
+    animation: showButton 250ms forwards;
+}
+.return-to-top.hide {
+    animation: hideButton 250ms forwards;
+}
+@keyframes showButton {
+    from {
+        top: 100%;
+        opacity: 0;
+    }
+    to {
+        top: 92%;
+        opacity: 100%;
+    }
+}
+@keyframes hideButton {
+    from {
+        top: 92%; 
+        opacity: 100%;
+    }
+    to {
+        top: 100%;
+        opacity: 0;
+    }
 }
 
 /* Mobile Layout */

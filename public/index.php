@@ -14,7 +14,7 @@
 
     <body>
         <!-- Header -->
-        <header class="site-header">    
+        <header class="site-header" id=>    
             <div class="logo">
                 <a href="/"><h1>NN Games</h1></a>
             </div>
@@ -187,6 +187,9 @@
             </div>
         </main>
 
+        <!-- Return To Top Button -->
+        <a class="return-to-top hide" id="return-to-top" href="#top"><i class="fas fa-arrow-up"></i></a>
+
         <!-- Footer -->
         <footer class="site-footer">
             Copyright &copy; <?=date('Y');?> NNGames - All Rights Reserved
@@ -198,5 +201,6 @@
         <!-- Slick Slider - https://kenwheeler.github.io/slick/ -->
         <script type="text/javascript" src="js/slick/slick.min.js"></script>
         <script type="text/javascript" src="js/carousels.js"></script>
+        <script type="text/javascript" src="js/scroll.js"></script>
     </body>
 </html>
