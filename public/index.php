@@ -185,9 +185,10 @@
                     <a href="#">Find out more</a>
                 </div>
             </div>
-
-            <a class="return-to-top hide" id="return-to-top" href="#top"><i class="fas fa-arrow-up"></i></a>
         </main>
+
+        <!-- Return To Top Button -->
+        <a class="return-to-top hide" id="return-to-top" href="#top"><i class="fas fa-arrow-up"></i></a>
 
         <!-- Footer -->
         <footer class="site-footer">
