@@ -136,15 +136,21 @@ nav ul .dropdown {
     position: relative;
 }
 nav ul .dropdown ul {
-    display: none;
-}
-nav ul .dropdown:hover ul {
-    position: absolute;
     display: block;
+    position: absolute;
+    max-height: 0;
     top: 100%;
     width: 100%;
     background-color: rgb(154, 159, 255);
+    overflow: hidden;
+    transition: max-height 0.25s ease-out;
 }
+nav ul .dropdown:hover ul {
+    /* 2.75em = one dropdown item */
+    max-height: 16.5em;
+    transition: max-height 0.25s ease-in;
+}
+
 nav ul .dropdown:hover ul li a:hover {
     background-color: rgb(175, 179, 255);
 }
