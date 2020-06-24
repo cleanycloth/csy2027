@@ -9,12 +9,12 @@
         <!-- NN Games Stylesheets -->
         <link rel="stylesheet" type="text/css" href="styles/style.css">
         <link rel="stylesheet" type="text/css" href="styles/fonts.css">
-        <title>NN Games - Page Name</title>
+        <title>NN Games - <?=$pageName;?></title>
     </head>
 
     <body>
         <!-- Header -->
-        <header class="site-header">    
+        <header class="site-header" id=>    
             <div class="logo">
                 <a href="/"><h1>NN Games</h1></a>
             </div>
@@ -67,38 +67,11 @@
 
         <!-- Main -->
         <main class="site-main">
-            <div class="content">
-                <h2>Sign Up</h2>
-                <p>Please fill this form to create an account.</p>
-                <form action="" method="post">
-                    <div>    
-                        <label for="firstname">Firstname</label> 
-                        <input type="text" name="firstname">
-                    </div>  
+            <?=$output;?>
+        </main>
 
-                    <div>    
-                        <label for="email">Email Address</label> 
-                        <input type="text" name="email">
-                    </div>
-
-                    <div>    
-                        <label for="password">Password</label> 
-                        <input type="password" name="password">
-                    </div>
-
-                    <div>    
-                        <label for="confirm-password">Confirm Password</label> 
-                        <input type="password" name="password">
-                    </div>
-
-                    <div class="buttons">
-                        <input type="submit" name="submit" value="SIGN UP">
-                        <input type="submit" name="reset" value="RESET">
-                    </div>
-                    <p>Already have an account? <a href="login.php">Login here</a>.</p><!-- takes user to login page -->
-                </form>
-            </div>
-        </main>  
+        <!-- Return To Top Button -->
+        <a class="return-to-top hide" id="return-to-top" href="#top"><i class="fas fa-arrow-up"></i></a>
 
         <!-- Footer -->
         <footer class="site-footer">
@@ -110,6 +83,7 @@
         <script type="text/javascript" src="js/jquery/jquery-migrate-1.4.1.min.js"></script>
         <!-- Slick Slider - https://kenwheeler.github.io/slick/ -->
         <script type="text/javascript" src="js/slick/slick.min.js"></script>
-        <script type="text/javascript" src="js/javascript.js"></script>
+        <script type="text/javascript" src="js/carousels.js"></script>
+        <script type="text/javascript" src="js/scroll.js"></script>
     </body>
 </html>
