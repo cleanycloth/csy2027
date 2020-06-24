@@ -86,7 +86,11 @@ body {
     margin: 0.8em 0.4em;
 }
 .basket-overlay .basket .basket-item:first-of-type {
-    margin-top: 0;
+    margin-top: 0.2em;
+}
+.basket-overlay .basket .basket-item .item-main-info .delete:hover {
+    color: red;
+    transition-duration: 0.2s;
 }
 .basket-overlay .basket .basket-item .item-main-info,
 .basket-overlay .basket .basket-item .item-price-qty-info {
@@ -97,6 +101,32 @@ body {
 .basket-overlay .basket .basket-item .item-price-qty-info {
     margin: 0.4em 0;
     justify-content: space-between;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info form input[type=number] {
+    position: relative;
+    width: 4em;
+    right: 0.6em;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info form button {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: 1em;
+    padding: 0;
+    border: none;
+    height: max-content;
+    width: max-content;
+} 
+.basket-overlay .basket .basket-item .item-price-qty-info form button:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: green;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info form button:active {
+    background-color: transparent;
+    border-color: transparent;
 }
 .basket-overlay .basket .basket-item img {
     height: 100px;
@@ -111,6 +141,29 @@ body {
 }
 .basket-overlay .basket hr {
     margin: 0 0.4em;
+}
+
+.basket-overlay .basket .basket-total {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 1em;
+}
+.basket-overlay .basket .basket-total .button {
+    display: block;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 1em;
+    padding: 0.6em;
+    margin: 0.4em auto 0 auto;
+    border: 1px solid black;
+    border-radius: 8px;
+    transition-duration: 0.1s;
+    cursor: pointer;
 }
 
 /* Header */
@@ -419,9 +472,10 @@ nav ul .dropdown:hover ul li a:active {
     width: 14vw;
     height: 10rem;
 }
-.site-main form input[type=button], .site-main form input[type=submit], .site-main form input[type=reset], .site-main form button {
+.site-main form input[type=button], .site-main form input[type=submit], .site-main form input[type=reset], .site-main form button, .site-main .button {
     display: block;
     text-align: center;
+    text-decoration: none;
     background-color: #535BFF;
     color: white;
     border: none;
@@ -434,10 +488,13 @@ nav ul .dropdown:hover ul li a:active {
     transition-duration: 0.1s;
     cursor: pointer;
 }
-.site-main form input[type=button]:hover, .site-main form input[type=submit]:hover, .site-main form input[type=reset]:hover, .site-main form button:hover {
+.site-main .button {
+    margin: 1em auto 0 auto;
+}
+.site-main form input[type=button]:hover, .site-main form input[type=submit]:hover, .site-main form input[type=reset]:hover, .site-main form button:hover, .site-main .button:hover {
     background-color: rgb(83, 114, 255);
 }
-.site-main form input [type=button]:active, .site-main form input[type=submit]:active, .site-main form input[type=reset]:active, .site-main form button:active {
+.site-main form input [type=button]:active, .site-main form input[type=submit]:active, .site-main form input[type=reset]:active, .site-main form button:active, .site-main .button:active {
     background-color: rgb(77, 85, 241);
 }
 .site-main form .buttons {
@@ -445,7 +502,7 @@ nav ul .dropdown:hover ul li a:active {
     flex-direction: row;
     margin-top: 1em;
 }
-.site-main form .buttons input[type=button], .site-main form .buttons input[type=submit], .site-main form .buttons input[type=reset], .site-main form .buttons button {
+.site-main form .buttons input[type=button], .site-main form .buttons input[type=submit], .site-main form .buttons input[type=reset], .site-main form .buttons button, .site-main .buttons .button {
     margin: 0 0.2em;
 }
 .site-main form p {

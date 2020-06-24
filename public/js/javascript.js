@@ -35,6 +35,11 @@ $(document).ready(function() {
         }
     });
 
+    // AJAX Test
+    $('.update-button').click(function() {
+        return false;
+    });
+
     // Carousels
     $('.main-carousel').slick({
         dots: true,
