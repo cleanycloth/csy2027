@@ -56,7 +56,7 @@ body {
     border-color: #2c87ff;
 }
 .basket-overlay button:active {
-    color: #e6e6e6;
+    color: white;
     background-color: #2065c0;
     border-color: #2065c0;
 }
@@ -80,6 +80,8 @@ body {
 .basket-overlay .basket h3 {
     text-align: center;
     padding: 0.6em;
+    color: white;
+    background-color: #2c87ff;
 }
 
 .basket-overlay .basket .basket-item {
@@ -88,7 +90,7 @@ body {
     margin: 0.8em 0.4em;
 }
 .basket-overlay .basket .basket-item:first-of-type {
-    margin-top: 0.2em;
+    margin-top: 0.4em;
 }
 .basket-overlay .basket .basket-item .item-main-info .delete:hover {
     color: red;
@@ -156,17 +158,28 @@ body {
     position: relative;
     text-align: center;
     text-decoration: none;
-    background-color: black;
+    background-color: #2c87ff;
     color: white;
     border: none;
     font-size: 1em;
     padding: 0.6em;
     margin: 0.4em auto 0 auto;
-    border: 1px solid black;
+    border: 1px solid #2c87ff;
     border-radius: 8px;
     transition-duration: 0.1s;
     cursor: pointer;
 }
+.basket-overlay .basket .basket-total .button:hover {
+    color: white;
+    background-color: #539eff;
+    border-color: #539eff;
+}
+.basket-overlay .basket .basket-total .button:active {
+    color: white;
+    background-color: #2065c0;
+    border-color: #2065c0;
+}
+
 
 /* Header */
 header {
