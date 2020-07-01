@@ -26,6 +26,13 @@ header .logo {
     font-family: 'Roboto', sans-serif;
 }
 
+.basket-overlay h3 {
+    font-family: 'Roboto', sans-serif;  
+}
+
+.basket-overlay .basket-item h4 {
+    font-family: 'Roboto', sans-serif;
+
 .errorcode {
     font-family: 'IBM-VGA8', sans-serif;
     text-align: center;

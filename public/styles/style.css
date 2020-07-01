@@ -18,6 +18,176 @@ body {
     position: relative;
 }
 
+
+/* Basket Overlay */
+.basket-overlay {
+    position: fixed;
+    height: 100%;
+    z-index: 5;
+}
+.basket-overlay.visible {
+    right: -12em;
+    transition-duration: 0.2s;
+}
+.basket-overlay.hidden {
+    right: -26em;
+    transition-duration: 0.2s;
+}
+
+.basket-overlay button {
+    position: absolute;
+    font-size: 2em;
+    text-align: center;
+    width: max-content;
+    padding: 0 1.5em 0 0.5em;
+    height: 4rem;
+    top: 5rem;
+    right: 24rem;
+    cursor: pointer;
+    color: white;
+    background-color: #2c87ff;
+    border: 1px solid #2c87ff;
+    border-radius: 0.1em;
+    z-index: 3;
+    transition-duration: 0.1s;
+}
+.basket-overlay button:hover {
+    color: white;
+    background-color: #539eff;
+    border-color: #539eff;
+}
+.basket-overlay button:active {
+    color: white;
+    background-color: #2065c0;
+    border-color: #2065c0;
+}
+
+.basket-overlay button::before.open {
+    content: "<i class="fas fa-shopping-cart"></i>";
+}
+
+.basket-overlay .basket {
+    position: relative;
+    display: block;
+    background-color: #fcfcfc;
+    width: 14em;
+    height: 100%;
+    right: 12em;
+    z-index: 4;
+    overflow: none;
+    margin: 0;
+}
+
+.basket-overlay .basket h3 {
+    text-align: center;
+    padding: 0.6em;
+    color: white;
+    background-color: #2c87ff;
+}
+
+.basket-overlay .basket .basket-item {
+    height: fit-content;
+    text-align: center;
+    margin: 0.8em 0.4em;
+}
+.basket-overlay .basket .basket-item:first-of-type {
+    margin-top: 0.4em;
+}
+.basket-overlay .basket .basket-item .item-main-info .delete:hover {
+    color: red;
+    transition-duration: 0.2s;
+}
+.basket-overlay .basket .basket-item .item-main-info,
+.basket-overlay .basket .basket-item .item-price-qty-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info {
+    margin: 0.4em 0;
+    justify-content: space-between;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info form input[type=number] {
+    position: relative;
+    width: 4em;
+    right: 0.6em;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info form button {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: 1em;
+    padding: 0;
+    border: none;
+    height: max-content;
+    width: max-content;
+} 
+.basket-overlay .basket .basket-item .item-price-qty-info form button {
+    background-color: transparent;
+    border-color: transparent;
+    background-color: transparent;
+    color: black;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info form button:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: green;
+}
+.basket-overlay .basket .basket-item .item-price-qty-info form button:active {
+    background-color: transparent;
+    border-color: transparent;
+}
+.basket-overlay .basket .basket-item img {
+    height: 100px;
+    width: 100px;
+}
+.basket-overlay .basket .basket-item h4 {
+    margin: 0 0.4em;
+}
+.basket-overlay .basket a {
+    color: black;
+    font-size: 1.4em;
+}
+.basket-overlay .basket hr {
+    margin: 0 0.4em;
+}
+
+.basket-overlay .basket .basket-total {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 1em;
+}
+.basket-overlay .basket .basket-total .button {
+    display: block;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    background-color: #2c87ff;
+    color: white;
+    border: none;
+    font-size: 1em;
+    padding: 0.6em;
+    margin: 0.4em auto 0 auto;
+    border: 1px solid #2c87ff;
+    border-radius: 8px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+.basket-overlay .basket .basket-total .button:hover {
+    color: white;
+    background-color: #539eff;
+    border-color: #539eff;
+}
+.basket-overlay .basket .basket-total .button:active {
+    color: white;
+    background-color: #2065c0;
+    border-color: #2065c0;
+}
+
+
 /* Header */
 header {
     background-color: rgb(174, 174, 174);
@@ -528,6 +698,9 @@ body::-webkit-scrollbar-thumb:horizontal {
         top: 100%;
         opacity: 0;
     }
+}
+.return-to-top.extra-spacing {
+    left: 84%;
 }
 
 /* Mobile Layout */
