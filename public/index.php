@@ -18,7 +18,7 @@
         <div class="basket-overlay hidden" id="basket">
             <button id="basket-button"><i class="fas fa-shopping-cart"></i></button>
             <div class="basket">
-                <h3><i class="fas fa-shopping-cart"></i> Basket</h3>
+                <h3><i class="fas fa-shopping-cart"></i> My Basket</h3>
                 <div class="basket-item">
                     <div class="item-main-info">
                         <img src="https://via.placeholder.com/100x100" alt="Placeholder Image">
