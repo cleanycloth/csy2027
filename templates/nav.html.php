@@ -1,9 +1,7 @@
 <ul>
-    <li><a href="#">Xbox</a></li>
-    <li><a href="#">Nintendo</a></li>
-    <li><a href="#">PC</a></li>
-    <li><a href="#">Pre-Owned</a></li>
-    <li><a href="#">Accessories</a></li> 
+    <?php foreach($categories as $category): ?>
+        <li><a href="/category?id=<?=$category->category_id;?>"><?=$category->name;?></a></li>
+    <?php endforeach; ?>
     <li class="dropdown">
         <!-- <i class="fas fa-chevron-up"></i> -->
         <a href="#">Dropdown Menu</a>
