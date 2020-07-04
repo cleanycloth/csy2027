@@ -10,19 +10,19 @@
 </div>
 
 <div class="user-options">
-    <!-- Signed Out -->
-    <!--
-    <ul>
-        <li><a href="#">Sign in <i class="fas fa-sign-in-alt"></i></a></li> |
-        <li><a href="#">Register <i class="fas fa-user-plus"></i></a></li>
-    </ul>
-    -->
-
-    <!-- Signed In -->
-    <ul>
-        <p>Welcome, user!</p> |
-        <li><a href="#">My Account <i class="fas fa-user"></i></a></li> |
-        <li><a href="#">Admin Panel <i class="fas fa-cog"></i></a></li> |
-        <li><a href="#">Sign out <i class="fas fa-sign-out-alt"></i></a></li>
-    </ul>
+    <?php if (!isset($_SESSION['isLoggedIn'])): ?>
+        <!-- Signed Out -->
+        <ul>
+            <li><a href="#">Sign in <i class="fas fa-sign-in-alt"></i></a></li> |
+            <li><a href="#">Register <i class="fas fa-user-plus"></i></a></li>
+        </ul>
+    <?php else: ?>
+        <!-- Signed In -->
+        <ul>
+            <p>Welcome, <?=$_SESSION['userName'];?>!</p> |
+            <li><a href="#">My Account <i class="fas fa-user"></i></a></li> |
+            <li><a href="#">Admin Panel <i class="fas fa-cog"></i></a></li> |
+            <li><a href="#">Sign out <i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    <?php endif; ?>
 </div>
