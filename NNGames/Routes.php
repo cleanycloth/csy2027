@@ -149,11 +149,11 @@ class Routes implements \CSY2028\Routes {
             $user = $usersTable->retrieveRecord('user_id', $_SESSION['id'])[0];
     
             // Check the user's current role frm the database and update $_SESSION variables accordingly.
-            if ($user->role == 1 && !isset($_SESSION['isAdmin'])) {
+            if ($user->user_type == 1 && !isset($_SESSION['isAdmin'])) {
                 unset($_SESSION['isCustomer']);
                 $_SESSION['isAdmin'] = true;
             }
-            elseif ($user->role == 0 && !isset($_SESSION['isCustomer'])) {
+            elseif ($user->user_type == 0 && !isset($_SESSION['isCustomer'])) {
                 unset($_SESSION['isAdmin']);
                 $_SESSION['isCustomer'] = true;
             }
