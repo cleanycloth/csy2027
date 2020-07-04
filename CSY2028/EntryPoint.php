@@ -23,8 +23,14 @@ class EntryPoint {
         if (isset($routes[$route]['restricted']))
             $this->routes->checkAccess();
 
-		$controller = $routes[$route][$method]['controller'];
-        $functionName = $routes[$route][$method]['function'];
+        if (isset($routes[$route][$method]['controller']) && isset($routes[$route][$method]['function'])) {
+            $controller = $routes[$route][$method]['controller'];
+            $functionName = $routes[$route][$method]['function'];
+        }
+        else {
+            http_response_code(404);
+            header('Location: /404');
+        }
 
         if (isset($routes[$route][$method]['parameters']))
             $parameters = $routes[$route][$method]['parameters'];

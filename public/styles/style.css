@@ -598,6 +598,13 @@ nav ul .dropdown:hover ul li a:active {
     border-color: #727272;    
 }
 
+.errorimage {
+    width: 10%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 /* Footer */
 footer {
     background-color: rgb(113, 113, 113);

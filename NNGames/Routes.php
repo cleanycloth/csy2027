@@ -77,6 +77,41 @@ class Routes implements \CSY2028\Routes {
                     'function' => 'testResponse',
                     'parameters' => []
                 ]
+            ],
+            '400' => [
+                'GET' => [
+                    'controller' => $siteController,
+                    'function' => 'error400',
+                    'parameters' => []
+                ]
+            ],
+            '401' => [
+                'GET' => [
+                    'controller' => $siteController,
+                    'function' => 'error401',
+                    'parameters' => []
+                ]
+            ],
+            '403' => [
+                'GET' => [
+                    'controller' => $siteController,
+                    'function' => 'error403',
+                    'parameters' => []
+                ]
+            ],
+            '404' => [
+                'GET' => [
+                    'controller' => $siteController,
+                    'function' => 'error404',
+                    'parameters' => []
+                ]
+            ],
+            '500' => [
+                'GET' => [
+                    'controller' => $siteController,
+                    'function' => 'error500',
+                    'parameters' => []
+                ]
             ]
         ];
 
