@@ -447,7 +447,6 @@ nav ul .dropdown:hover ul li a:active {
     display: grid;
     grid-template-columns: max-content max-content;
     gap: 0.8em;
-    width: max-content;
 }
 .site-main form .buttons {
     width: max-content;
@@ -458,6 +457,7 @@ nav ul .dropdown:hover ul li a:active {
 }
 .site-main form label {
     padding: 0.4em 0 0.4em 0;
+    width: 18em;
     text-align: right;
 }
 .site-main form .required::after {
@@ -531,6 +531,7 @@ nav ul .dropdown:hover ul li a:active {
     margin-top: 1em;
     text-align: center;
 }
+
 .site-main form p a {
     text-decoration: none;
 }

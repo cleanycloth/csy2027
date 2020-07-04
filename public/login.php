@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -68,49 +69,25 @@
         <!-- Main -->
         <main class="site-main">
             <div class="content">
-                <h1>Sign Up</h1>
+                <h1>Sign In</h1>
                 <form action="" method="post">
                     <output>ERROR</output>
-                    <p class="required">Required:</p>
                     <div class="fields">    
-                        <label for="username" class="required">Username</label>
+                        <label for="username">Username/Email Address</label> 
                         <input type="text" name="username">
 
-                        <label for="firstname" class="required">First Name</label> 
-                        <input type="text" name="firstname">
-  
-                        <label for="surname" class="required">Surname</label> 
-                        <input type="text" name="surname">
-
-                        <label for="email" class="required">Email Address</label> 
-                        <input type="text" name="email">
- 
-                        <label for="password" class="required">Password</label> 
+                        <label for="password">Password</label> 
                         <input type="password" name="password">
-
-                        <label for="confirm-password" class="required">Confirm Password</label> 
-                        <input type="password" name="confirm-password">
-         
-                        <label for="tos-privacy-agreement" class="required">Do you agree to our <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>?</label>
-                        <div class="radio-buttons-row" id="tos-privacy-agreement">
-                            <div class="radio-button">
-                                <input type="radio" name="tos-privacy-choice" id="yes1" value="1">
-                                <label for="yes1">Yes</label>
-                            </div>
-                            <div class="radio-button">
-                                <input type="radio" name="tos-privacy-choice" id="no1" value="2">
-                                <label for="no1">No</label>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="buttons">
-                        <input type="submit" name="submit" value="Sign up">
+                        <input type="button" value="Sign in">
                     </div>
-                    <p>Already have an account? <a href="login.php">Sign in here</a>.</p>
+                    
+                    <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
                 </form>
             </div>
-        </main>  
+        </main>
 
         <!-- Footer -->
         <footer class="site-footer">
@@ -122,6 +99,6 @@
         <script type="text/javascript" src="js/jquery/jquery-migrate-1.4.1.min.js"></script>
         <!-- Slick Slider - https://kenwheeler.github.io/slick/ -->
         <script type="text/javascript" src="js/slick/slick.min.js"></script>
-        <script type="text/javascript" src="js/javascript.js"></script>
+        <script type="text/javascript" src="js/carousels.js"></script>
     </body>
 </html>
