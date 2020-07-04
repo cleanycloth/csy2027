@@ -23,12 +23,7 @@ class SiteController {
 
     // Method for returning a test JSON response.
     public function testResponse() {
-        $testArray[0] = 'test 1';
-        $testArray[1] = 'test 2';
-        $testArray[2] = [
-            'field1' => '1',
-            'field2' => '2'
-        ];
+        $testArray['status'] = "User Created";
 
         return [
             'layout' => 'blanklayout.html.php',

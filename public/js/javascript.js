@@ -40,6 +40,18 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#register-form').find('.buttons').find('input').click(function() {
+        $.ajax({
+            type: "POST",
+            url: "/register",
+            data: dataString,
+            success: function(data) {
+                $('.content').find('form').find('output').val(data.formError);
+            }
+        });
+        return false;
+    });
+
     // Carousels
     $('.main-carousel').slick({
         dots: true,

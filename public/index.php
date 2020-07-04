@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../autoload.php';
 
 $routes = new \NNGames\Routes();

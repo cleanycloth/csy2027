@@ -9,7 +9,7 @@ class Routes implements \CSY2028\Routes {
 
         // Create new DatabaseTable objects.
         $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id');
-        $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id', '\NNGames\Entities\User');
+        $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id');
         $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
         $productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id');
         $productReviewsTable = new \CSY2028\DatabaseTable($pdo, 'product_reviews', 'product_id');
@@ -36,14 +36,31 @@ class Routes implements \CSY2028\Routes {
             'login' => [
                 'GET' => [
                     'controller' => $userController,
-                    'function' => 'login',
+                    'function' => 'loginForm',
+                    'parameters' => []
+                ],
+                'POST' => [
+                    'controller' => $userController,
+                    'function' => 'loginSubmit',
                     'parameters' => []
                 ]
             ],
             'register' => [
                 'GET' => [
                     'controller' => $userController,
-                    'function' => 'register',
+                    'function' => 'editUserForm',
+                    'parameters' => []
+                ],
+                'POST' => [
+                    'controller' => $userController,
+                    'function' => 'editUserSubmit',
+                    'parameters' => []
+                ],
+            ],
+            'logout' => [
+                'GET' => [
+                    'controller' => $userController,
+                    'function' => 'logout',
                     'parameters' => []
                 ]
             ],
