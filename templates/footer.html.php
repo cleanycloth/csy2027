@@ -1,0 +1,1 @@
+Copyright &copy; <?=date('Y');?> NNGames - All Rights Reserved
