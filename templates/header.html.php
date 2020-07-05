@@ -3,7 +3,7 @@
 </div>
 
 <div class="search">
-    <form action="" method="get">
+    <form action="/search" method="get">
         <input type="search" name="search" placeholder="Search">
         <button type="submit"><i class="fas fa-search"></i></button>
     </form>
