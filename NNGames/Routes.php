@@ -135,6 +135,20 @@ class Routes implements \CSY2028\Routes {
                 'login' => true,
                 'restricted' => true
             ],
+            'admin/categories/edit' => [
+                'GET' => [
+                    'controller' => $categoryController,
+                    'function' => 'editCategoryForm',
+                    'parameters' => []
+                ],
+                'POST' => [
+                    'controller' => $categoryController,
+                    'function' => 'editCategorySubmit',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
             'admin/categories/delete' => [
                 'POST' => [
                     'controller' => $categoryController,
