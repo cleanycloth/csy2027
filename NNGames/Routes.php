@@ -22,7 +22,7 @@ class Routes implements \CSY2028\Routes {
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
-        $adminController = new \NNGames\Controllers\AdminController($this->usersTable, $_GET, $_POST);
+        $adminController = new \NNGames\Controllers\AdminController();
         $productController = new \NNGames\Controllers\ProductController($productsTable, $_GET, $_POST);
 
         // Define routes.
@@ -84,8 +84,8 @@ class Routes implements \CSY2028\Routes {
             ],
             'admin/users' => [
                 'GET' => [
-                    'controller' => $adminController,
-                    'function' => 'users',
+                    'controller' => $userController,
+                    'function' => 'listUsers',
                     'parameters' => []
                 ],
                 'login' => true,
@@ -93,8 +93,8 @@ class Routes implements \CSY2028\Routes {
             ],
             'admin/users/add' => [
                 'GET' => [
-                    'controller' => $adminController,
-                    'function' => 'editUser',
+                    'controller' => $userController,
+                    'function' => 'editUserForm',
                     'parameters' => []
                 ],
                 'POST' => [
@@ -107,8 +107,8 @@ class Routes implements \CSY2028\Routes {
             ],
             'admin/users/edit' => [
                 'GET' => [
-                    'controller' => $adminController,
-                    'function' => 'editUser',
+                    'controller' => $userController,
+                    'function' => 'editUserForm',
                     'parameters' => []
                 ],
                 'POST' => [
