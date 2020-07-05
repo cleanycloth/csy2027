@@ -569,6 +569,28 @@ nav ul .dropdown:hover ul li a:active {
     background-color: rgb(235, 235, 235);
 }
 
+.site-main .content .admin-content .categories .parent form,
+.site-main .content .admin-content .categories .child-categories .child form {
+    width: max-content;
+}
+.site-main .content .admin-content .categories .parent form button,
+.site-main .content .admin-content .categories .child-categories .child form button {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+.site-main .content .admin-content .categories .parent form button {
+    color: white;
+}
+.site-main .content .admin-content .categories .child-categories .child form button {
+    color: black;
+}
+.site-main .content .admin-content .categories .parent form button:hover,
+.site-main .content .admin-content .categories .child-categories .child form button:hover {
+    text-decoration: underline;
+}
+
 .site-main .content .admin-content .categories li article, .categories .child-categories li article {
 	display: grid;
 	padding: 1em;
