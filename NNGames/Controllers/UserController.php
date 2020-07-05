@@ -258,19 +258,23 @@ class UserController {
 
         // Function for logging the user out from the website.
         public function logout() {   
-            // Unset all $_SESSION variables.
-            unset($_SESSION['isLoggedIn']);
-            unset($_SESSION['isAdmin']);
-            unset($_SESSION['isCustomer']);
-            unset($_SESSION['username']);
-            unset($_SESSION['id']);
-    
-            return [
-                'layout' => 'layout.html.php',
-                'template' => 'success/logoutsuccess.html.php',
-                'variables' => [],
-                'title' => 'Log out'
-            ];
+            if (isset($_SESSION['isLoggedIn'])) {
+                // Unset all $_SESSION variables.
+                unset($_SESSION['isLoggedIn']);
+                unset($_SESSION['isAdmin']);
+                unset($_SESSION['isCustomer']);
+                unset($_SESSION['username']);
+                unset($_SESSION['id']);
+        
+                return [
+                    'layout' => 'layout.html.php',
+                    'template' => 'success/logoutsuccess.html.php',
+                    'variables' => [],
+                    'title' => 'Log out'
+                ];
+            }
+            else 
+                header('Location: /login');
         }
 }
 ?>
