@@ -11,15 +11,7 @@ class AdminController {
         ];
     }
 
-    public function slides() {
-        return [
-            'layout' => 'adminlayout.html.php',
-            'template' => 'pages/admin/slides.html.php',
-            'variables' => [],
-            'title' => 'Admin Panel - Slides'
-        ];
-    }
-
+    // Function for displaying the access restricted page.
     public function accessRestricted() {
         return [
             'layout' => 'adminlayout.html.php',
