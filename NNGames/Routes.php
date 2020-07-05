@@ -24,6 +24,7 @@ class Routes implements \CSY2028\Routes {
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
         $adminController = new \NNGames\Controllers\AdminController();
         $productController = new \NNGames\Controllers\ProductController($productsTable, $_GET, $_POST);
+        $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
 
         // Define routes.
         $routes = [
@@ -91,20 +92,6 @@ class Routes implements \CSY2028\Routes {
                 'login' => true,
                 'restricted' => true
             ],
-            'admin/users/add' => [
-                'GET' => [
-                    'controller' => $userController,
-                    'function' => 'editUserForm',
-                    'parameters' => []
-                ],
-                'POST' => [
-                    'controller' => $userController,
-                    'function' => 'editUserSubmit',
-                    'parameters' => []
-                ],
-                'login' => true,
-                'restricted' => true
-            ],
             'admin/users/edit' => [
                 'GET' => [
                     'controller' => $userController,
@@ -130,8 +117,8 @@ class Routes implements \CSY2028\Routes {
             ],
             'admin/products' => [
                 'GET' => [
-                    'controller' => $adminController,
-                    'function' => 'products',
+                    'controller' => $productController,
+                    'function' => 'listProducts',
                     'parameters' => []
                 ],
                 'login' => true,
@@ -139,8 +126,8 @@ class Routes implements \CSY2028\Routes {
             ],
             'admin/categories' => [
                 'GET' => [
-                    'controller' => $adminController,
-                    'function' => 'categories',
+                    'controller' => $categoryController,
+                    'function' => 'listCategories',
                     'parameters' => []
                 ],
                 'login' => true,
@@ -148,8 +135,8 @@ class Routes implements \CSY2028\Routes {
             ],
             'admin/slides' => [
                 'GET' => [
-                    'controller' => $adminController,
-                    'function' => 'slides',
+                    'controller' => $slideController,
+                    'function' => 'listSlides',
                     'parameters' => []
                 ],
                 'login' => true,
