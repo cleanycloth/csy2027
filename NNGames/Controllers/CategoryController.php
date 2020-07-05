@@ -11,6 +11,7 @@ class CategoryController {
         $this->post = $post;
     }
 
+    // Method for listing out all categories in the database.
     public function listCategories() {
         $categories = $this->categoriesTable->retrieveAllRecords();
 
@@ -22,6 +23,24 @@ class CategoryController {
             ],
             'title' => 'Admin Panel - Categories'
         ];
+    }
+
+    // Method for deleting a category from the database.
+    public function deleteCategory() {
+        $childCategories = $this->categoriesTable->retrieveRecord('category_id', $this->post['category']['category_id'])[0]->getChildCategories();
+
+        foreach($childCategories as $childCategory) {
+            $values = [
+                'category_id' => $childCategory->category_id,
+                'parent_id' => null
+            ];
+
+            $this->categoriesTables->save($values);
+        }
+
+        $this->categoriesTable->deleteRecordById($this->post['category']['category_id']);
+
+        header('Location: /admin/categories');
     }
 }
 ?>
