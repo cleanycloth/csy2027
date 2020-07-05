@@ -1,2 +1,2 @@
-<h2>User Updated</h2>
-<p>The user has been updated.</p>
+<h2><?=$pageName;?></h2>
+<p>The user '<?=$username;?>' has been <?=(isset($_GET['id'])) ? 'updated' : 'added';?> successfully.</p>

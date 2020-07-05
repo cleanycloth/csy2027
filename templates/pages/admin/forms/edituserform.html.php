@@ -1,4 +1,4 @@
-<form id="register-form" action="" method="post">
+<form id="edit-user-form" action="" method="post">
     <h2><?=$pageName;?></h2>
     <output><?=(isset($error)) ? $error : '';?></output>
     <p class="required">Required:</p>
