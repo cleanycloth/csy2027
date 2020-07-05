@@ -1,4 +1,5 @@
 <h2>Categories</h2>
+<a class="button" href="/admin/categories/edit">Add New Category</a>
 <?php if (count($categories) > 0): //Check if the amount of rows in $parentCategories is greater than 0. Used to determine if any categories exist. ?>
     <ul class="categories">
         <?php foreach ($categories as $parentCategory): //Store a single row from $parentCategories in $parentCategory on each iteration. ?>
@@ -8,8 +9,8 @@
                         <?=(count($parentCategory->getChildCategories()) > 0) ? '<i class="fas fa-caret-down"></i>' : ''; //Check if the amount of rows in $childCategories is greater than 0. If so, add a down arrow icon inside the article element. ?>
                         <p class="category-name"><a href="../category.php?category=<?=urlencode(strip_tags($parentCategory->name));?>"><?=htmlspecialchars(strip_tags($parentCategory->name), ENT_QUOTES, 'UTF-8');?></a>
                         <p>Total Products: <?=$parentCategory->getProductsCount();?></p>
-                        <p><a href="editcategory.php?id=<?=$parentCategory->category_id;?>"><i class="fas fa-edit"></i> Edit Category</a></p>
-                        <p><a href="?delete=<?=$parentCategory->category_id;?>"><i class="fas fa-trash-alt"></i> Delete Category</a></p>
+                        <p><a href="/admin/categories/edit?id=<?=$parentCategory->category_id;?>"><i class="fas fa-edit"></i> Edit Category</a></p>
+                        <p><a href="/admin/categories/delete?id=<?=$parentCategory->category_id;?>"><i class="fas fa-trash-alt"></i> Delete Category</a></p>
                     </article>
                     <?php if (count($parentCategory->getChildCategories()) > 0): //Check if the amount of rows in $childCategories is greater than 0. Used to determine if a parent category has any child categories. ?>
                         <ul class="child-categories">
@@ -18,8 +19,8 @@
                                 <article class="child">
                                     <p class="category-name"><a href="../category.php?category=<?=urlencode(strip_tags($childCategory->name));?>"><?=htmlspecialchars(strip_tags($childCategory->name), ENT_QUOTES, 'UTF-8');?></a>
                                     <p>Total Products: <?=$childCategory->getProductsCount();?></p>
-                                    <p><a href="editcategory.php?id=<?=$childCategory->category_id;?>"><i class="fas fa-edit"></i> Edit Category</a></p>
-                                    <p><a href="?delete=<?=$childCategory->category_id;?>"><i class="fas fa-trash-alt"></i> Delete Category</a></p>
+                                    <p><a href="/admin/categories/edit?id=<?=$childCategory->category_id;?>"><i class="fas fa-edit"></i> Edit Category</a></p>
+                                    <p><a href="/admin/categories/delete?id=<?=$childCategory->category_id;?>"><i class="fas fa-trash-alt"></i> Delete Category</a></p>
                                 </article>
                             </li>
                             <?php endforeach; ?>
