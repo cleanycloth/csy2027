@@ -429,6 +429,42 @@ nav ul .dropdown:hover ul li a:active {
     margin-bottom: 1rem;
 }
 
+.site-main .content .admin-nav {
+    background-color: rgb(113, 113, 113);
+    color: white;
+}
+.site-main .content .admin-nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    width: 100%;
+}
+.site-main .content .admin-nav a {
+    display: block;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 0.5em;
+    transition-duration: 0.1s;
+}
+.site-main .content .admin-nav a:hover {
+    background-color: rgb(136, 136, 136);
+}
+.site-main .content .admin-nav a:active {
+    background-color: rgb(77, 77, 77);
+}
+
+.site-main .content .admin-content {
+    background-color: rgb(201, 201, 201);
+    padding: 1em;
+}
+.site-main .content .admin-content p {
+    margin-bottom: 0;
+}
+
 /* Main - Forms */
 .site-main form {
     margin: 0 auto;

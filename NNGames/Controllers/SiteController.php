@@ -5,19 +5,9 @@ class SiteController {
     public function home() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'home.html.php',
+            'template' => 'pages/main/home.html.php',
             'variables' => [],
             'title' => 'Home'
-        ];
-    }
-
-    // Method for displaying the login page.
-    public function login() {
-        return [ 
-            'layout' => 'layout.html.php',
-            'template' => 'login.html.php',
-            'variables' => [],
-            'title' => 'Login'
         ];
     }
 
@@ -39,7 +29,7 @@ class SiteController {
     public function error400() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'errors/400.html.php',
+            'template' => 'pages/errors/400.html.php',
             'variables' => [],
             'title' => 'Error 400: Bad Request'
         ];
@@ -48,7 +38,7 @@ class SiteController {
     public function error401() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'errors/401.html.php',
+            'template' => 'pages/errors/401.html.php',
             'variables' => [],
             'title' => 'Error 401: Unauthorised'
         ];
@@ -57,7 +47,7 @@ class SiteController {
     public function error403() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'errors/403.html.php',
+            'template' => 'pages/errors/403.html.php',
             'variables' => [],
             'title' => 'Error 403: Forbidden'
         ];
@@ -66,7 +56,7 @@ class SiteController {
     public function error404() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'errors/404.html.php',
+            'template' => 'pages/errors/404.html.php',
             'variables' => [],
             'title' => 'Error 404: Not Found'
         ];
@@ -75,7 +65,7 @@ class SiteController {
     public function error500() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'errors/500.html.php',
+            'template' => 'pages/errors/500.html.php',
             'variables' => [],
             'title' => 'Error 500: Server Error'
         ];

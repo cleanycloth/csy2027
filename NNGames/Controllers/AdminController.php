@@ -5,7 +5,7 @@ class AdminController {
     public function home() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'admin/home.html.php',
+            'template' => 'pages/admin/home.html.php',
             'variables' => [],
             'title' => 'Admin Panel'
         ];
@@ -14,7 +14,7 @@ class AdminController {
     public function accessRestricted() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'admin/restricted.html.php',
+            'template' => 'pages/admin/restricted.html.php',
             'variables' => [],
             'title' => 'Admin Panel - Access Restricted'
         ];
