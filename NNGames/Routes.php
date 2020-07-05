@@ -18,6 +18,7 @@ class Routes implements \CSY2028\Routes {
         $ordersTable = new \CSY2028\DatabaseTable($pdo, 'orders', 'order_id');
         $orderDetailsTable = new \CSY2028\DatabaseTable($pdo, 'order_details', 'order_id');
         $paymentsTable = new \CSY2028\DatabaseTable($pdo, 'payments', 'payment_id');
+        $slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
 
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();
@@ -25,6 +26,7 @@ class Routes implements \CSY2028\Routes {
         $adminController = new \NNGames\Controllers\AdminController();
         $productController = new \NNGames\Controllers\ProductController($productsTable, $_GET, $_POST);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
+        $slideController = new \NNGames\Controllers\SlideController($slidesTable, $_GET, $_POST);
 
         // Define routes.
         $routes = [
