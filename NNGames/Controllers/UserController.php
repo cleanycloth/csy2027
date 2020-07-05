@@ -89,7 +89,9 @@ class UserController {
             if ($error == '') {
                 //session_start();
 
-                if ($user[0]->user_type == 1)
+                if ($user[0]->user_type == 2)
+                    $_SESSION['isOwner'] = true;
+                else if ($user[0]->user_type == 1)
                     $_SESSION['isAdmin'] = true;
                 else
                     $_SESSION['isCustomer'] = true;
@@ -129,10 +131,14 @@ class UserController {
             if ($this->post['user']['username'] != '') {
                 $existingUsername = $this->usersTable->retrieveRecord('username', htmlspecialchars(strip_tags($this->post['user']['username']), ENT_QUOTES, 'UTF-8'));
                 
-                if (isset($this->get['id'])) {
+                if ($route == 'admin/users/edit' && isset($this->get['id'])) {
                     $currentUsername = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0]->username;
 
                     if (!empty($existingUsername) && htmlspecialchars(strip_tags($this->post['user']['username']), ENT_QUOTES, 'UTF-8') != $currentUsername)
+                        $errors[] = 'The specified username already is already in use.';
+                }
+                else if ($route == 'register' || $route == 'admin/users/edit' && !isset($this->get['id'])) {
+                    if (!empty($existingUsername))
                         $errors[] = 'The specified username already is already in use.';
                 }
             }
@@ -166,24 +172,28 @@ class UserController {
             else
                 $errors[] = 'The email address cannot be blank.';
 
-            if ($route != 'admin/users/edit') {
+            if ($route == 'register') {
                 if ($this->post['user']['password'] != '') {
-                    if (isset($this->post['user']['confirm-password']) && $this->post['user']['confirm-password'] != $this->post['user']['password']) {}
+                    if (isset($this->post['user']['confirm-password']) && $this->post['user']['confirm-password'] != $this->post['user']['password'])
                         $errors[] = 'The passwords do not match.';
                 }
                 else {
                     $errors[] = 'The password cannot be blank.';
                 }
-            
+
                 if (!isset($this->post['user']['tos-privacy-agreement']) || $this->post['user']['tos-privacy-agreement'] == 2) {
                     $errors[] = 'Account cannot be created as you have not agreed to our Terms of Service and Privacy Policy.';
                 }
+            }
+            else if ($route == 'admin/users/edit' && !isset($this->get['id'])) {
+                if ($this->post['user']['password'] == '')
+                    $errors[] = 'The password cannot be blank.';
             }
 
             // Create new user account if there are no errors.
             if (count($errors) == 0) {
                 if ($route == "admin/users/edit") {
-                    $pageName = 'Edit Account';
+                    $pageName = 'User Created';
                     $layout = 'adminlayout.html.php';
                     $template = 'pages/admin/success/editusersuccess.html.php';
                 }
@@ -223,8 +233,13 @@ class UserController {
             }
             // Display the registration form with any generated errors.
             else {
-                if ($route == "admin/users/edit") {
-                    $pageName = 'Edit Account';
+                if ($route == "admin/users/edit" && isset($this->get['id'])) {
+                    $pageName = 'Edit User';
+                    $layout = 'adminlayout.html.php';
+                    $template = 'pages/admin/forms/edituserform.html.php';
+                }
+                else if ($route == "admin/users/edit" && !isset($this->get['id'])) {
+                    $pageName = 'Add User';
                     $layout = 'adminlayout.html.php';
                     $template = 'pages/admin/forms/edituserform.html.php';
                 }
@@ -255,11 +270,19 @@ class UserController {
         ];
     }
 
+    // Function for deleting a user from the database.
+    public function deleteUser() {
+        $this->usersTable->deleteRecordById($this->post['user']['id']);
+
+        header('Location: /admin/users');
+    }
+
     // Function for logging the user out from the website.
     public function logout() {   
         if (isset($_SESSION['isLoggedIn'])) {
             // Unset all $_SESSION variables.
             unset($_SESSION['isLoggedIn']);
+            unset($_SESSION['isOwner']);
             unset($_SESSION['isAdmin']);
             unset($_SESSION['isCustomer']);
             unset($_SESSION['username']);

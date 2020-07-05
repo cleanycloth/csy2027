@@ -22,7 +22,7 @@
             <ul>
                 <p>Welcome, <?=$_SESSION['username'];?>!</p> |
                 <li><a href="/myaccount">My Account <i class="fas fa-user"></i></a></li> |
-                <?php if (isset($_SESSION['isAdmin'])): ?>
+                <?php if (isset($_SESSION['isOwner']) || isset($_SESSION['isAdmin'])): ?>
                     <li><a href="/admin">Admin Panel <i class="fas fa-cog"></i></a></li> |
                 <?php endif; ?>
                 <li><a href="/logout">Sign Out <i class="fas fa-sign-out-alt"></i></a></li>

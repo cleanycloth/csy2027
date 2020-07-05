@@ -94,7 +94,7 @@ class Routes implements \CSY2028\Routes {
             'admin/users/add' => [
                 'GET' => [
                     'controller' => $adminController,
-                    'function' => 'addUser',
+                    'function' => 'editUser',
                     'parameters' => []
                 ],
                 'POST' => [
@@ -114,6 +114,15 @@ class Routes implements \CSY2028\Routes {
                 'POST' => [
                     'controller' => $userController,
                     'function' => 'editUserSubmit',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
+            'admin/users/delete' => [
+                'POST' => [
+                    'controller' => $userController,
+                    'function' => 'deleteUser',
                     'parameters' => []
                 ],
                 'login' => true,
@@ -211,7 +220,7 @@ class Routes implements \CSY2028\Routes {
     // Function for checking whether a user has an appropriate level of access.
     public function checkAccess() {
         $this->updateRole();
-        if (isset($_SESSION['isAdmin']))
+        if (isset($_SESSION['isOwner']) || isset($_SESSION['isAdmin']))
             return true;
         else
             header('Location: /admin/access-restricted');
@@ -225,11 +234,18 @@ class Routes implements \CSY2028\Routes {
             $user = $this->usersTable->retrieveRecord('user_id', $_SESSION['id'])[0];
     
             // Check the user's current role frm the database and update $_SESSION variables accordingly.
-            if ($user->user_type == 1 && !isset($_SESSION['isAdmin'])) {
+            if ($user->user_type == 2 && !isset($_SESSION['isOwner'])) {
+                unset($_SESSION['isAdmin']);
+                unset($_SESSION['isCustomer']);
+                $_SESSION['isOwner'] = true;
+            }
+            else if ($user->user_type == 1 && !isset($_SESSION['isAdmin'])) {
+                unset($_SESSION['isOwner']);
                 unset($_SESSION['isCustomer']);
                 $_SESSION['isAdmin'] = true;
             }
             elseif ($user->user_type == 0 && !isset($_SESSION['isCustomer'])) {
+                unset($_SESSION['isOwner']);
                 unset($_SESSION['isAdmin']);
                 $_SESSION['isCustomer'] = true;
             }

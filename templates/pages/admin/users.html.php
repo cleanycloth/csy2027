@@ -15,37 +15,28 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>exampleuser</td>
-            <td>Example</td>
-            <td>User</td>
-            <td>example@user.com</td>
-            <td>Admin</td>
-            <td>true</td>
-            <td><a class="button" href="/admin/users/edit?id=1">Edit User</a></td>
-            <td>
-                <form action="/admin/users/delete" method="post">
-                    <input type="hidden" name="user[id]" value="1">
-                    <input type="submit" name="submit" value="Delete User">
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>exampleuser</td>
-            <td>Example</td>
-            <td>User</td>
-            <td>example@user.com</td>
-            <td>Admin</td>
-            <td>true</td>
-            <td><a class="button" href="/admin/users/edit?id=1">Edit User</a></td>
-            <td>
-                <form action="/admin/users/delete" method="post">
-                    <input type="hidden" name="user[id]" value="1">
-                    <input type="submit" name="submit" value="Delete User">
-                </form>
-            </td>
-        </tr>
+        <?php foreach ($users as $user): ?>
+            <tr>
+                <td><?=$user->user_id;?></td>
+                <td><?=htmlspecialchars(strip_tags($user->username), ENT_QUOTES, 'UTF-8');?></td>
+                <td><?=htmlspecialchars(strip_tags($user->firstname), ENT_QUOTES, 'UTF-8');?></td>
+                <td><?=htmlspecialchars(strip_tags($user->surname), ENT_QUOTES, 'UTF-8');?></td>
+                <td><?=htmlspecialchars(strip_tags($user->email), ENT_QUOTES, 'UTF-8');?></td>
+                <td><?php if ($user->user_type == 2) { echo 'Owner'; } elseif ($user->user_type == 1) { echo 'Administrator'; } else { echo 'Customer'; } ?></td>
+                <td><?=($user->activated == 1) ? 'True' : 'False';?></td>
+                <td>
+                    <?php if (isset($_SESSION['isOwner']) && $user->user_type != 2 || isset($_SESSION['isAdmin']) && ($user->user_type != 2 && $user->user_type != 1) || $user->user_id == $_SESSION['id']): ?>
+                        <a class="button" href="/admin/users/edit?id=<?=$user->user_id?>">Edit User</a></td>
+                    <?php endif ;?>
+                <td>
+                    <?php if (isset($_SESSION['isOwner']) && $user->user_type != 2 || isset($_SESSION['isAdmin']) && ($user->user_type != 2 && $user->user_type != 1)): ?>
+                        <form action="/admin/users/delete" method="post">
+                            <input type="hidden" name="user[id]" value="<?=$user->user_id?>">
+                            <input type="submit" name="submit" value="Delete User">
+                        </form>
+                    <?php endif ;?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>

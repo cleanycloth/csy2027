@@ -22,10 +22,14 @@ class AdminController {
     }
 
     public function users() {
+        $users = $this->usersTable->retrieveAllRecords();
+
         return [
             'layout' => 'adminlayout.html.php',
             'template' => 'pages/admin/users.html.php',
-            'variables' => [],
+            'variables' => [
+                'users' => $users
+            ],
             'title' => 'Admin Panel - Users'
         ];
     }
@@ -43,7 +47,7 @@ class AdminController {
 
             // Check if the user has permission to access the details of another user.
             // Redirect the user back to /admin/users if not.
-            if (!empty($user) && (isset($_SESSION['isAdmin']) || $this->get['id'] == $_SESSION['id'] || isset($_SESSION['isAdmin']))) {
+            if (!empty($user) && (isset($_SESSION['isOwner'])) || $this->get['id'] == $_SESSION['id'] || isset($_SESSION['isAdmin']) && $user->user_type == 0) {
                 return [
                     'layout' => 'adminlayout.html.php',
                     'template' => 'pages/admin/edituser.html.php',

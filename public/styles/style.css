@@ -497,8 +497,9 @@ nav ul .dropdown:hover ul li a:active {
 }
 .site-main .content .admin-content table tbody tr td {
     text-align: center;
-    padding: 0.1em;
+    padding: 0.2em;
     overflow: hidden;
+    height: 4em;
 }
 .site-main .content .admin-content table tbody tr td form {
     width: max-content;
