@@ -22,7 +22,7 @@ class Routes implements \CSY2028\Routes {
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
-        $adminController = new \NNGames\Controllers\AdminController();
+        $adminController = new \NNGames\Controllers\AdminController($this->usersTable, $_GET, $_POST);
         $productController = new \NNGames\Controllers\ProductController($productsTable, $_GET, $_POST);
 
         // Define routes.
@@ -49,7 +49,7 @@ class Routes implements \CSY2028\Routes {
             'register' => [
                 'GET' => [
                     'controller' => $userController,
-                    'function' => 'editUserForm',
+                    'function' => 'registerForm',
                     'parameters' => []
                 ],
                 'POST' => [
@@ -86,6 +86,34 @@ class Routes implements \CSY2028\Routes {
                 'GET' => [
                     'controller' => $adminController,
                     'function' => 'users',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
+            'admin/users/add' => [
+                'GET' => [
+                    'controller' => $adminController,
+                    'function' => 'addUser',
+                    'parameters' => []
+                ],
+                'POST' => [
+                    'controller' => $userController,
+                    'function' => 'editUserSubmit',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
+            'admin/users/edit' => [
+                'GET' => [
+                    'controller' => $adminController,
+                    'function' => 'editUser',
+                    'parameters' => []
+                ],
+                'POST' => [
+                    'controller' => $userController,
+                    'function' => 'editUserSubmit',
                     'parameters' => []
                 ],
                 'login' => true,

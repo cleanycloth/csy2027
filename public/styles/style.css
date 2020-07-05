@@ -414,8 +414,9 @@ nav ul .dropdown:hover ul li a:active {
 
 .site-main .content {
     height: 100%;
-    width: 50%;
-    padding: 4rem;
+    min-width: 50%;
+    max-width: 60%;
+    padding: 2rem;
     background-color: rgb(245, 245, 245);
     margin: 0 auto;
     box-shadow: 0 0 1em black;
@@ -427,6 +428,19 @@ nav ul .dropdown:hover ul li a:active {
 }
 .site-main .content p {
     margin-bottom: 1rem;
+}
+
+
+.site-main .content .admin-content {
+    background-color: rgb(211, 211, 211);
+    padding: 1em;
+}
+.site-main .content .admin-content p:not(.required):last-of-type {
+    margin-bottom: 0;
+}
+.site-main .content .admin-content .button {
+    margin: 0.6em 0;
+    font-size: 0.8em;
 }
 
 .site-main .content .admin-nav {
@@ -457,12 +471,62 @@ nav ul .dropdown:hover ul li a:active {
     background-color: rgb(77, 77, 77);
 }
 
-.site-main .content .admin-content {
-    background-color: rgb(201, 201, 201);
-    padding: 1em;
+.site-main .content .admin-content table {
+    margin: 0 auto;
+    width: 100%;
 }
-.site-main .content .admin-content p:last-of-type {
-    margin-bottom: 0;
+.site-main .content .admin-content table,
+.site-main .content .admin-content thead th,
+.site-main .admin-content .admin-content, tbody td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.site-main .content .admin-content table thead {
+    background-color: black;
+    color: white;
+}
+.site-main .content .admin-content table thead tr th {
+    padding: 0.4em;
+}
+.site-main .content .admin-content table tbody {
+    background-color: rgb(235, 235, 235);
+    font-size: 0.85em;
+}
+.site-main .content .admin-content table tbody tr:nth-child(even) {
+    background-color: rgb(184, 184, 184);
+}
+.site-main .content .admin-content table tbody tr td {
+    text-align: center;
+    padding: 0.1em;
+    overflow: hidden;
+}
+.site-main .content .admin-content table tbody tr td form {
+    width: max-content;
+    height: max-content;
+}
+.site-main .content .admin-content table tbody tr td .button,
+.site-main .content .admin-content table tbody tr td form input[type=submit] {
+    margin: 0.2em;
+    width: 4em;
+    padding: 0.2em;
+    white-space: normal;
+}
+.site-main .content .admin-content table tbody tr td .button,
+.site-main .content .admin-content table tbody tr td form input[type=submit] {
+    font-size: 1em;
+}
+.site-main .content .admin-content table tbody tr td form input[type=submit] {
+    background-color: darkred;
+    border-color: darkred;
+    transition-duration: 0.2s;
+}
+.site-main .content .admin-content table tbody tr td form input[type=submit]:hover {
+    background-color: red;
+    border-color: red;
+}
+.site-main .content .admin-content table tbody tr td form input[type=submit]:active {
+    background-color: rgb(92, 0, 0);
+    border-color: rgb(92, 0, 0);
 }
 
 /* Main - Forms */
@@ -470,6 +534,9 @@ nav ul .dropdown:hover ul li a:active {
     margin: 0 auto;
     overflow: hidden;
     width: 34vw;
+}
+.site-main form h2 {
+    text-align: center;
 }
 .site-main form output {
     display: block;

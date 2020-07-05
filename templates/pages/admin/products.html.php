@@ -1,10 +1,1 @@
-<div class="content">
-    <h1>NNGames Admin Panel</h1>
-
-    <!-- Admin Navigation Bar -->
-    <?php require 'nav.html.php'; ?>
-    
-    <div class="admin-content">
-        <h2>Products</h2>
-    </div>
-</div>
+<h2>Products</h2>

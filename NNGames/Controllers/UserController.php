@@ -29,15 +29,10 @@ class UserController {
     }
 
     // Method for displaying the register page.
-    public function editUserForm() {
+    public function registerForm() {
         $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
 
-        if (rtrim($route, '/') == "/admin") {
-            $pageName = 'Edit Account';
-            $layout = 'layout.html.php';
-            $template = 'pages/main/forms/registerform.html.php';
-        }
-        else if (rtrim($route, '/') == "/myaccount") {
+        if (rtrim($route, '/') == "/myaccount") {
             $pageName = 'My Account';
             $layout = 'layout.html.php';            
             $template = 'pages/main/forms/registerform.html.php';
@@ -120,6 +115,8 @@ class UserController {
 
     // Function for submitting the edit user form.
     public function editUserSubmit() {
+        $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
+
         if (isset($this->post['submit'])) {
             if (isset($this->get['id']))
                 $user = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0];
@@ -133,7 +130,7 @@ class UserController {
                 $existingUsername = $this->usersTable->retrieveRecord('username', htmlspecialchars(strip_tags($this->post['user']['username']), ENT_QUOTES, 'UTF-8'));
                 
                 if (isset($this->get['id'])) {
-                    $currentUsername = $this->usersTable->retrieveRecord('id', $this->get['id'])[0]->username;
+                    $currentUsername = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0]->username;
 
                     if (!empty($existingUsername) && htmlspecialchars(strip_tags($this->post['user']['username']), ENT_QUOTES, 'UTF-8') != $currentUsername)
                         $errors[] = 'The specified username already is already in use.';
@@ -153,7 +150,7 @@ class UserController {
                     $existingEmail = $this->usersTable->retrieveRecord('email', $this->post['user']['email']);
 
                     if (isset($this->get['id'])) {
-                        $currentEmail = $this->usersTable->retrieveRecord('id', $this->get['id'])[0]->email;
+                        $currentEmail = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0]->email;
     
                         if (!empty($existingEmail) && $this->post['user']['email'] != $currentEmail)
                             $errors[] = 'The specified email address is already in use.';
@@ -168,32 +165,36 @@ class UserController {
             }
             else
                 $errors[] = 'The email address cannot be blank.';
-            
-            if (!isset($this->get['id']) && $this->post['user']['password'] != '') {
-                if (isset($this->post['user']['confirm-password']) && $this->post['user']['confirm-password'] != $this->post['user']['password'])
-                    $errors[] = 'The passwords do not match.';
-            }
-            else
-                $errors[] = 'The password cannot be blank.';
 
-            if (!isset($this->post['user']['tos-privacy-agreement']) || $this->post['user']['tos-privacy-agreement'] == 2) {
-                $errors[] = 'Account cannot be created as you have not agreed to our Terms of Service and Privacy Policy.';
+            if ($route != 'admin/users/edit') {
+                if ($this->post['user']['password'] != '') {
+                    if (isset($this->post['user']['confirm-password']) && $this->post['user']['confirm-password'] != $this->post['user']['password']) {}
+                        $errors[] = 'The passwords do not match.';
+                }
+                else {
+                    $errors[] = 'The password cannot be blank.';
+                }
+            
+                if (!isset($this->post['user']['tos-privacy-agreement']) || $this->post['user']['tos-privacy-agreement'] == 2) {
+                    $errors[] = 'Account cannot be created as you have not agreed to our Terms of Service and Privacy Policy.';
+                }
             }
 
             // Create new user account if there are no errors.
             if (count($errors) == 0) {
-                $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
-
-                if (rtrim($route, '/') == "/admin") {
+                if ($route == "admin/users/edit") {
                     $pageName = 'Edit Account';
-                    $template = 'pages/main/success/updateuseradmin.html.php';
+                    $layout = 'adminlayout.html.php';
+                    $template = 'pages/admin/success/editusersuccess.html.php';
                 }
-                else if (rtrim($route, '/') == "/myaccount") {
+                else if ($route == "myaccount") {
                     $pageName = 'My Account';
+                    $layout = 'layout.html.php';
                     $template = 'pages/main/success/updateuser.html.php';
                 }
                 else {
                     $pageName = 'Account Created';
+                    $layout = 'layout.html.php';
                     $template = 'pages/main/success/registersuccess.html.php';
                 }
 
@@ -222,18 +223,19 @@ class UserController {
             }
             // Display the registration form with any generated errors.
             else {
-                $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
-
-                if (rtrim($route, '/') == "/admin") {
+                if ($route == "admin/users/edit") {
                     $pageName = 'Edit Account';
-                    $template = 'pages/main/forms/registerform.html.php';
+                    $layout = 'adminlayout.html.php';
+                    $template = 'pages/admin/forms/edituserform.html.php';
                 }
-                else if (rtrim($route, '/') == "/myaccount") {
+                else if ($route == "myaccount") {
                     $pageName = 'My Account';
+                    $layout = 'layout.html.php';
                     $template = 'pages/main/forms/registerform.html.php';
                 }
                 else {
                     $pageName = 'Sign Up';
+                    $layout = 'layout.html.php';
                     $template = 'pages/main/forms/registerform.html.php';
                 }
                 
@@ -246,7 +248,7 @@ class UserController {
         }
 
         return [
-            'layout' => 'layout.html.php',
+            'layout' => $layout,
             'template' => $template,
             'variables' => $variables,
             'title' => $pageName
