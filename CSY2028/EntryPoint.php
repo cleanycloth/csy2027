@@ -8,10 +8,10 @@ class EntryPoint {
     }
 
     public function run() {
-        $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
+        $route = rtrim(ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/'), '/');
 
         if ($route != '' && $route[strlen($route)-1] == '/')
-            header('Location: /' . rtrim($route, '/'));
+            header('Location: /' . $route);
 
 		$method = $_SERVER['REQUEST_METHOD'];
 
