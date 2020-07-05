@@ -139,6 +139,9 @@ class UserController {
         if (isset($this->get['id'])) {
             $user = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0];
 
+            if (empty($user))
+                header('Location: /admin/users');
+
             // Check if the user has permission to access the details of another user.
             // Redirect the user back to /admin/users if not.
             if (!empty($user) && (isset($_SESSION['isOwner'])) || $this->get['id'] == $_SESSION['id'] || isset($_SESSION['isAdmin']) && $user->user_type == 0) {
@@ -149,7 +152,7 @@ class UserController {
                         'user' => $user,
                         'pageName' => $pageName
                     ],
-                    'title' => 'Admin Panel - Edit User'
+                    'title' => 'Admin Panel - ' . $pageName
                 ];
             }
             else
@@ -162,7 +165,7 @@ class UserController {
                 'variables' => [
                     'pageName' => $pageName
                 ],
-                'title' => 'Admin Panel - Add User'
+                'title' => 'Admin Panel - ' . $pageName
             ];        
         }
     }
@@ -172,8 +175,12 @@ class UserController {
         $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
 
         if (isset($this->post['submit'])) {
-            if (isset($this->get['id']))
+            if (isset($this->get['id'])) {
                 $user = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0];
+
+                if (empty($user))
+                    header('Location: /admin/users');
+            }
             else
                 $user = '';
 
