@@ -156,6 +156,13 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => []
                 ]
             ],
+            'admin/categories/removechild' => [
+                'POST' => [
+                    'controller' => $categoryController,
+                    'function' => 'removeChildCategory',
+                    'parameters' => []
+                ]
+            ],
             'admin/slides' => [
                 'GET' => [
                     'controller' => $slideController,
