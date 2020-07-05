@@ -11,6 +11,19 @@ class ProductController {
         $this->post = $post;
     }
 
+    public function listProducts() {
+        $products = $this->productsTable->retrieveAllRecords();
+
+        return [
+            'layout' => 'adminlayout.html.php',
+            'template' => 'pages/admin/products.html.php',
+            'variables' => [
+                'products' => $products
+            ],
+            'title' => 'Admin Panel - Products'
+        ];
+    }
+
     // Method for displaying the page for an individual product.
     public function product() {
         return [ 
