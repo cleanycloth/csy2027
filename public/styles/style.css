@@ -452,7 +452,6 @@ nav ul .dropdown:hover ul li a:active {
     margin-bottom: 0;
 }
 .site-main .content .admin-content .button {
-    margin: 0.6em 0;
     font-size: 0.8em;
 }
 
@@ -486,7 +485,7 @@ nav ul .dropdown:hover ul li a:active {
 
 /* Admin - Tables */
 .site-main .content .admin-content table {
-    margin: 0 auto;
+    margin: 0.6em auto;
     width: 100%;
 }
 .site-main .content .admin-content table,
