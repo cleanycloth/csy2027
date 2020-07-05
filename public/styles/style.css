@@ -461,7 +461,7 @@ nav ul .dropdown:hover ul li a:active {
     background-color: rgb(201, 201, 201);
     padding: 1em;
 }
-.site-main .content .admin-content p {
+.site-main .content .admin-content p:last-of-type {
     margin-bottom: 0;
 }
 

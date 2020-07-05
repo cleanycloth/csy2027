@@ -18,7 +18,7 @@ class UserController {
         if (!isset($_SESSION['isLoggedIn'])) {
             return [ 
                 'layout' => 'layout.html.php',
-                'template' => 'forms/loginform.html.php',
+                'template' => 'pages/main/forms/loginform.html.php',
                 'variables' => [],
                 'title' => 'Sign In'
             ];
@@ -35,17 +35,17 @@ class UserController {
         if (rtrim($route, '/') == "/admin") {
             $pageName = 'Edit Account';
             $layout = 'layout.html.php';
-            $template = 'forms/registerform.html.php';
+            $template = 'pages/main/forms/registerform.html.php';
         }
         else if (rtrim($route, '/') == "/myaccount") {
             $pageName = 'My Account';
             $layout = 'layout.html.php';            
-            $template = 'forms/registerform.html.php';
+            $template = 'pages/main/forms/registerform.html.php';
         }
         else {
             $pageName = 'Sign Up';
             $layout = 'layout.html.php';
-            $template = 'forms/registerform.html.php';
+            $template = 'pages/main/forms/registerform.html.php';
         }
         
         // Check whether the user is already logged in. If not, return the form.
@@ -108,7 +108,7 @@ class UserController {
             else {
                 return [
                     'layout' => 'layout.html.php',
-                    'template' => 'forms/loginform.html.php',
+                    'template' => 'pages/main/forms/loginform.html.php',
                     'variables' => [
                         'error' => $error
                     ],
@@ -186,15 +186,15 @@ class UserController {
 
                 if (rtrim($route, '/') == "/admin") {
                     $pageName = 'Edit Account';
-                    $template = 'success/updateuseradmin.html.php';
+                    $template = 'pages/main/success/updateuseradmin.html.php';
                 }
                 else if (rtrim($route, '/') == "/myaccount") {
                     $pageName = 'My Account';
-                    $template = 'success/updateuser.html.php';
+                    $template = 'pages/main/success/updateuser.html.php';
                 }
                 else {
                     $pageName = 'Account Created';
-                    $template = 'success/registersuccess.html.php';
+                    $template = 'pages/main/success/registersuccess.html.php';
                 }
 
                 $this->post['user']['username'] = strtolower(htmlspecialchars(strip_tags($this->post['user']['username']), ENT_QUOTES, 'UTF-8'));
@@ -226,18 +226,16 @@ class UserController {
 
                 if (rtrim($route, '/') == "/admin") {
                     $pageName = 'Edit Account';
-                    $template = 'forms/registerform.html.php';
+                    $template = 'pages/main/forms/registerform.html.php';
                 }
                 else if (rtrim($route, '/') == "/myaccount") {
                     $pageName = 'My Account';
-                    $template = 'forms/registerform.html.php';
+                    $template = 'pages/main/forms/registerform.html.php';
                 }
                 else {
                     $pageName = 'Sign Up';
-                    $template = 'forms/registerform.html.php';
+                    $template = 'pages/main/forms/registerform.html.php';
                 }
-
-                $template = 'forms/registerform.html.php';
                 
                 $variables = [
                     'pageName' => $pageName,
@@ -267,7 +265,7 @@ class UserController {
     
             return [
                 'layout' => 'layout.html.php',
-                'template' => 'success/logoutsuccess.html.php',
+                'template' => 'pages/main/success/logoutsuccess.html.php',
                 'variables' => [],
                 'title' => 'Log out'
             ];

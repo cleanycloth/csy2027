@@ -29,7 +29,7 @@ class SiteController {
     public function error400() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'pages/errors/400.html.php',
+            'template' => 'pages/http-errors/400.html.php',
             'variables' => [],
             'title' => 'Error 400: Bad Request'
         ];
@@ -38,7 +38,7 @@ class SiteController {
     public function error401() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'pages/errors/401.html.php',
+            'template' => 'pages/http-errors/401.html.php',
             'variables' => [],
             'title' => 'Error 401: Unauthorised'
         ];
@@ -47,7 +47,7 @@ class SiteController {
     public function error403() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'pages/errors/403.html.php',
+            'template' => 'pages/http-errors/403.html.php',
             'variables' => [],
             'title' => 'Error 403: Forbidden'
         ];
@@ -56,7 +56,7 @@ class SiteController {
     public function error404() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'pages/errors/404.html.php',
+            'template' => 'pages/http-errors/404.html.php',
             'variables' => [],
             'title' => 'Error 404: Not Found'
         ];
@@ -65,7 +65,7 @@ class SiteController {
     public function error500() {
         return [
             'layout' => 'layout.html.php',
-            'template' => 'pages/errors/500.html.php',
+            'template' => 'pages/http-errors/500.html.php',
             'variables' => [],
             'title' => 'Error 500: Server Error'
         ];

@@ -82,6 +82,42 @@ class Routes implements \CSY2028\Routes {
                 'login' => true,
                 'restricted' => true
             ],
+            'admin/users' => [
+                'GET' => [
+                    'controller' => $adminController,
+                    'function' => 'users',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
+            'admin/products' => [
+                'GET' => [
+                    'controller' => $adminController,
+                    'function' => 'products',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
+            'admin/categories' => [
+                'GET' => [
+                    'controller' => $adminController,
+                    'function' => 'categories',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
+            'admin/slides' => [
+                'GET' => [
+                    'controller' => $adminController,
+                    'function' => 'slides',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
             'admin/access-restricted' => [
                 'GET' => [
                     'controller' => $adminController,

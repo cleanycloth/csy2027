@@ -11,6 +11,42 @@ class AdminController {
         ];
     }
 
+    public function users() {
+        return [
+            'layout' => 'layout.html.php',
+            'template' => 'pages/admin/users.html.php',
+            'variables' => [],
+            'title' => 'Admin Panel - Users'
+        ];
+    }
+
+    public function products() {
+        return [
+            'layout' => 'layout.html.php',
+            'template' => 'pages/admin/products.html.php',
+            'variables' => [],
+            'title' => 'Admin Panel - Products'
+        ];
+    }
+
+    public function categories() {
+        return [
+            'layout' => 'layout.html.php',
+            'template' => 'pages/admin/categories.html.php',
+            'variables' => [],
+            'title' => 'Admin Panel - Categories'
+        ];
+    }
+
+    public function slides() {
+        return [
+            'layout' => 'layout.html.php',
+            'template' => 'pages/admin/slides.html.php',
+            'variables' => [],
+            'title' => 'Admin Panel - Slides'
+        ];
+    }
+
     public function accessRestricted() {
         return [
             'layout' => 'layout.html.php',
