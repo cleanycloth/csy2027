@@ -10,7 +10,7 @@
                         <p class="category-name"><a href="../category.php?category=<?=urlencode(strip_tags($parentCategory->name));?>"><?=htmlspecialchars(strip_tags($parentCategory->name), ENT_QUOTES, 'UTF-8');?></a>
                         <p>Total Products: <?=$parentCategory->getProductsCount();?></p>
                         <p><a href="/admin/categories/edit?id=<?=$parentCategory->category_id;?>"><i class="fas fa-edit"></i> Edit Category</a></p>
-                        <form action="" method="post">
+                        <form action="/admin/categories/delete" method="post">
                             <input type="hidden" name="category[category_id]" value="<?=$parentCategory->category_id?>">
                             <button><i class="fas fa-trash-alt"></i> Delete Category</button>
                         </form>  
@@ -23,7 +23,7 @@
                                     <p class="category-name"><a href="../category.php?category=<?=urlencode(strip_tags($childCategory->name));?>"><?=htmlspecialchars(strip_tags($childCategory->name), ENT_QUOTES, 'UTF-8');?></a>
                                     <p>Total Products: <?=$childCategory->getProductsCount();?></p>
                                     <p><a href="/admin/categories/edit?id=<?=$childCategory->category_id;?>"><i class="fas fa-edit"></i> Edit Category</a></p>
-                                    <form action="" method="post">
+                                    <form action="/admin/categories/delete" method="post">
                                         <input type="hidden" name="category[category_id]" value="<?=$childCategory->category_id?>">
                                         <button><i class="fas fa-trash-alt"></i> Delete Category</button>
                                     </form>                                
