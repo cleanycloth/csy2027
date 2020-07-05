@@ -530,6 +530,72 @@ nav ul .dropdown:hover ul li a:active {
     border-color: rgb(92, 0, 0);
 }
 
+/* Category List */
+.site-main .content .admin-content .categories, .categories .child-categories {
+	list-style-type: none;
+}
+
+.site-main .content .admin-content .categories, .categories a {
+	text-decoration: none;
+	color: white;
+}
+.site-main .content .admin-content .child-categories, .categories .child-categories a {
+	text-decoration: none;
+	color: black
+}
+.site-main .content .admin-content .categories a:hover, .categories .child-categories a:hover {
+	text-decoration: underline;
+}
+
+.site-main .content .admin-content .categories li article {
+	border-bottom: 1px solid whitesmoke;
+}
+.site-main .content .admin-content .categories .child-categories li article {
+	border-bottom: 1px solid lightgray;
+}
+
+.site-main .content .admin-content .categories .parent {
+	background-color: #3665f3;
+}
+.site-main .content .admin-content .categories .child-categories .child {
+	background-color: whitesmoke;
+}
+
+.site-main .content .admin-content .categories li article, .categories .child-categories li article {
+	display: grid;
+	padding: 1em;
+	font-size: 1.2em;
+	text-align: center;
+}
+.site-main .content .admin-content .categories li article, .categories .child-categories li article {
+	grid-template-columns: 25% 25% 25% 25%;
+}
+.site-main .content .admin-content .categories li .dropdown {
+	grid-template-columns: 1% 24% 25% 25% 25%;
+}
+
+.site-main .content .admin-content .categories li article .category-name {
+	font-weight: bold;
+}
+
+.site-main .content .admin-content .categories li .dropdown .fa-caret-down {
+	font-size: 1.0em;
+	transition: 100ms;
+}
+
+.site-main .content .admin-content .categories li .dropdown:hover .fa-caret-down {
+	transform: rotate(180deg);
+}
+/* https://css-tricks.com/using-css-transitions-auto-dimensions/ */
+.site-main .content .admin-content .categories li .child-categories {
+	overflow: hidden;
+	transition: max-height 200ms ease-out;
+	max-height: 0;
+}
+.site-main .content .admin-content .categories li:hover .child-categories {
+	max-height: 700px;
+}
+
 /* Main - Forms */
 .site-main form {
     margin: 0 auto;

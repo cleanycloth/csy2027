@@ -18,7 +18,7 @@ class CategoryController {
             'layout' => 'adminlayout.html.php',
             'template' => 'pages/admin/categories.html.php',
             'variables' => [
-                'products' => $categories
+                'categories' => $categories,
             ],
             'title' => 'Admin Panel - Categories'
         ];
