@@ -471,6 +471,7 @@ nav ul .dropdown:hover ul li a:active {
     background-color: rgb(77, 77, 77);
 }
 
+/* Admin - Tables */
 .site-main .content .admin-content table {
     margin: 0 auto;
     width: 100%;
@@ -530,9 +531,16 @@ nav ul .dropdown:hover ul li a:active {
     border-color: rgb(92, 0, 0);
 }
 
-/* Category List */
+/* Admin - Category List */
+.site-main .content .admin-content .categories {
+    margin-top: 0.6em;
+}
 .site-main .content .admin-content .categories, .categories .child-categories {
-	list-style-type: none;
+    list-style-type: none;
+}
+
+.site-main .content .admin-content .categories p {
+    margin: 0;
 }
 
 .site-main .content .admin-content .categories, .categories a {
@@ -548,24 +556,27 @@ nav ul .dropdown:hover ul li a:active {
 }
 
 .site-main .content .admin-content .categories li article {
-	border-bottom: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
 }
 .site-main .content .admin-content .categories .child-categories li article {
 	border-bottom: 1px solid lightgray;
 }
 
 .site-main .content .admin-content .categories .parent {
-	background-color: #3665f3;
+	background-color: black;
 }
 .site-main .content .admin-content .categories .child-categories .child {
-	background-color: whitesmoke;
+    background-color: rgb(235, 235, 235);
 }
 
 .site-main .content .admin-content .categories li article, .categories .child-categories li article {
 	display: grid;
 	padding: 1em;
-	font-size: 1.2em;
-	text-align: center;
+	font-size: 0.85em;
+    text-align: center;
+}
+.site-main .content .admin-content .categories .child-categories li article {
+    border: 1px solid black;
 }
 .site-main .content .admin-content .categories li article, .categories .child-categories li article {
 	grid-template-columns: 25% 25% 25% 25%;
@@ -579,7 +590,7 @@ nav ul .dropdown:hover ul li a:active {
 }
 
 .site-main .content .admin-content .categories li .dropdown .fa-caret-down {
-	font-size: 1.0em;
+	font-size: 1.25em;
 	transition: 100ms;
 }
 
