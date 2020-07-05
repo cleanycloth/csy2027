@@ -47,8 +47,7 @@ class UserController {
             $layout = 'layout.html.php';
             $template = 'forms/registerform.html.php';
         }
-
-        session_start();
+        
         // Check whether the user is already logged in. If not, return the form.
         if (!isset($_SESSION['isLoggedIn'])) {
             return [ 

@@ -7,7 +7,7 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'home.html.php',
             'variables' => [],
-            'title' => 'NNGames - Home'
+            'title' => 'Home'
         ];
     }
 
@@ -17,7 +17,7 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'login.html.php',
             'variables' => [],
-            'title' => 'NNGames - Login'
+            'title' => 'Login'
         ];
     }
 
@@ -31,7 +31,7 @@ class SiteController {
             'variables' => [
                 'jsonResponse' => json_encode($testArray)
             ],
-            'title' => 'NNGames - Test Response'
+            'title' => 'Test Response'
         ];
     }
 
@@ -41,7 +41,7 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'errors/400.html.php',
             'variables' => [],
-            'title' => 'NNGames - Error 400: Bad Request'
+            'title' => 'Error 400: Bad Request'
         ];
     }
 
@@ -50,7 +50,7 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'errors/401.html.php',
             'variables' => [],
-            'title' => 'NNGames - Error 401: Unauthorised'
+            'title' => 'Error 401: Unauthorised'
         ];
     }
 
@@ -59,7 +59,7 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'errors/403.html.php',
             'variables' => [],
-            'title' => 'NNGames - Error 403: Forbidden'
+            'title' => 'Error 403: Forbidden'
         ];
     }
 
@@ -68,7 +68,7 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'errors/404.html.php',
             'variables' => [],
-            'title' => 'NNGames - Error 404: Not Found'
+            'title' => 'Error 404: Not Found'
         ];
     }
 
@@ -77,7 +77,7 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'errors/500.html.php',
             'variables' => [],
-            'title' => 'NNGames - Error 500: Server Error'
+            'title' => 'Error 500: Server Error'
         ];
     }
 }

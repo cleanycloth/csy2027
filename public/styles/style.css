@@ -441,7 +441,9 @@ nav ul .dropdown:hover ul li a:active {
     font-weight: bold;
     font-style: italic;
     margin: 0 auto 1em auto;
-    width: max-content;
+    width: 24vw;
+    text-align: center;
+    word-wrap: break-word;
 }
 .site-main form .fields {
     display: grid;
