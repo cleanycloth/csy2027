@@ -1,5 +1,4 @@
 <form id="edit-category-form" action="" method="post">
-    <h2><?=$pageName;?></h2>
     <output><?=(isset($error)) ? $error : '';?></output>
     <?php if (!isset($_GET['id'])): ?>
         <p class="required">Required:</p>
