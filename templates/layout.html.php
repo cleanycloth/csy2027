@@ -4,11 +4,11 @@
         <!-- Font Awesome Icons - https://fontawesome.com/ -->
         <script src="https://kit.fontawesome.com/04ac565eb5.js" crossorigin="anonymous"></script>
         <!-- Slick Slider Styling - https://kenwheeler.github.io/slick/ -->
-        <link rel="stylesheet" type="text/css" href="js/slick/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="js/slick/slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="/js/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="/js/slick/slick-theme.css"/>
         <!-- NN Games Stylesheets -->
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
-        <link rel="stylesheet" type="text/css" href="styles/fonts.css">
+        <link rel="stylesheet" type="text/css" href="/styles/style.css">
+        <link rel="stylesheet" type="text/css" href="/styles/fonts.css">
         <title>NN Games - Page Name</title>
     </head>
 
@@ -98,10 +98,10 @@
         </footer>
 
         <!-- jQuery - https://jquery.com/ -->
-        <script type="text/javascript" src="js/jquery/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="js/jquery/jquery-migrate-1.4.1.min.js"></script>
+        <script type="text/javascript" src="/js/jquery/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/js/jquery/jquery-migrate-1.4.1.min.js"></script>
         <!-- Slick Slider - https://kenwheeler.github.io/slick/ -->
-        <script type="text/javascript" src="js/slick/slick.min.js"></script>
-        <script type="text/javascript" src="js/javascript.js"></script>
+        <script type="text/javascript" src="/js/slick/slick.min.js"></script>
+        <script type="text/javascript" src="/js/javascript.js"></script>
     </body>
 </html>

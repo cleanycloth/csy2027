@@ -22,6 +22,7 @@ class Routes implements \CSY2028\Routes {
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
+        $adminController = new \NNGames\Controllers\AdminController();
         $productController = new \NNGames\Controllers\ProductController($productsTable, $_GET, $_POST);
 
         // Define routes.
@@ -71,13 +72,25 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => []
                 ]
             ],
-            'test' => [
+            // Administration Pages
+            'admin' => [
                 'GET' => [
-                    'controller' => $siteController,
-                    'function' => 'testResponse',
+                    'controller' => $adminController,
+                    'function' => 'home',
                     'parameters' => []
-                ]
+                ],
+                'login' => true,
+                'restricted' => true
             ],
+            'admin/access-restricted' => [
+                'GET' => [
+                    'controller' => $adminController,
+                    'function' => 'accessRestricted',
+                    'parameters' => []
+                ],
+                'login' => true
+            ],
+            // Error Pages
             '400' => [
                 'GET' => [
                     'controller' => $siteController,
@@ -127,9 +140,8 @@ class Routes implements \CSY2028\Routes {
 
     // Function for checking whether a user is currently logged in.
 	public function checkLogin() {
-		session_start();
 		if (!isset($_SESSION['isLoggedIn']))
-			header('Location: /admin/login');
+			header('Location: /login');
     }
 
     // Function for checking whether a user has an appropriate level of access.
@@ -146,7 +158,7 @@ class Routes implements \CSY2028\Routes {
         // Check if the session variable $_SESSION['id'] has been set.
         if (isset($_SESSION['id'])) {
             require '../dbConnection.php';
-            $user = $usersTable->retrieveRecord('user_id', $_SESSION['id'])[0];
+            $user = $this->usersTable->retrieveRecord('user_id', $_SESSION['id'])[0];
     
             // Check the user's current role frm the database and update $_SESSION variables accordingly.
             if ($user->user_type == 1 && !isset($_SESSION['isAdmin'])) {
