@@ -165,5 +165,16 @@ class CategoryController {
 
         header('Location: /admin/categories');
     }
+
+    public function removeChildCategory() {
+        $values = [
+            'category_id' => $this->post['category']['category_id'],
+            'parent_id' => null
+        ];
+
+        $this->categoriesTable->save($values);
+
+        header('Location: /admin/categories/edit?id=' . $this->post['category']['parent_id']);
+    }
 }
 ?>
