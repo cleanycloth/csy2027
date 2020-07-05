@@ -9,7 +9,7 @@
         <!-- NN Games Stylesheets -->
         <link rel="stylesheet" type="text/css" href="/styles/style.css">
         <link rel="stylesheet" type="text/css" href="/styles/fonts.css">
-        <title>NN Games - Page Name</title>
+        <title>NNGames - <?=$title;?></title>
     </head>
 
     <body>

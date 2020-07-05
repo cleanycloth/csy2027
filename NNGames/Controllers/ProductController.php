@@ -17,7 +17,7 @@ class ProductController {
             'layout' => 'layout.html.php',
             'template' => 'product.html.php',
             'variables' => [],
-            'title' => 'NNGames - Product'
+            'title' => 'Product'
         ];
     }
 }

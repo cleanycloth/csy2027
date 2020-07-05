@@ -20,7 +20,7 @@ class UserController {
                 'layout' => 'layout.html.php',
                 'template' => 'forms/loginform.html.php',
                 'variables' => [],
-                'title' => 'NNGames - Sign In'
+                'title' => 'Sign In'
             ];
         }
         else {
@@ -57,7 +57,7 @@ class UserController {
                 'variables' => [
                     'pageName' => $pageName
                 ],
-                'title' => 'NNGames - ' . $pageName
+                'title' => $pageName
             ];
         }
         else {
@@ -113,7 +113,7 @@ class UserController {
                     'variables' => [
                         'error' => $error
                     ],
-                    'title' => 'NNGames - Sign In'
+                    'title' => 'Sign In'
                 ];
             }
         }
@@ -252,7 +252,7 @@ class UserController {
             'layout' => 'layout.html.php',
             'template' => $template,
             'variables' => $variables,
-            'title' => 'NNGames - ' . $pageName
+            'title' => $pageName
         ];
     }
 

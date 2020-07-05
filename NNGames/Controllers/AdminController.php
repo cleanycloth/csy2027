@@ -7,7 +7,7 @@ class AdminController {
             'layout' => 'layout.html.php',
             'template' => 'admin/home.html.php',
             'variables' => [],
-            'title' => 'NNGames - Admin Panel'
+            'title' => 'Admin Panel'
         ];
     }
 
@@ -16,7 +16,7 @@ class AdminController {
             'layout' => 'layout.html.php',
             'template' => 'admin/restricted.html.php',
             'variables' => [],
-            'title' => 'NNGames - Admin Panel - Access Restricted'
+            'title' => 'Admin Panel - Access Restricted'
         ];
     }
 }
