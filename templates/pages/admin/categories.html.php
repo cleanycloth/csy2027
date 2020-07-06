@@ -8,7 +8,7 @@
                     <article class="parent <?=(count($parentCategory->getChildCategories()) > 0) ? 'dropdown' : ''; //Check if the amount of rows in $childCategories is greater than 0. If so, add the class of "dropdown" to the article element. ?>">
                         <?=(count($parentCategory->getChildCategories()) > 0) ? '<i class="fas fa-caret-down"></i>' : ''; //Check if the amount of rows in $childCategories is greater than 0. If so, add a down arrow icon inside the article element. ?>
                         <p class="category-name"><a href="../category.php?category=<?=urlencode(strip_tags($parentCategory->name));?>"><?=htmlspecialchars(strip_tags($parentCategory->name), ENT_QUOTES, 'UTF-8');?></a>
-                        <p>Total Products: <?=$parentCategory->getProductsCount();?></p>
+                        <p>Total Products: <?=$parentCategory->getTotalProductsCount();?></p>
                         <p><a href="/admin/categories/edit?id=<?=$parentCategory->category_id;?>"><i class="fas fa-edit"></i> Edit Category</a></p>
                         <form action="/admin/categories/delete" method="post">
                             <input type="hidden" name="category[category_id]" value="<?=$parentCategory->category_id?>">

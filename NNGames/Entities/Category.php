@@ -21,5 +21,14 @@ class Category {
     public function getProductsCount() {
         return count($this->productsTable->retrieveRecord('category_id', $this->category_id));
     }
+
+    public function getTotalProductsCount() {
+        $count = $this->getProductsCount();
+        foreach ($this->getChildCategories() as $childCategory) {
+            $count = $count + $childCategory->getProductsCount();
+        }
+
+        return $count;
+    }
 }
 ?>
