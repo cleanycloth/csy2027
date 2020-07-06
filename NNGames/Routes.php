@@ -3,6 +3,7 @@ namespace NNGames;
 class Routes implements \CSY2028\Routes {
     private $usersTable;
     private $categoriesTable;
+    private $productsTable;
 
     public function getRoutes() {
         require '../dbConnection.php';
@@ -11,7 +12,7 @@ class Routes implements \CSY2028\Routes {
         $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category');
         $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id');
         $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
-        $productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product');
+        $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product');
         $productReviewsTable = new \CSY2028\DatabaseTable($pdo, 'product_reviews', 'product_id');
         $platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id');
         $genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id');
@@ -25,7 +26,7 @@ class Routes implements \CSY2028\Routes {
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
         $adminController = new \NNGames\Controllers\AdminController();
-        $productController = new \NNGames\Controllers\ProductController($productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
+        $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
         $slideController = new \NNGames\Controllers\SlideController($slidesTable, $_GET, $_POST);
         $imageController = new \NNGames\Controllers\ImageController($imagesTable, $_GET, $_POST);
@@ -36,7 +37,7 @@ class Routes implements \CSY2028\Routes {
                 'GET' => [
                     'controller' => $siteController,
                     'function' => 'home',
-                    'parameters' => []
+                    'parameters' => [$this->productsTable->retrieveAllRecords()]
                 ]
             ],
             'login' => [
