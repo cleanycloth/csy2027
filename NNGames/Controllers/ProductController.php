@@ -200,6 +200,18 @@ class ProductController {
         ];
     }
 
+    // Method for deleting a product from the database.
+    public function deleteProduct() {
+        $imageId = $this->productsTable->retrieveRecord('product_id', $this->post['product']['product_id'])[0]->image_id;
+
+        $this->productsTable->deleteRecordById($this->post['product']['product_id']);
+
+        if (!empty($imageId))
+            $this->imagesTable->deleteRecordById($imageId);
+
+        header('Location: /admin/products');
+    }
+
     // Method for displaying the page for an individual product.
     public function product() {
         return [ 
