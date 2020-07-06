@@ -16,7 +16,7 @@ class ImageController {
         if ($this->get['id']) {
             $image = $this->imagesTable->retrieveBlob($this->get['id']);
 
-            if (!empty($image)) {
+            if (!empty($image['data'])) {
                 return [
                     'layout' => 'blanklayout.html.php',
                     'template' => 'pages/main/image.html.php',
