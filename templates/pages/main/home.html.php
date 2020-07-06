@@ -19,8 +19,18 @@
     </div>
 </div>
 
-<h1>LATEST RELEASES</h1>
+<h1>LATEST PRODUCTS</h1>
 <div class="featured-product-carousel slider">
+    <?php $reversedProducts = array_reverse($products);?>
+    <?php for ($i=0; $i<count($reversedProducts) && $i<10; $i++): ?>
+        <div>
+            <a href="/product?id=<?=$reversedProducts[$i]->product_id;?>">
+                <img src="/image?id=<?=$reversedProducts[$i]->image_id;?>" alt="<?=htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8');?>">
+                <p><?=htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8');?></p>
+            </a>
+        </div>
+    <?php endfor; ?>
+    <!--  
     <div>
         <a href="#">
             <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
@@ -57,8 +67,10 @@
             <p>Product 6</p>
         </a>
     </div>
+    -->
 </div>
 
+<!--
 <h1>STAFF PICKS</h1>
 <div class="featured-product-carousel slider">
     <div>
@@ -98,6 +110,7 @@
         </a>
     </div>
 </div>
+-->
 
 <div class="featured">
     <div class="featured-item">
