@@ -331,7 +331,7 @@ class UserController {
 
     // Function for deleting a user from the database.
     public function deleteUser() {
-        $this->usersTable->deleteRecordById($this->post['user']['id']);
+        $this->usersTable->deleteRecordById($this->post['user']['user_id']);
 
         header('Location: /admin/users');
     }

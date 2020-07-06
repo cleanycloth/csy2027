@@ -32,7 +32,7 @@
                     <td>
                         <?php if (isset($_SESSION['isOwner']) && $user->user_type != 2 || isset($_SESSION['isAdmin']) && ($user->user_type != 2 && $user->user_type != 1)): ?>
                             <form action="/admin/users/delete" method="post">
-                                <input type="hidden" name="user[id]" value="<?=$user->user_id?>">
+                                <input type="hidden" name="user[user_id]" value="<?=$user->user_id?>">
                                 <input type="submit" name="submit" value="Delete User">
                             </form>
                         <?php endif ;?>
@@ -42,4 +42,5 @@
         </tbody>
     </table>
 <?php else: ?>
+    <p class="msg">There are currently no users.</p>  
 <?php endif; ?>
