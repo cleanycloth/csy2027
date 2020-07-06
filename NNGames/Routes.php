@@ -143,6 +143,13 @@ class Routes implements \CSY2028\Routes {
                 'login' => true,
                 'restricted' => true
             ],
+            'admin/products/delete' => [
+                'POST' => [
+                    'controller' => $productController,
+                    'function' => 'deleteProduct',
+                    'parameters' => []
+                ]
+            ],
             'admin/categories' => [
                 'GET' => [
                     'controller' => $categoryController,
