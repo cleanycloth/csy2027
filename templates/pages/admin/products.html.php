@@ -19,13 +19,13 @@
             <?php foreach ($products as $product): ?>
                 <tr>
                     <td><?=$product->product_id;?></td>
-                    <td><img src="/image?id=<?=$product->image_id;?>" alt="<?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?>"></td>
+                    <td><img src="<?=($product->image_id != null) ? '/image?id=' . $product->image_id : '/images/image-placeholder.jpg';?>" alt="<?=($product->image_id != null) ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></td>
                     <td><?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?></td>
                     <td>£<?=htmlspecialchars(strip_tags($product->price), ENT_QUOTES, 'UTF-8');?></td>
                     <td><?=htmlspecialchars(strip_tags($product->getCategoryName()), ENT_QUOTES, 'UTF-8');?></td>
                     <td><?=htmlspecialchars(strip_tags($product->getPlatformName()), ENT_QUOTES, 'UTF-8');?></td>
                     <td><?=htmlspecialchars(strip_tags($product->getGenreName()), ENT_QUOTES, 'UTF-8');?></td>
-                    <td><a class="button" href="/admin/products/edit?id=1">Edit Product</a></td>
+                    <td><a class="button" href="/admin/products/edit?id=<?=$product->product_id;?>">Edit Product</a></td>
                     <td>
                         <form action="/admin/products/delete" method="post">
                             <input type="hidden" name="product[product_id]" value="<?=$product->product_id;?>">

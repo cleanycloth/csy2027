@@ -25,7 +25,7 @@
     <?php for ($i=0; $i<count($reversedProducts) && $i<10; $i++): ?>
         <div>
             <a href="/product?id=<?=$reversedProducts[$i]->product_id;?>">
-                <img src="/image?id=<?=$reversedProducts[$i]->image_id;?>" alt="<?=htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8');?>">
+                <img src="<?=($reversedProducts[$i]->image_id != null) ? '/image?id=' . $reversedProducts[$i]->image_id : '/images/image-placeholder.jpg';?>" alt="<?=($reversedProducts[$i]->image_id != null) ? htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
                 <p><?=htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8');?></p>
             </a>
         </div>
