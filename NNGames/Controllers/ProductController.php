@@ -170,7 +170,6 @@ class ProductController {
                 ];
             }
             else {
-                var_dump($_FILES['image']);
                 if (isset($this->get['id'])) {
                     $pageName = 'Edit Product';
                     $layout = 'adminlayout.html.php';

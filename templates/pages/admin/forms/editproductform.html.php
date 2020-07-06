@@ -6,7 +6,7 @@
         <?php if (isset($_GET['id'])): ?>
             <input type="hidden" name="product[product_id]" value="<?=$product->product_id;?>">
             <label for="image-preview"></label>
-            <img src="" alt="<?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?>">
+            <img style="height: 200px; width: 200px; background-color: white;" src="/image?id=<?=$product->image_id;?>" alt="<?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?>">
         <?php endif; ?>
         
         <label for="image">Image</label>
@@ -33,7 +33,7 @@
         <select name="product[platform_id]" id="platform">
             <option <?=(isset($product) && !empty($product) && $product->platform_id == 0) ? 'selected="selected"' : '';?> value="">None</option>
             <?php foreach ($platforms as $platformChoice): ?>
-                <option <?=(isset($product) && !empty($product) && $product->platform_id == $categoryChoice->platform_id) ? 'selected="selected"' : '';?> value="<?=$platformChoice->platform_id;?>"><?=htmlspecialchars(strip_tags($platformChoice->name), ENT_QUOTES, 'UTF-8');?></option>
+                <option <?=(isset($product) && !empty($product) && $product->platform_id == $platformChoice->platform_id) ? 'selected="selected"' : '';?> value="<?=$platformChoice->platform_id;?>"><?=htmlspecialchars(strip_tags($platformChoice->name), ENT_QUOTES, 'UTF-8');?></option>
             <?php endforeach; ?>
         </select>
 
@@ -41,7 +41,7 @@
         <select name="product[genre_id]" id="genre">
             <option <?=(isset($product) && !empty($product) && $product->genre_id == 0) ? 'selected="selected"' : '';?> value="">None</option>
             <?php foreach ($genres as $genreChoice): ?>
-                <option <?=(isset($product) && !empty($product) && $product->genre_id == $categoryChoice->genre_id) ? 'selected="selected"' : '';?> value="<?=$genreChoice->genre_id;?>"><?=htmlspecialchars(strip_tags($genreChoice->name), ENT_QUOTES, 'UTF-8');?></option>
+                <option <?=(isset($product) && !empty($product) && $product->genre_id == $genreChoice->genre_id) ? 'selected="selected"' : '';?> value="<?=$genreChoice->genre_id;?>"><?=htmlspecialchars(strip_tags($genreChoice->name), ENT_QUOTES, 'UTF-8');?></option>
             <?php endforeach; ?>
         </select>
     </div>

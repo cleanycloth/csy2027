@@ -520,6 +520,14 @@ nav ul .dropdown:hover ul li a:active {
     overflow: hidden;
     height: 4em;
 }
+
+.site-main .content .admin-content table tbody tr td img {
+    height: 125px;
+    width: 125px;
+    background-color: white;
+}
+
+
 .site-main .content .admin-content table tbody tr td form {
     width: max-content;
     height: max-content;

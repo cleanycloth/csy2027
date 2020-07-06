@@ -167,7 +167,6 @@ class DatabaseTable {
             $this->insertRecord($record); // Insert new record.
         }
         catch (\PDOException $e) {
-            echo $e;
             $this->updateRecord($record); // Update existing record.
         }
     }
@@ -178,7 +177,6 @@ class DatabaseTable {
         }
         catch (\PDOException $e) {
             $this->updateBlob($id, $filePath, $mime);
-            echo $e;
         }
     }
 }
