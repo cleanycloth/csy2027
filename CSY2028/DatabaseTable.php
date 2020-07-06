@@ -80,11 +80,12 @@ class DatabaseTable {
     }
 
     // Function to insert a new blob into the specified database table.
-    public function insertBlob($filePath, $mime) {
+    public function insertBlob($id, $filePath, $mime) {
         $blob = fopen($filePath, 'rb');
 
-        $stmt = $this->pdo->prepare('INSERT INTO ' . $this->table . ' (mime, data) VALUES (:mime, :data);');
+        $stmt = $this->pdo->prepare('INSERT INTO ' . $this->table . ' (image_id, mime, data) VALUES (:image_id, :mime, :data);');
 
+        $stmt->bindParam(':image_id', $id);
         $stmt->bindParam(':mime', $mime);
         $stmt->bindParam(':data', $blob, \PDO::PARAM_LOB);
 
@@ -173,7 +174,7 @@ class DatabaseTable {
 
     public function saveBlob($id, $filePath, $mime) {
         try {
-            $this->insertBlob($filePath, $mime);
+            $this->insertBlob($id, $filePath, $mime);
         }
         catch (\PDOException $e) {
             $this->updateBlob($id, $filePath, $mime);
