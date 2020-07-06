@@ -160,9 +160,10 @@ class ProductController {
                     unset($this->post['product']['genre_id']);
 
                 if ($_FILES['image']['tmp_name'] != '') {
-                    $imageId = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0]->image_id;
-                    if (!empty($imageId))
+                    if (isset($this->get['id'])) {
+                        $imageId = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0]->image_id;
                         $this->imagesTable->saveBlob($imageId, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
+                    }
                     else {
                         $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
                         $this->post['product']['image_id'] = $this->imagesTable->lastInsertId();
