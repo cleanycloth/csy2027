@@ -2,11 +2,13 @@
 namespace NNGames\Controllers;
 class SiteController {
     // Function for displaying the home page.
-    public function home() {
+    public function home($parameters) {
         return [
             'layout' => 'layout.html.php',
             'template' => 'pages/main/home.html.php',
-            'variables' => [],
+            'variables' => [
+                'products' => $parameters[0]
+            ],
             'title' => 'Home'
         ];
     }
