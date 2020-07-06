@@ -2,14 +2,17 @@
 namespace NNGames\Controllers;
 class ProductController {
     private $productsTable;
+    private $imagesTable;
     private $categoriesTable;
     private $platformsTable;
     private $genresTable;
     private $get;
     private $post;
 
-    public function __construct(\CSY2028\DatabaseTable $productsTable, \CSY2028\DatabaseTable $categoriesTable, \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable, $get, $post) {
+    public function __construct(\CSY2028\DatabaseTable $productsTable, \CSY2028\DatabaseTable $imagesTable, \CSY2028\DatabaseTable $categoriesTable, 
+                                \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable, $get, $post) {
         $this->productsTable = $productsTable;
+        $this->imagesTable = $imagesTable;
         $this->categoriesTable = $categoriesTable;
         $this->platformsTable = $platformsTable;
         $this->genresTable = $genresTable;
@@ -74,6 +77,128 @@ class ProductController {
                 'title' => 'Admin Panel - ' . $pageName
             ];        
         }       
+    }
+
+    // Method for adding/updating a product in the database.
+    public function editProductSubmit() {
+        $categories = $this->categoriesTable->retrieveAllRecords();
+        $platforms = $this->platformsTable->retrieveAllRecords();
+        $genres = $this->genresTable->retrieveAllRecords();
+
+        if (isset($this->post['product'])) {
+            if (isset($this->get['id'])) {
+                $product = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0];
+
+                if (empty($product))
+                    header('Location: /admin/products');
+            }
+            else
+                $product = '';
+
+            if ($_FILES['image']['tmp_name'] == '') {
+                if ($this->post['product']['name'] != '') {
+                    if ($this->post['product']['price'] != '') {
+                        if (is_numeric($this->post['product']['price'])) {
+                            if ($this->post['product']['description'] == '')
+                                $error = 'The description cannot be blank.';
+                        }
+                        else
+                            $error = 'The price must be a number.';
+                    }
+                    else
+                        $error = 'The price cannot be blank.';
+                }
+                else
+                    $error = 'The product name cannot be blank.';
+            }
+            else {
+                if (mime_content_type($_FILES['image']['tmp_name']) == 'image/jpeg') {
+                    if ($this->post['product']['name'] != '') {
+                        if ($this->post['product']['price'] != '') {
+                            if (is_numeric($this->post['product']['price'])) {
+                                if ($this->post['product']['description'] == '')
+                                    $error = 'The description cannot be blank.';
+                            }
+                            else
+                                $error = 'The price must be a number.';
+                        }
+                        else
+                            $error = 'The price cannot be blank.';
+                    }
+                    else
+                        $error = 'The product name cannot be blank.';
+                }
+                else {
+                    $error = 'The file uploaded is not a JPEG image.';
+                }
+            }
+
+            if (!isset($error)) {
+                if (isset($this->get['id'])) {
+                    $pageName = 'Product Updated';
+                    $layout = 'adminlayout.html.php';
+                    $template = 'pages/admin/success/editproductsuccess.html.php';
+                }
+                else {
+                    $pageName = 'Product Added';
+                    $layout = 'adminlayout.html.php';
+                    $template = 'pages/admin/success/editproductsuccess.html.php';
+                }
+
+
+                if ($this->post['product']['category_id'] == '')
+                    unset($this->post['product']['category_id']);
+
+                if ($this->post['product']['platform_id'] == '')
+                    unset($this->post['product']['platform_id']);
+
+                if ($this->post['product']['genre_id'] == '')
+                    unset($this->post['product']['genre_id']);
+
+                if ($_FILES['image']['tmp_name'] != '') {
+                    $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
+
+                    $this->post['product']['image_id'] = $this->imagesTable->lastInsertId();
+                    $this->productsTable->save($this->post['product']);
+                }
+                else
+                    $this->productsTable->save($this->post['product']);
+
+                $variables = [
+                    'pageName' => $pageName,
+                    'productName' => htmlspecialchars(strip_tags($this->post['product']['name']), ENT_QUOTES, 'UTF-8')
+                ];
+            }
+            else {
+                var_dump($_FILES['image']);
+                if (isset($this->get['id'])) {
+                    $pageName = 'Edit Product';
+                    $layout = 'adminlayout.html.php';
+                    $template = 'pages/admin/editproduct.html.php';
+                }
+                else {
+                    $pageName = 'Add Product';
+                    $layout = 'adminlayout.html.php';
+                    $template = 'pages/admin/editproduct.html.php';
+                }
+                
+                $variables = [
+                    'pageName' => $pageName,
+                    'error' => $error,
+                    'categories' => $categories,
+                    'platforms' => $platforms,
+                    'genres' => $genres,
+                    'product' => $product
+                ];
+            }
+        }
+
+        return [
+            'layout' => $layout,
+            'template' => $template,
+            'variables' => $variables,
+            'title' => 'Admin Panel - ' . $pageName
+        ];
     }
 
     // Method for displaying the page for an individual product.

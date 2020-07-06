@@ -113,13 +113,16 @@ class CategoryController {
 
                 $this->categoriesTable->save($this->post['category']);
 
+                var_dump($this->post['category']);
+
                 $variables = [
                     'pageName' => $pageName,
                     'categoryName' => htmlspecialchars(strip_tags($this->post['category']['name']), ENT_QUOTES, 'UTF-8')
                 ];
+
             }
             else {
-                if (isset($_GET['id'])) {
+                if (isset($this->get['id'])) {
                     $pageName = 'Edit Category';
                     $layout = 'adminlayout.html.php';
                     $template = 'pages/admin/editcategory.html.php';

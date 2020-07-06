@@ -19,14 +19,16 @@ class Routes implements \CSY2028\Routes {
         $orderDetailsTable = new \CSY2028\DatabaseTable($pdo, 'order_details', 'order_id');
         $paymentsTable = new \CSY2028\DatabaseTable($pdo, 'payments', 'payment_id');
         $slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
+        $imagesTable = new \CSY2028\DatabaseTable($pdo, 'images', 'image_id');
 
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
         $adminController = new \NNGames\Controllers\AdminController();
-        $productController = new \NNGames\Controllers\ProductController($productsTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
+        $productController = new \NNGames\Controllers\ProductController($productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
         $slideController = new \NNGames\Controllers\SlideController($slidesTable, $_GET, $_POST);
+        $imageController = new \NNGames\Controllers\ImageController($imagesTable, $_GET, $_POST);
 
         // Define routes.
         $routes = [
@@ -131,7 +133,14 @@ class Routes implements \CSY2028\Routes {
                     'controller' => $productController,
                     'function' => 'editProductForm',
                     'parameters' => []
-                ]
+                ],
+                'POST' => [
+                    'controller' => $productController,
+                    'function' => 'editProductSubmit',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
             ],
             'admin/categories' => [
                 'GET' => [
@@ -186,6 +195,14 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => []
                 ],
                 'login' => true
+            ],
+            // Image Page
+            'image' => [
+                'GET' => [
+                    'controller' => $imageController,
+                    'function' => 'fetchImage',
+                    'parameters' => []
+                ]
             ],
             // Error Pages
             '400' => [
