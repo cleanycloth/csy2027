@@ -22,11 +22,11 @@
                     <td><?=htmlspecialchars(strip_tags($slide->message), ENT_QUOTES, 'UTF-8');?></td>
                     <td><a target="__blank" href="<?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?>"><?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?></a></td>
                     <td>
-                        <a class="button" href="/admin/slides/edit?id=<?=$slide->slide_id?>">Edit User</a></td>
+                        <a class="button" href="/admin/slides/edit?id=<?=$slide->slide_id?>">Edit Slide</a></td>
                     <td>
                         <form action="/admin/slides/delete" method="post">
                             <input type="hidden" name="slide[slide_id]" value="<?=$slide->slide_id?>">
-                            <input type="submit" name="submit" value="Delete User">
+                            <input type="submit" name="submit" value="Delete Slide">
                         </form>
                     </td>
                 </tr>
