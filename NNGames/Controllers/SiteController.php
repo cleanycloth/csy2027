@@ -7,7 +7,8 @@ class SiteController {
             'layout' => 'layout.html.php',
             'template' => 'pages/main/home.html.php',
             'variables' => [
-                'products' => $parameters[0]
+                'products' => $parameters[0],
+                'slides' => $parameters[1]
             ],
             'title' => 'Home'
         ];

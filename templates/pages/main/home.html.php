@@ -1,22 +1,12 @@
 <div class="main-carousel slider">
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/1920x500" alt="Placeholder Image">
-            <p>Slide 1</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/1920x500" alt="Placeholder Image">
-            <p>Slide 2</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/1920x500" alt="Placeholder Image">
-            <p>Slide 3</p>
-        </a>
-    </div>
+    <?php foreach ($slides as $slide): ?>
+        <div>
+            <a href="<?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?>">
+                <img src="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>" alt="<?=($slide->image_id != null) ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
+                <p><?=htmlspecialchars(strip_tags($slide->message), ENT_QUOTES, 'UTF-8');?></p>
+            </a>
+        </div>
+    <?php endforeach; ?>    
 </div>
 
 <h1>LATEST PRODUCTS</h1>
@@ -30,87 +20,7 @@
             </a>
         </div>
     <?php endfor; ?>
-    <!--  
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 1</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 2</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 3</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 4</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 5</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 6</p>
-        </a>
-    </div>
-    -->
 </div>
-
-<!--
-<h1>STAFF PICKS</h1>
-<div class="featured-product-carousel slider">
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 1</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 2</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 3</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 4</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 5</p>
-        </a>
-    </div>
-    <div>
-        <a href="#">
-            <img src="https://via.placeholder.com/200x200" alt="Placeholder Image">
-            <p>Product 6</p>
-        </a>
-    </div>
-</div>
--->
 
 <div class="featured">
     <div class="featured-item">

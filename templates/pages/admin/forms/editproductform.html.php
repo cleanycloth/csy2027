@@ -2,11 +2,11 @@
     <h2><?=$pageName;?></h2>
     <output><?=(isset($error)) ? $error : '';?></output>
     <p class="required">Required:</p>
-    <div class="fields">    
+    <div class="fields">
         <?php if (isset($_GET['id'])): ?>
             <input type="hidden" name="product[product_id]" value="<?=$product->product_id;?>">
             <label for="image-preview"></label>
-            <img style="height: 200px; width: 200px; background-color: white;" src="<?=($product->image_id != null) ? '/image?id=' . $product->image_id : '/images/image-placeholder.jpg';?>" alt="<?=($product->image_id != null) ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
+            <a target="__blank" href="<?=($product->image_id != null) ? '/image?id=' . $product->image_id : '/images/image-placeholder.jpg';?>"><img style="height: 200px; width: 200px; background-color: white;" src="<?=($product->image_id != null) ? '/image?id=' . $product->image_id : '/images/image-placeholder.jpg';?>" alt="<?=($product->image_id != null) ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a>
         <?php endif; ?>
         
         <label for="image">Image</label>

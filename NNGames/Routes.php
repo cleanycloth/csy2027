@@ -4,6 +4,7 @@ class Routes implements \CSY2028\Routes {
     private $usersTable;
     private $categoriesTable;
     private $productsTable;
+    private $slidesTable;
 
     public function getRoutes() {
         require '../dbConnection.php';
@@ -19,7 +20,7 @@ class Routes implements \CSY2028\Routes {
         $ordersTable = new \CSY2028\DatabaseTable($pdo, 'orders', 'order_id');
         $orderDetailsTable = new \CSY2028\DatabaseTable($pdo, 'order_details', 'order_id');
         $paymentsTable = new \CSY2028\DatabaseTable($pdo, 'payments', 'payment_id');
-        $slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
+        $this->slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
         $imagesTable = new \CSY2028\DatabaseTable($pdo, 'images', 'image_id');
 
         // Create new controller objects.
@@ -28,7 +29,7 @@ class Routes implements \CSY2028\Routes {
         $adminController = new \NNGames\Controllers\AdminController();
         $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
-        $slideController = new \NNGames\Controllers\SlideController($slidesTable, $_GET, $_POST);
+        $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $imagesTable, $_GET, $_POST);
         $imageController = new \NNGames\Controllers\ImageController($imagesTable, $_GET, $_POST);
 
         // Define routes.
@@ -37,7 +38,7 @@ class Routes implements \CSY2028\Routes {
                 'GET' => [
                     'controller' => $siteController,
                     'function' => 'home',
-                    'parameters' => [$this->productsTable->retrieveAllRecords()]
+                    'parameters' => [$this->productsTable->retrieveAllRecords(), $this->slidesTable->retrieveAllRecords()]
                 ]
             ],
             'login' => [
@@ -196,6 +197,27 @@ class Routes implements \CSY2028\Routes {
                 'login' => true,
                 'restricted' => true
             ],
+            'admin/slides/edit' => [
+                'GET' => [
+                    'controller' => $slideController,
+                    'function' => 'editSlideForm',
+                    'parameters' => []
+                ],
+                'POST' => [
+                    'controller' => $slideController,
+                    'function' => 'editSlideSubmit',
+                    'parameters' => []
+                ],
+                'login' => true,
+                'restricted' => true
+            ],
+            'admin/slides/delete' => [
+                'POST' => [
+                    'controller' => $slideController,
+                    'function' => 'deleteSlide',
+                    'parameters' => []
+                ]
+                ],
             'admin/access-restricted' => [
                 'GET' => [
                     'controller' => $adminController,
