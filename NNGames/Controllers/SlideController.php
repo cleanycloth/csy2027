@@ -131,7 +131,13 @@ class SlideController {
                 if ($_FILES['image']['tmp_name'] != '') {
                     if (isset($this->get['id'])) {
                         $imageId = $this->slidesTable->retrieveRecord('slide_id', $this->get['id'])[0]->image_id;
-                        $this->imagesTable->saveBlob($imageId, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
+                        if (!empty($imageId))
+                            $this->imagesTable->saveBlob($imageId, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
+                        else {
+                            $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
+                            $this->post['slide']['image_id'] = $this->imagesTable->lastInsertId();
+                            $this->slidesTable->save($this->post['slide']);
+                        }
                     }
                     else {
                         $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
