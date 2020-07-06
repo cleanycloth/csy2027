@@ -4,15 +4,15 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 5%">ID</th>
+                <th style="width: 5%;">ID</th>
                 <th style="width: 125px;">Image</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Platform</th>
-                <th>Genre</th>
-                <th style="width: 5%"></th>
-                <th style="width: 5%"></th>
+                <th style="width: 20%;">Product Name</th>
+                <th style="width: 10%;">Price</th>
+                <th style="width: 15%;">Category</th>
+                <th style="width: 15%;">Platform</th>
+                <th style="width: 15%;">Genre</th>
+                <th style="width: 5%;"></th>
+                <th style="width: 5%;"></th>
             </tr>
         </thead>
         <tbody>

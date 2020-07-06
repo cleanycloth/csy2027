@@ -4,15 +4,15 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 5%">ID</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Surname</th>
-                <th>Email</th>
-                <th>User Type</th>
-                <th style="width: 8%">Active</th>
-                <th style="width: 5%"></th>
-                <th style="width: 5%"></th>
+                <th style="width: 5%;">ID</th>
+                <th style="width: 20%;">Username</th>
+                <th style="width: 20%;">First Name</th>
+                <th style="width: 20%;">Surname</th>
+                <th style="width: 20%;">Email</th>
+                <th style="width: 12%;">User Type</th>
+                <th style="width: 5%;">Active</th>
+                <th style="width: 5%;"></th>
+                <th style="width: 5%;"></th>
             </tr>
         </thead>
         <tbody>
