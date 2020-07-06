@@ -1,12 +1,21 @@
 <div class="main-carousel slider">
-    <?php foreach ($slides as $slide): ?>
+    <?php if (count($slides) > 0): ?>
+        <?php foreach ($slides as $slide): ?>
+            <div>
+                <a href="<?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?>">
+                    <img src="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>" alt="<?=($slide->image_id != null) ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
+                    <p><?=htmlspecialchars(strip_tags($slide->message), ENT_QUOTES, 'UTF-8');?></p>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
         <div>
-            <a href="<?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?>">
-                <img src="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>" alt="<?=($slide->image_id != null) ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
-                <p><?=htmlspecialchars(strip_tags($slide->message), ENT_QUOTES, 'UTF-8');?></p>
+            <a href="/">
+                <img src="/images/welcome-to-nngames.jpg" alt="Welcome to NNGames!">
+                <p>Welcome to NNGames!</p>
             </a>
         </div>
-    <?php endforeach; ?>    
+    <?php endif; ?>
 </div>
 
 <h1>LATEST PRODUCTS</h1>
