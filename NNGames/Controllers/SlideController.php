@@ -73,7 +73,9 @@ class SlideController {
             else
                 $slide = '';
 
-            if ($_FILES['image']['tmp_name'] == '') {
+            $uploadedFile = $_FILES['image']['tmp_name'];
+
+            if ($uploadedFile == '') {
                 if ($this->post['slide']['name'] != '') {
                     if ($this->post['slide']['message'] != '') {
                         if ($this->post['slide']['url'] != '') {
@@ -90,25 +92,28 @@ class SlideController {
                     $error = 'The name cannot be blank';
             }
             else {
-                if (mime_content_type($_FILES['image']['tmp_name']) == 'image/jpeg') {
-                    if ($this->post['slide']['name'] != '') {
-                        if ($this->post['slide']['message'] != '') {
-                            if ($this->post['slide']['url'] != '') {
-                                if (!filter_var($this->post['slide']['url'], FILTER_VALIDATE_URL))
-                                    $error = 'The URL is not valid.';
+                if (mime_content_type($uploadedFile) == 'image/jpeg') {
+                    if (getimagesize($uploadedFile)[0] == 1920 && getimagesize($uploadedFile)[1] == 500) {
+                        if ($this->post['slide']['name'] != '') {
+                            if ($this->post['slide']['message'] != '') {
+                                if ($this->post['slide']['url'] != '') {
+                                    if (!filter_var($this->post['slide']['url'], FILTER_VALIDATE_URL))
+                                        $error = 'The URL is not valid.';
+                                }
+                                else
+                                    $error = 'The URL cannot be blank.';
                             }
                             else
-                                $error = 'The URL cannot be blank.';
+                                $error = 'The message cannot be blank.';
                         }
                         else
-                            $error = 'The message cannot be blank.';
+                            $error = 'The name cannot be blank';
                     }
                     else
-                        $error = 'The name cannot be blank';
+                        $error = 'The image needs to have dimensions of 1920x500.';
                 }
-                else {
+                else
                     $error = 'The file uploaded is not a JPEG image.';
-                }
             }
 
             if (!isset($error)) {
@@ -156,7 +161,7 @@ class SlideController {
                 $variables = [
                     'pageName' => $pageName,
                     'error' => $error,
-                    'product' => $product
+                    'slide' => $slide
                 ];
             }
         }

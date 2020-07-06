@@ -95,7 +95,9 @@ class ProductController {
             else
                 $product = '';
 
-            if ($_FILES['image']['tmp_name'] == '') {
+            $uploadedFile = $_FILES['image']['tmp_name'];
+
+            if ($uploadedFile == '') {
                 if ($this->post['product']['name'] != '') {
                     if ($this->post['product']['price'] != '') {
                         if (is_numeric($this->post['product']['price'])) {
@@ -112,25 +114,28 @@ class ProductController {
                     $error = 'The product name cannot be blank.';
             }
             else {
-                if (mime_content_type($_FILES['image']['tmp_name']) == 'image/jpeg') {
-                    if ($this->post['product']['name'] != '') {
-                        if ($this->post['product']['price'] != '') {
-                            if (is_numeric($this->post['product']['price'])) {
-                                if ($this->post['product']['description'] == '')
-                                    $error = 'The description cannot be blank.';
+                if (mime_content_type($uploadedFile) == 'image/jpeg') {
+                    if (getimagesize($uploadedFile)[0] == 400 && getimagesize($uploadedFile)[1] == 400) {
+                        if ($this->post['product']['name'] != '') {
+                            if ($this->post['product']['price'] != '') {
+                                if (is_numeric($this->post['product']['price'])) {
+                                    if ($this->post['product']['description'] == '')
+                                        $error = 'The description cannot be blank.';
+                                }
+                                else
+                                    $error = 'The price must be a number.';
                             }
                             else
-                                $error = 'The price must be a number.';
+                                $error = 'The price cannot be blank.';
                         }
                         else
-                            $error = 'The price cannot be blank.';
+                            $error = 'The product name cannot be blank.';
                     }
                     else
-                        $error = 'The product name cannot be blank.';
+                        $error = 'The image needs to have dimensions of 400x400.';
                 }
-                else {
+                else
                     $error = 'The file uploaded is not a JPEG image.';
-                }
             }
 
             if (!isset($error)) {
@@ -144,7 +149,6 @@ class ProductController {
                     $layout = 'adminlayout.html.php';
                     $template = 'pages/admin/success/editproductsuccess.html.php';
                 }
-
 
                 if ($this->post['product']['category_id'] == '')
                     unset($this->post['product']['category_id']);
