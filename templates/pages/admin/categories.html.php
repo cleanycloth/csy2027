@@ -37,5 +37,5 @@
         <?php endforeach; ?>
     </ul>
 <?php else: ?>
-    <p>There are currently no categories.</p>    
+    <p class="msg">There are currently no categories.</p>    
 <?php endif; ?>

@@ -344,8 +344,9 @@ nav ul .dropdown:hover ul li a:active {
     margin-bottom: 4rem;
 }
 .site-main .main-carousel div img {
-    width: 100%;
-    height: auto;
+    height: 500px;
+    width: 1920px;
+    background-color: white;
 }
 .site-main .main-carousel div p {
     text-align: center;
@@ -363,6 +364,11 @@ nav ul .dropdown:hover ul li a:active {
     width: 50%;
     margin: 0 auto 4rem auto;
     text-align: center;
+}
+.site-main .featured-product-carousel img {
+    height: 200px;
+    width: 200px;
+    background-color: white;
 }
 .site-main .featured-product-carousel p {
     margin-top: 0.5rem;
@@ -883,7 +889,7 @@ footer {
     z-index: 1;
 }
 
-/* Sliick Slider */
+/* Slick Slider */
 .slick-dots li button:before {
     font-size: 10px;
 }

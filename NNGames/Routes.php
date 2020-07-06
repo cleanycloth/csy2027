@@ -24,7 +24,7 @@ class Routes implements \CSY2028\Routes {
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
         $adminController = new \NNGames\Controllers\AdminController();
-        $productController = new \NNGames\Controllers\ProductController($productsTable, $_GET, $_POST);
+        $productController = new \NNGames\Controllers\ProductController($productsTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
         $slideController = new \NNGames\Controllers\SlideController($slidesTable, $_GET, $_POST);
 
@@ -125,6 +125,13 @@ class Routes implements \CSY2028\Routes {
                 ],
                 'login' => true,
                 'restricted' => true
+            ],
+            'admin/products/edit' => [
+                'GET' => [
+                    'controller' => $productController,
+                    'function' => 'editProductForm',
+                    'parameters' => []
+                ]
             ],
             'admin/categories' => [
                 'GET' => [
