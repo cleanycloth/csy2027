@@ -1,12 +1,9 @@
-<h1>Product Name</h1> 
+<h1><?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?></h1> 
 <div class="productsec">  
     <div class="pcolumn">
         <div class="product-carousel slider">
             <div>
-                <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
-            </div>
-            <div>
-                <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
+                <img src="<?=$product->image;?>" alt="<?=($product->image != '/images/image-placeholder.jpg') ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
             </div>
         </div>
     </div>
@@ -23,7 +20,9 @@
         <div class="purchasebox">
             <h2>Price</h2>
             <p>£<?=$product->price;?></p>
-            <a href="#">Add to basket</a>
+            <form action="" method="post">
+                <button>Add To Basket</button>
+            </form>
         </div>
     </div>
 </div>

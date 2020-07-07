@@ -839,6 +839,11 @@ nav ul .dropdown:hover ul li a:active {
     margin: 0 auto;
 }
 
+.pcolumn img {
+    width: 275px;
+    height: 275px;
+}
+
 .pcolumn .product-carousel {
     width: 24em;
     margin: 0 auto 4rem auto;
@@ -872,6 +877,11 @@ nav ul .dropdown:hover ul li a:active {
     border-radius: 8px;
     transition-duration: 0.1s;
 }
+
+.pcolumn .purchasebox form {
+    width: max-content;
+}
+
 .pcolumn .purchasebox a:hover {
     background-color: #a0a0a0;
     border-color: #a0a0a0;
