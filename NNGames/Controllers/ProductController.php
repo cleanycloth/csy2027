@@ -21,13 +21,28 @@ class ProductController {
     }
 
     // Method for displaying the page for an individual product.
-    public function product() {
-        return [ 
-            'layout' => 'layout.html.php',
-            'template' => 'product.html.php',
-            'variables' => [],
-            'title' => 'Product'
-        ];
+    public function viewProduct() {
+        if (isset($this->get['id'])) {
+            $product = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0];
+            $platformName = $this->platformsTable->retrieveRecord('platform_id', $product->platform_id)[0]->name;
+            $genreName = $this->genresTable->retrieveRecord('genre_id', $product->genre_id)[0]->name;
+
+            if (empty($product))
+                header('Location: /products');
+
+            return [ 
+                'layout' => 'layout.html.php',
+                'template' => 'product.html.php',
+                'variables' => [
+                    'product' => $product,
+                    'platformName' => $platformName,
+                    'genreName' => $genreName
+                ],
+                'title' => 'Product - ' . $product->name
+            ];
+        }
+        else
+            header('Location: /products');
     }
 
     // Method for listing out multiple products from the database.
@@ -244,7 +259,7 @@ class ProductController {
                 'platforms' => $platforms,
                 'genres' => $genres
             ],
-            'title' => 'Products'
+            'title' => 'Products - ' . $pageName
         ];
     }
 
