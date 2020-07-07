@@ -70,12 +70,15 @@ class ProductController {
                     if ($product->category_id == $category->category_id)
                         $categoryFilteredProducts[] = $product;
                 }
-                
-                if (isset($categoryFilteredProducts))
-                    $filteredProducts = $categoryFilteredProducts;
-            
+        
                 $pageName = $category->name;
-                $errorMsg = '';
+
+                if (isset($categoryFilteredProducts)) {
+                    $filteredProducts = $categoryFilteredProducts;
+                    $errorMsg = '';
+                }
+                else 
+                    $errorMsg = 'This category currently has no products.';
             }
             else {
                 $filteredProducts = null;
