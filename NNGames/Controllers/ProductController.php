@@ -184,16 +184,16 @@ class ProductController {
 
         if ($pageNumber > 0)
             $offset = ($pageNumber-1) * $productsPerPage;
-        else 
+        else
             header('Location: ' . (str_replace("page=$pageNumber", "page=1", $_SERVER['REQUEST_URI'])));
-            
+
         if (!empty($filteredProducts)) {
-            for ($i=$offset; $i<$productsPerPage && $i<count($filteredProducts); $i++) {
+            for ($i=$offset; $i<$offset+$productsPerPage && $i<count($filteredProducts); $i++) {
                 $paginatedFilteredProducts[] = $filteredProducts[$i];
             }
         }
         else {
-            for ($i=$offset; $i<$productsPerPage && $i<count($products); $i++) {
+            for ($i=$offset; $i<$offset+$productsPerPage && $i<count($products); $i++) {
                 $paginatedFilteredProducts[] = $products[$i];
             }
         }
@@ -222,6 +222,9 @@ class ProductController {
             'variables' => [
                 'pageName' => $pageName,
                 'errorMsg' => $errorMsg,
+                'lowerAmount' => $offset+1,
+                'upperAmount' => $offset+count($filteredProducts),
+                'totalProducts' => count($products),
                 'products' => $filteredProducts,
                 'platforms' => $platforms,
                 'genres' => $genres
