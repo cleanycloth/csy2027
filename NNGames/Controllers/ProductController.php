@@ -20,7 +20,150 @@ class ProductController {
         $this->post = $post;
     }
 
+    // Method for displaying the page for an individual product.
+    public function product() {
+        return [ 
+            'layout' => 'layout.html.php',
+            'template' => 'product.html.php',
+            'variables' => [],
+            'title' => 'Product'
+        ];
+    }
+
+    // Method for listing out multiple products from the database.
     public function listProducts() {
+        // Retrieve all products, platforms and genres.
+        $products = $this->productsTable->retrieveAllRecords();
+        $platforms = $this->platformsTable->retrieveAllRecords();
+        $genres = $this->genresTable->retrieveAllRecords();
+
+        $filteredProducts = null;
+        // Filter products by selected category.
+        if (isset($this->get['category']) && $this->get['category'] != '') {
+            if (isset($this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']))[0]))
+                $category = $this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']))[0];
+
+            if (!empty($category)) {
+                foreach ($products as $product) {
+                    if ($product->category_id == $category->category_id)
+                        $categoryFilteredProducts[] = $product;
+                }
+                
+                if (isset($categoryFilteredProducts))
+                    $filteredProducts = $categoryFilteredProducts;
+            
+                $pageName = $category->name;
+                $errorMsg = '';
+            }
+            else {
+                $pageName = 'Category Does Not Exist';
+                $errorMsg = 'The specified category does not exist.';
+            }
+        }
+
+        // Filter products by selected platform.
+        if (isset($this->get['platform']) && $this->get['platform'] != '') {
+            if (isset($this->platformsTable->retrieveRecord('name', urldecode($this->get['platform']))[0]))
+                $platform = $this->platformsTable->retrieveRecord('name', urldecode($this->get['platform']))[0];
+
+            if (!empty($filteredProducts) && !empty($platform)) {
+                foreach ($filteredProducts as $product) {
+                    if ($product->platform_id == $platform->platform_id) {
+                        $platformFilteredProducts[] = $product;
+                    }
+                }
+
+                if (isset($platformFilteredProducts))
+                    $filteredProducts = $platformFilteredProducts;
+                else
+                    $filteredProducts = null;
+            }
+            else if (empty($filteredProducts) && !empty($platform)) {
+                foreach ($products as $product) {
+                    if ($product->platform_id == $platform->platform_id) {
+                        $platformFilteredProducts[] = $product;
+                    }
+                }
+
+                if (isset($platformFilteredProducts))
+                    $filteredProducts = $platformFilteredProducts;
+                else
+                    $filteredProducts = null;
+
+                if (!isset($pageName) && !isset($errorMsg) && !empty($filteredProducts)) {
+                    $pageName = $platform->name;
+                    $errorMsg = '';   
+                }
+                else {
+                    $pageName = $platform->name;
+                    $errorMsg = 'There are currently no products that match the selected filters.';
+                }
+            }
+            else {
+                $pageName = 'Platform Does Not Exist';
+                $errorMsg = 'The specified platform does not exist.';
+            }
+        }
+
+        // Filter products by selected genre.
+        if (isset($this->get['genre']) && $this->get['genre'] != '') {
+            if (isset($this->genresTable->retrieveRecord('name', urldecode($this->get['genre']))[0]))
+                $genre = $this->genresTable->retrieveRecord('name', urldecode($this->get['genre']))[0];
+
+            if (!empty($filteredProducts) && !empty($genre)) {
+                foreach ($filteredProducts as $product) {
+                    if ($product->genre_id == $genre->genre_id) {
+                        $genreFilteredProducts[] = $product;
+                    }
+                }
+
+                if (isset($genreFilteredProducts))
+                    $filteredProducts = $genreFilteredProducts;
+                else
+                    $filteredProducts = null;
+            }
+            else if (empty($filteredProducts) && !empty($genre)) {
+                foreach ($products as $product) {
+                    if ($product->genre_id == $genre->genre_id) {
+                        $genreFilteredProducts[] = $product;
+                    }
+                }
+                
+                if (isset($genreFilteredProducts))
+                    $filteredProducts = $genreFilteredProducts;
+                else
+                    $filteredProducts = null;
+
+                if (!isset($pageName) && !isset($errorMsg) && !empty($filteredProducts)) {
+                    $pageName = $genre->name;
+                    $errorMsg = '';   
+                }
+                else {
+                    $pageName = $genre->name;
+                    $errorMsg = 'There are currently no products that match the selected filters.';
+                }
+            }
+            else {
+                $pageName = 'Genre Does Not Exist';
+                $errorMsg = 'The specified genre does not exist.';
+            }
+        }
+
+        return [
+            'layout' => 'layout.html.php',
+            'template' => 'pages/main/products.html.php',
+            'variables' => [
+                'pageName' => $pageName,
+                'errorMsg' => $errorMsg,
+                'products' => $filteredProducts,
+                'platforms' => $platforms,
+                'genres' => $genres
+            ],
+            'title' => 'Products'
+        ];
+    }
+
+    public function listProductsAdmin() {
         $products = $this->productsTable->retrieveAllRecords();
 
         return [
@@ -224,16 +367,6 @@ class ProductController {
             unlink(ltrim($image, '/'));
 
         header('Location: /admin/products');
-    }
-
-    // Method for displaying the page for an individual product.
-    public function product() {
-        return [ 
-            'layout' => 'layout.html.php',
-            'template' => 'product.html.php',
-            'variables' => [],
-            'title' => 'Product'
-        ];
     }
 }
 ?>
