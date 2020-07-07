@@ -30,7 +30,6 @@ class Routes implements \CSY2028\Routes {
         $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
         $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $imagesTable, $_GET, $_POST);
-        $imageController = new \NNGames\Controllers\ImageController($imagesTable, $_GET, $_POST);
 
         // Define routes.
         $routes = [
@@ -79,6 +78,13 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => []
                 ]
             ],
+            'products' => [
+                'GET' => [
+                    'controller' => $productController,
+                    'function' => 'listProducts',
+                    'parameters' => []
+                ]
+            ],
             // Administration Pages
             'admin' => [
                 'GET' => [
@@ -124,7 +130,7 @@ class Routes implements \CSY2028\Routes {
             'admin/products' => [
                 'GET' => [
                     'controller' => $productController,
-                    'function' => 'listProducts',
+                    'function' => 'listProductsAdmin',
                     'parameters' => []
                 ],
                 'login' => true,
@@ -225,14 +231,6 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => []
                 ],
                 'login' => true
-            ],
-            // Image Page
-            'image' => [
-                'GET' => [
-                    'controller' => $imageController,
-                    'function' => 'fetchImage',
-                    'parameters' => []
-                ]
             ],
             // Error Pages
             '400' => [
