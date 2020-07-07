@@ -6,7 +6,7 @@
         <?php if (isset($_GET['id'])): ?>
             <input type="hidden" name="slide[slide_id]" value="<?=$slide->slide_id;?>">
             <label for="image-preview"></label>
-            <a target="__blank" href="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>"><img style="height: 75; width: 288px; background-color: white;" src="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>" alt="<?=($slide->image_id != null) ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a>
+            <a target="__blank" href="<?=$slide->image;?>"><img style="height: 75; width: 288px; background-color: white;" src="<?=$slide->image;?>" alt="<?=($slide->image != '/images/image-slide-placeholder.jpg') ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a>
         <?php endif; ?>
         
         <label for="image">Image</label>

@@ -3,7 +3,7 @@
         <?php foreach ($slides as $slide): ?>
             <div>
                 <a href="<?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?>">
-                    <img src="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>" alt="<?=($slide->image_id != null) ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
+                    <img src="<?=$slide->image;?>" alt="<?=($slide->image != '/images/image-slide-placeholder.jpg') ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
                     <p><?=htmlspecialchars(strip_tags($slide->message), ENT_QUOTES, 'UTF-8');?></p>
                 </a>
             </div>
@@ -24,7 +24,7 @@
     <?php for ($i=0; $i<count($reversedProducts) && $i<10; $i++): ?>
         <div>
             <a href="/product?id=<?=$reversedProducts[$i]->product_id;?>">
-                <img src="<?=($reversedProducts[$i]->image_id != null) ? '/image?id=' . $reversedProducts[$i]->image_id : '/images/image-placeholder.jpg';?>" alt="<?=($reversedProducts[$i]->image_id != null) ? htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
+                <img src="<?=$reversedProducts[$i]->image;?>" alt="<?=($reversedProducts[$i]->image != '/images/image-placeholder.jpg') ? htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
                 <p><?=htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8');?></p>
             </a>
         </div>

@@ -161,18 +161,17 @@ class ProductController {
 
                 if ($_FILES['image']['tmp_name'] != '') {
                     if (isset($this->get['id'])) {
-                        $imageId = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0]->image_id;
-                        if (!empty($imageId))
-                            $this->imagesTable->saveBlob($imageId, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
-                        else {
-                            $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
-                            $this->post['product']['image_id'] = $this->imagesTable->lastInsertId();
-                            $this->productsTable->save($this->post['product']);
-                        }
+                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($product->image, '/'));
+
+                        $this->productsTable->save($this->post['product']);  
                     }
                     else {
-                        $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
-                        $this->post['product']['image_id'] = $this->imagesTable->lastInsertId();
+                        $parts = explode('.', $_FILES['image']['name']);
+                        $extension = end($parts);
+                        $filePath = '/images/products/' . uniqid() . '.' . $extension;
+                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($filePath, '/'));
+
+                        $this->post['product']['image'] = $filePath;
                         $this->productsTable->save($this->post['product']);
                     }
                 }
@@ -215,14 +214,14 @@ class ProductController {
         ];
     }
 
-    // Method for deleting a product from the database.
+    // Method for deleting a product from the database and its image.
     public function deleteProduct() {
-        $imageId = $this->productsTable->retrieveRecord('product_id', $this->post['product']['product_id'])[0]->image_id;
+        $image = $this->productsTable->retrieveRecord('product_id', $this->post['product']['product_id'])[0]->image;
 
         $this->productsTable->deleteRecordById($this->post['product']['product_id']);
 
-        if (!empty($imageId))
-            $this->imagesTable->deleteRecordById($imageId);
+        if ($image != '/images/image-placeholder.jpg')
+            unlink(ltrim($image, '/'));
 
         header('Location: /admin/products');
     }

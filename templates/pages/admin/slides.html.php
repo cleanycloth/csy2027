@@ -17,7 +17,7 @@
             <?php foreach ($slides as $slide): ?>
                 <tr>
                     <td><?=$slide->slide_id;?></td>
-                    <td><a target="__blank" href="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>"><img style="height: 75px; width: 288px; background-color: white;" src="<?=($slide->image_id != null) ? '/image?id=' . $slide->image_id : '/images/image-slide-placeholder.jpg';?>" alt="<?=($slide->image_id != null) ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a></td>
+                    <td><a target="__blank" href="<?=$slide->image;?>"><img style="height: 75px; width: 288px; background-color: white;" src="<?=$slide->image;?>" alt="<?=($slide->image != '/images/image-slide-placeholder.jpg') ? htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a></td>
                     <td><?=htmlspecialchars(strip_tags($slide->name), ENT_QUOTES, 'UTF-8');?></td>
                     <td><?=htmlspecialchars(strip_tags($slide->message), ENT_QUOTES, 'UTF-8');?></td>
                     <td><a target="__blank" href="<?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?>"><?=htmlspecialchars(strip_tags($slide->url), ENT_QUOTES, 'UTF-8');?></a></td>

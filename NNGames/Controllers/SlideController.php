@@ -130,18 +130,17 @@ class SlideController {
 
                 if ($_FILES['image']['tmp_name'] != '') {
                     if (isset($this->get['id'])) {
-                        $imageId = $this->slidesTable->retrieveRecord('slide_id', $this->get['id'])[0]->image_id;
-                        if (!empty($imageId))
-                            $this->imagesTable->saveBlob($imageId, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
-                        else {
-                            $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
-                            $this->post['slide']['image_id'] = $this->imagesTable->lastInsertId();
-                            $this->slidesTable->save($this->post['slide']);
-                        }
+                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($slide->image, '/'));
+
+                        $this->slidesTable->save($this->post['slide']);
                     }
                     else {
-                        $this->imagesTable->saveBlob(null, $_FILES['image']['tmp_name'], $_FILES['image']['type']);
-                        $this->post['slide']['image_id'] = $this->imagesTable->lastInsertId();
+                        $parts = explode('.', $_FILES['image']['name']);
+                        $extension = end($parts);
+                        $filePath = '/images/slides/' . uniqid() . '.' . $extension;
+                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($filePath, '/'));
+
+                        $this->post['slide']['image'] = $filePath;
                         $this->slidesTable->save($this->post['slide']);
                     }
                 }
@@ -181,13 +180,14 @@ class SlideController {
         ];
     }
 
+    // Method for deleting a slide from the database and its image.
     public function deleteSlide() {
-        $imageId = $this->slidesTable->retrieveRecord('slide_id', $this->post['slide']['slide_id'])[0]->image_id;
+        $image = $this->slidesTable->retrieveRecord('slide_id', $this->post['slide']['slide_id'])[0]->image;
 
         $this->slidesTable->deleteRecordById($this->post['slide']['slide_id']);
 
-        if (!empty($imageId))
-            $this->imagesTable->deleteRecordById($imageId);
+        if ($image != '/images/image-slide-placeholder.jpg')
+            unlink(ltrim($image, '/'));
 
         header('Location: /admin/slides');
     }

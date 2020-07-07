@@ -15,11 +15,6 @@ class DatabaseTable {
         $this->classArguments = $classArguments;
     }
 
-    // Function to retrieve the last insert ID.
-    public function lastInsertId() {
-        return $this->pdo->lastInsertId();
-    }
-
     // Function to retrieve a single record from the specified database table.
     public function retrieveRecord($field, $value, $order = '') {
         $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $field . ' = :value';
@@ -37,20 +32,6 @@ class DatabaseTable {
         $stmt->execute($criteria);
     
         return $stmt->fetchAll();
-    }
-
-    // Function for retrieiving with the specified ID from the databse.
-    // Source: https://www.mysqltutorial.org/php-mysql-blob/
-    public function retrieveBlob($id) {
-        $stmt = $this->pdo->prepare('SELECT mime, data FROM ' . $this->table . ' WHERE image_id = :id;');
-
-        $stmt->execute(array(":id" => $id));
-        $stmt->bindColumn(1, $mime);
-        $stmt->bindColumn(2, $data, \PDO::PARAM_LOB);
-
-        $stmt->fetch(\PDO::FETCH_BOUND);
-
-        return array("mime" => $mime, "data" => $data);
     }
 
     // Function to retrieve all records from the specified database table.
@@ -81,29 +62,6 @@ class DatabaseTable {
         $stmt->execute($record);
     }
 
-    // Function to insert a new blob into the specified database table.
-    // Source: https://www.mysqltutorial.org/php-mysql-blob/
-    public function insertBlob($id, $filePath, $mime) {
-        $blob = fopen($filePath, 'rb');
-
-        $stmt = $this->pdo->prepare('INSERT INTO ' . $this->table . ' (image_id, mime, data) VALUES (:image_id, :mime, :data);');
-
-        $stmt->bindParam(':image_id', $id);
-        $stmt->bindParam(':mime', $mime);
-        $stmt->bindParam(':data', $blob, \PDO::PARAM_LOB);
-
-        $stmt->execute();
-
-        /*
-        $values = [
-            'mime' => $mime,
-            'data' => $blob
-        ];
-
-        $this->insertRecord($values); 
-        */
-    }
-
     // Function to update an existing record in the specified database table.
     public function updateRecord($record) {
         $query = 'UPDATE ' . $this->table . ' SET ';
@@ -121,29 +79,6 @@ class DatabaseTable {
         $stmt = $this->pdo->prepare($query);
 
         $stmt->execute($record);
-    }
-
-    // Function to update an existing blob in the specified database table.
-    // Source: https://www.mysqltutorial.org/php-mysql-blob/
-    public function updateBlob($id, $filePath, $mime) {
-        $blob = fopen($filePath, 'rb');
-
-        $stmt = $this->pdo->prepare('UPDATE ' . $this->table . ' SET mime = :mime, data = :data WHERE image_id = :id;');
-
-        $stmt->bindParam(':mime', $mime);
-        $stmt->bindParam(':data', $blob, \PDO::PARAM_LOB);
-        $stmt->bindParam(':id', $id);
-
-        $stmt->execute();
-        /*
-        $values = [
-            'image_id' => $id,
-            'mime' => $mime,
-            'data' => $blob
-        ];
-
-        $this->updateRecord($values);
-        */
     }
 
     // Function to delete a record from the specified database table by providing the name of the field and a value.
@@ -173,16 +108,6 @@ class DatabaseTable {
         }
         catch (\PDOException $e) {
             $this->updateRecord($record); // Update existing record.
-        }
-    }
-
-    // Function for saving a blob to the database.
-    public function saveBlob($id, $filePath, $mime) {
-        try {
-            $this->insertBlob($id, $filePath, $mime);
-        }
-        catch (\PDOException $e) {
-            $this->updateBlob($id, $filePath, $mime);
         }
     }
 }

@@ -6,7 +6,7 @@
         <?php if (isset($_GET['id'])): ?>
             <input type="hidden" name="product[product_id]" value="<?=$product->product_id;?>">
             <label for="image-preview"></label>
-            <a target="__blank" href="<?=($product->image_id != null) ? '/image?id=' . $product->image_id : '/images/image-placeholder.jpg';?>"><img style="height: 200px; width: 200px; background-color: white;" src="<?=($product->image_id != null) ? '/image?id=' . $product->image_id : '/images/image-placeholder.jpg';?>" alt="<?=($product->image_id != null) ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a>
+            <a target="__blank" href="<?=$product->image;?>"><img style="height: 200px; width: 200px; background-color: white;" src="<?=$product->image;?>" alt="<?=($product->image != '/images/image-placeholder.jpg') ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a>
         <?php endif; ?>
         
         <label for="image">Image</label>
