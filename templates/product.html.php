@@ -10,6 +10,7 @@
 
     <div class="pcolumn">
         <h1>Description</h1>
+        <h4>Category: <?=htmlspecialchars(strip_tags($categoryName), ENT_QUOTES, 'UTF-8');?></h4>
         <h4>Platform: <?=htmlspecialchars(strip_tags($platformName), ENT_QUOTES, 'UTF-8');?></h4>
         <h4>Genre: <?=htmlspecialchars(strip_tags($genreName), ENT_QUOTES, 'UTF-8');?></h4>
 

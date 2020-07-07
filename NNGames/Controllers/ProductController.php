@@ -24,17 +24,34 @@ class ProductController {
     public function viewProduct() {
         if (isset($this->get['id'])) {
             $product = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0];
-            $platformName = $this->platformsTable->retrieveRecord('platform_id', $product->platform_id)[0]->name;
-            $genreName = $this->genresTable->retrieveRecord('genre_id', $product->genre_id)[0]->name;
+            $category = $this->categoriesTable->retrieveRecord('category_id', $product->category_id);
+            $platform = $this->platformsTable->retrieveRecord('platform_id', $product->platform_id);
+            $genre = $this->genresTable->retrieveRecord('genre_id', $product->genre_id);
 
             if (empty($product))
                 header('Location: /products');
+
+            if (!empty($category))
+                $categoryName = $category[0]->name;
+            else
+                $categoryName = 'N/A';
+
+            if (!empty($platform))
+                $platformName = $platform[0]->name;
+            else
+                $platformName = 'N/A';
+
+            if (!empty($genre))
+                $genreName = $genre[0]->name;
+            else
+                $genreName = 'N/A';
 
             return [ 
                 'layout' => 'layout.html.php',
                 'template' => 'product.html.php',
                 'variables' => [
                     'product' => $product,
+                    'categoryName' => $categoryName,
                     'platformName' => $platformName,
                     'genreName' => $genreName
                 ],
