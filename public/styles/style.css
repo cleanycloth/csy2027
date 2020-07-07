@@ -844,7 +844,7 @@ nav ul .dropdown:hover ul li a:active {
     text-align: center;
 }
 
-.pcolumn .purchasebox {
+.pcolumn .purchasebox{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -856,10 +856,10 @@ nav ul .dropdown:hover ul li a:active {
     font-size: 1.2em;
 }
 
-.pcolumn .purchasebox p {
+.pcolumn .purchasebox p{
     margin-bottom: 1.2em;
 }
-.pcolumn .purchasebox a {
+.pcolumn .purchasebox a{
     display: block;
     width: max-content;
     text-align: center;
@@ -878,6 +878,70 @@ nav ul .dropdown:hover ul li a:active {
 .pcolumn .purchasebox a:active {
     background-color: #727272;
     border-color: #727272;    
+}
+
+/*SearchResults*/
+.results-gridcontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "FilterSide ResultSide ResultSide ResultSide" "FilterSide ResultSide ResultSide ResultSide" "FilterSide ResultSide ResultSide ResultSide";
+    margin:0.3em;
+  }
+  
+  .FilterSide { 
+    grid-area: FilterSide; 
+    background-color:#C9C9C9;
+    margin:0.3em;
+    padding-left: 0.3em;
+}
+  
+  .ResultSide {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.7fr 1fr 1fr 1fr 0.7fr;
+    grid-template-areas: "Title Title Title" "Products Products Products" "Products Products Products" "Products Products Products" "Pagecount Pagecount Pagecount";
+    grid-area: ResultSide;
+    background-color:#c9c9c9;
+    margin:0.3em;
+  }
+  
+  .Title { grid-area: Title; 
+    }
+ .Title h1{
+     margin:0px;
+ }
+  .Pagecount{ grid-area : Pagecount;
+    }
+  .Products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: ". . ." ". . ." ". . .";
+    grid-area: Products;
+    text-align: center;
+  }
+.dropdown-container ul, .dropdown-container a{
+margin-left : 1.5em;
+    color:black;
+    text-decoration: none;
+    list-style-type: none;
+}
+.dropdown-btn {
+    display: block;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #898989;
+    color: white;
+    padding: 0.6em;
+    border: 1px solid #898989;
+    border-radius: 8px;
+    transition-duration: 0.1s;
+    font-size: 1.2em;
+    margin-left:1em;
+    margin-top:0.2em;
+    margin-bottom:0.2em;
 }
 
 .errorimage {
