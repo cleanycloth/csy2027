@@ -4,8 +4,8 @@
     </div>
 
     <div class="search">
-        <form action="/search" method="get">
-            <input type="search" name="search" placeholder="Search">
+        <form action="/products" method="get">
+            <input type="search" name="search" placeholder="Search" value="<?=(isset($_GET['search'])) ? $_GET['search'] : '';?>">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
