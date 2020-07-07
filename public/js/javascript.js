@@ -58,10 +58,14 @@ $(document).ready(function() {
         if ($(this).next().hasClass("visible")) {
             $(this).next().removeClass("visible");
             $(this).next().addClass("hidden");
+            $(this).find('i').removeClass('fa-caret-down');
+            $(this).find('i').addClass('fa-caret-up');
         }
         else {
             $(this).next().removeClass("hidden");
             $(this).next().addClass("visible");
+            $(this).find('i').removeClass('fa-caret-up');
+            $(this).find('i').addClass('fa-caret-down');
         }
     });
 

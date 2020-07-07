@@ -10,7 +10,7 @@
             </ul>
         </div>
 
-        <button class="dropdown-btn active">Price Range<i class="fa fa-caret-down"></i></button>
+        <button class="dropdown-btn active">Price Range <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-container visible">
             <ul>
                 <li><a href="#">£0-10</a></li>
@@ -19,7 +19,7 @@
             </ul>
         </div>
 
-        <button class="dropdown-btn active">Genre<i class="fa fa-caret-down"></i></button>
+        <button class="dropdown-btn active">Genre <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-container visible">
             <ul>
                 <?php foreach ($genres as $genre): ?>
