@@ -38,6 +38,28 @@ class ProductController {
         $genres = $this->genresTable->retrieveAllRecords();
 
         $filteredProducts = null;
+        // Filter products by search term(s).
+        if (isset($this->get['search']) && $this->get['search'] != '') {
+            $searchTerms = explode(" ", $this->get['search']);
+            foreach ($products as $product) {
+                for ($i=0; $i<count($searchTerms); $i++) {
+                    if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
+                        $searchFilteredProducts[] = $product;
+                        break;
+                    }
+                }
+
+                if (isset($searchFilteredProducts)) {
+                    $filteredProducts = $searchFilteredProducts;
+                    $errorMsg = '';
+                }
+                else
+                    $errorMsg = 'No products match the specified search terms.';
+
+                $pageName = 'Search Results';
+            }
+        }
+
         // Filter products by selected category.
         if (isset($this->get['category']) && $this->get['category'] != '') {
             if (isset($this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']))[0]))
