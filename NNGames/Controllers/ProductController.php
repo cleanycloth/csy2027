@@ -196,7 +196,7 @@ class ProductController {
             $totalPages = ceil(count($filteredProducts) / $productsPerPage);
         }
         else {
-            for ($i=$offset; $i<count($products); $i++) {
+            for ($i=$offset; $i<$offset+$productsPerPage && $i<count($products); $i++) {
                 $paginatedFilteredProducts[] = $products[$i];
             }
 
@@ -222,6 +222,11 @@ class ProductController {
                 $errorMsg = 'There are currently no products.';
         }
 
+        if (!empty($filteredProducts) > 0)
+            $upperAmount = $offset+count($filteredProducts);
+        else
+            $upperAmount = 0;
+
         return [
             'layout' => 'layout.html.php',
             'template' => 'pages/main/products.html.php',
@@ -229,7 +234,7 @@ class ProductController {
                 'pageName' => $pageName,
                 'errorMsg' => $errorMsg,
                 'lowerAmount' => $offset+1,
-                'upperAmount' => $offset+count($filteredProducts),
+                'upperAmount' => $upperAmount,
                 'totalProducts' => $totalProducts,
                 'totalPages' => $totalPages,
                 'products' => $filteredProducts,
