@@ -35,6 +35,32 @@ $(document).ready(function() {
         }
     });
 
+    // Filter Dropdowns
+    //var dropdown = document.getElementsByClassName("dropdown-btn");
+    //var i;
+
+    /*
+    for (var i=0; i<dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } 
+            else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+    */
+
+    $('.dropdown-btn').click(function() {
+        if ($(this).next().css('display') == "block")
+            $(this).next().css("display", "none");
+        else
+            $(this).next().css("display", "block");
+    });
+
     // AJAX Test
     $('.update-button').click(function() {
         return false;

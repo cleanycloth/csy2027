@@ -889,38 +889,50 @@ nav ul .dropdown:hover ul li a:active {
     margin:0.3em;
   }
   
-  .FilterSide { 
+.FilterSide { 
     grid-area: FilterSide; 
-    background-color:#C9C9C9;
+    background-color:rgb(211, 211, 211);
     margin:0.3em;
     padding-left: 0.3em;
 }
-  
-  .ResultSide {
+
+.ResultSide {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.7fr 1fr 1fr 1fr 0.7fr;
     grid-template-areas: "Title Title Title" "Products Products Products" "Products Products Products" "Products Products Products" "Pagecount Pagecount Pagecount";
     grid-area: ResultSide;
-    background-color:#c9c9c9;
+    background-color:rgb(211, 211, 211);
     margin:0.3em;
-  }
-  
-  .Title { grid-area: Title; 
-    }
- .Title h1{
-     margin:0px;
- }
-  .Pagecount{ grid-area : Pagecount;
-    }
-  .Products {
+}
+
+.Title { grid-area: Title; }
+.Title h1 { margin:0px; }
+.Pagecount { grid-area : Pagecount; }
+
+.Products {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: ". . ." ". . ." ". . .";
     grid-area: Products;
     text-align: center;
-  }
+}
+
+.Products .product img {
+    height: 200px;
+    width: 200px;
+    background-color: white;
+}
+.Products .product p {
+    margin-top: 0.5rem;
+    color: black;
+}
+.Products .product a {
+    text-decoration: none;
+}
+
+
 .dropdown-container ul, .dropdown-container a{
 margin-left : 1.5em;
     color:black;
