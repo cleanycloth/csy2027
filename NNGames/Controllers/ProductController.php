@@ -78,6 +78,7 @@ class ProductController {
                 $errorMsg = '';
             }
             else {
+                $filteredProducts = null;
                 $pageName = 'Category Does Not Exist';
                 $errorMsg = 'The specified category does not exist.';
             }
@@ -122,6 +123,7 @@ class ProductController {
                 }
             }
             else {
+                $filteredProducts = null;
                 $pageName = 'Platform Does Not Exist';
                 $errorMsg = 'The specified platform does not exist.';
             }
@@ -166,9 +168,52 @@ class ProductController {
                 }
             }
             else {
+                $filteredProducts = null;
                 $pageName = 'Genre Does Not Exist';
                 $errorMsg = 'The specified genre does not exist.';
             }
+        }
+
+        // Display only X amount of products  according to page number
+        $productsPerPage = 9;
+
+        if (isset($this->get['page']) && $this->get['page'] != '')
+            $pageNumber = $this->get['page'];
+        else 
+            $pageNumber = 1;
+
+        if ($pageNumber > 0)
+            $offset = ($pageNumber-1) * $productsPerPage;
+        else 
+            header('Location: ' . (str_replace("page=$pageNumber", "page=1", $_SERVER['REQUEST_URI'])));
+            
+        if (!empty($filteredProducts)) {
+            for ($i=$offset; $i<$productsPerPage && $i<count($filteredProducts); $i++) {
+                $paginatedFilteredProducts[] = $filteredProducts[$i];
+            }
+        }
+        else {
+            for ($i=$offset; $i<$productsPerPage && $i<count($products); $i++) {
+                $paginatedFilteredProducts[] = $products[$i];
+            }
+        }
+
+        // Display all products if no $_GET variables are declared.
+        if (!isset($this->get['search']) && !isset($this->get['category']) && !isset($this->get['platform']) && !isset($this->get['genre'])) {
+            $pageName = 'All Products';
+
+            if (count($products) > 0) { 
+                if (isset($paginatedFilteredProducts)) {
+                    $filteredProducts = $paginatedFilteredProducts;
+                    $errorMsg = '';
+                }
+                else {
+                    $previousPageNumber = $pageNumber-1;
+                    header('Location: ' . (str_replace("page=$pageNumber", "page=$previousPageNumber", $_SERVER['REQUEST_URI'])));
+                }
+            }
+            else 
+                $errorMsg = 'There are currently no products.';
         }
 
         return [
