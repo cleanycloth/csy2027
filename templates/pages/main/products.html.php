@@ -46,6 +46,46 @@
                     </div>
                 <?php endforeach; ?>
             </div>
+
+            <div class="Pagecount">
+                <ul>
+                    <?php 
+                        if (stripos($_SERVER['REQUEST_URI'], '?page='))
+                            $requestUri = explode("?page=", $_SERVER['REQUEST_URI'])[0];
+                        else if (stripos($_SERVER['REQUEST_URI'], '&page='))
+                            $requestUri = explode("&page=", $_SERVER['REQUEST_URI'])[0]; 
+                        else
+                            $requestUri = $_SERVER['REQUEST_URI'];
+                        
+                        $previousPageNumber = $_GET['page']-1;
+                        $nextPageNumber = $_GET['page']+1;
+                    ?>
+                    
+                    <?php if ($previousPageNumber != 0): ?>
+                        <?php if (stripos($requestUri, '?') !== false || stripos($requestUri, '&') !== false): ?> 
+                            <li><a href="<?=$requestUri . '&page=' . $previousPageNumber;?>">Previous Page</a></li>
+                        <?php else: ?>
+                            <li><a href="<?=$requestUri . '?page=' . $previousPageNumber;?>">Previous Page</a></li>
+                        <?php endif; ?>
+                    <?php endif; ?>
+
+                    <?php for ($i=1; $i<=$totalPages; $i++): ?>
+                        <?php if (stripos($requestUri, '?') !== false || stripos($requestUri, '&') !== false): ?> 
+                            <li><a href="<?=$requestUri . '&page=' . $i;?>"><?=$i;?></a></li>
+                        <?php else: ?>
+                            <li><a href="<?=$requestUri . '?page=' . $i;?>"><?=$i;?></a></li>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                    
+                    <?php if ($nextPageNumber <= $totalPages): ?>
+                        <?php if (stripos($requestUri, '?') !== false || stripos($requestUri, '&') !== false): ?> 
+                            <li><a href="<?=$requestUri . '&page=' . $nextPageNumber;?>">Next Page</a></li>
+                        <?php else: ?>
+                            <li><a href="<?=$requestUri . '?page=' . $nextPageNumber;?>">Next Page</a></li>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </ul>
+            </div>
         <?php else: ?>
             <p><?=$errorMsg;?></p>
         <?php endif; ?>

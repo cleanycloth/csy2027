@@ -191,11 +191,17 @@ class ProductController {
             for ($i=$offset; $i<$offset+$productsPerPage && $i<count($filteredProducts); $i++) {
                 $paginatedFilteredProducts[] = $filteredProducts[$i];
             }
+
+            $totalProducts = count($filteredProducts);
+            $totalPages = ceil(count($filteredProducts) / $productsPerPage);
         }
         else {
-            for ($i=$offset; $i<$offset+$productsPerPage && $i<count($products); $i++) {
+            for ($i=$offset; $i<count($products); $i++) {
                 $paginatedFilteredProducts[] = $products[$i];
             }
+
+            $totalProducts = count($products);
+            $totalPages = ceil(count($products) / $productsPerPage);
         }
 
         // Display all products if no $_GET variables are declared.
@@ -224,7 +230,8 @@ class ProductController {
                 'errorMsg' => $errorMsg,
                 'lowerAmount' => $offset+1,
                 'upperAmount' => $offset+count($filteredProducts),
-                'totalProducts' => count($products),
+                'totalProducts' => $totalProducts,
+                'totalPages' => $totalPages,
                 'products' => $filteredProducts,
                 'platforms' => $platforms,
                 'genres' => $genres
