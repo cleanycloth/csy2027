@@ -2,7 +2,7 @@
     <div class="FilterSide">
         <h2>Filters</h2>
         <button class="dropdown-btn active">Platform <i class="fa fa-caret-down"></i></button>
-        <div class="dropdown-container" style="display: block;">
+        <div class="dropdown-container visible">
             <ul>
                 <?php foreach ($platforms as $platform): ?>
                     <li><a href="?platform=<?=urlencode($platform->name);?>"><?=$platform->name;?></a></li>
@@ -11,7 +11,7 @@
         </div>
 
         <button class="dropdown-btn active">Price Range<i class="fa fa-caret-down"></i></button>
-        <div class="dropdown-container" style="display: block;">
+        <div class="dropdown-container visible">
             <ul>
                 <li><a href="#">£0-10</a></li>
                 <li><a href="#">£11-30</a></li>
@@ -20,7 +20,7 @@
         </div>
 
         <button class="dropdown-btn active">Genre<i class="fa fa-caret-down"></i></button>
-        <div class="dropdown-container" style="display: block;">
+        <div class="dropdown-container visible">
             <ul>
                 <?php foreach ($genres as $genre): ?>
                     <li><a href="?genre=<?=urlencode($genre->name);?>"><?=$genre->name;?></a></li>

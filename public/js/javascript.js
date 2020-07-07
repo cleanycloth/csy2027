@@ -55,10 +55,14 @@ $(document).ready(function() {
     */
 
     $('.dropdown-btn').click(function() {
-        if ($(this).next().css('display') == "block")
-            $(this).next().css("display", "none");
-        else
-            $(this).next().css("display", "block");
+        if ($(this).next().hasClass("visible")) {
+            $(this).next().removeClass("visible");
+            $(this).next().addClass("hidden");
+        }
+        else {
+            $(this).next().removeClass("hidden");
+            $(this).next().addClass("visible");
+        }
     });
 
     // AJAX Test

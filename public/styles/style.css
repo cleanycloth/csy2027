@@ -955,9 +955,18 @@ nav ul .dropdown:hover ul li a:active {
     text-decoration: none;
 }
 
+.dropdown-container {
+    margin-bottom: 1em;
+}
+.dropdown-container.visible {
+    display: block;
+}
+.dropdown-container.hidden {
+    display: none;    
+}
 
-.dropdown-container ul, .dropdown-container a{
-margin-left : 1.5em;
+.dropdown-container ul, .dropdown-container a {
+    margin-left : 1.5em;
     color:black;
     text-decoration: none;
     list-style-type: none;
