@@ -33,7 +33,7 @@
         <div class="Title">
         <h1><?=$pageName;?></h1>
         <?php if (!empty($products) && count($products) > 0): ?>
-            <p>Showing 1-9 of <?=count($products);?> product(s)</p>
+            <p>Showing <?=$lowerAmount;?>-<?=$upperAmount;?> of <?=$totalProducts;?> product(s)</p>
             </div>
 
             <div class="Products">
