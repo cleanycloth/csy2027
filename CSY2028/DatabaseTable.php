@@ -121,6 +121,7 @@ class DatabaseTable {
     }
 
     // Function to update an existing blob in the specified database table.
+    // Source: https://www.mysqltutorial.org/php-mysql-blob/
     public function updateBlob($id, $filePath, $mime) {
         $blob = fopen($filePath, 'rb');
 
@@ -172,6 +173,7 @@ class DatabaseTable {
         }
     }
 
+    // Function for saving a blob to the database.
     public function saveBlob($id, $filePath, $mime) {
         try {
             $this->insertBlob($id, $filePath, $mime);
