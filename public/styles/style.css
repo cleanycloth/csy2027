@@ -895,18 +895,22 @@ nav ul .dropdown:hover ul li a:active {
     margin:0.3em;
     padding-left: 0.3em;
 }
+.FilterSide h2 { padding: 1em 0 0.2em 1em; }
 
 .ResultSide {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 1fr 1fr 1fr 0.7fr;
+    grid-template-rows: 0.4fr 1fr 1fr 1fr 0.5fr;
     grid-template-areas: "Title Title Title" "Products Products Products" "Products Products Products" "Products Products Products" "Pagecount Pagecount Pagecount";
     grid-area: ResultSide;
     background-color:rgb(211, 211, 211);
     margin:0.3em;
 }
 
-.Title { grid-area: Title; }
+.Title { 
+    grid-area: Title;
+    padding: 1em; 
+}
 .Title h1 { margin:0px; }
 
 .Pagecount { 
