@@ -74,7 +74,7 @@ class Routes implements \CSY2028\Routes {
             'product' => [
                 'GET' => [
                     'controller' => $productController,
-                    'function' => 'product',
+                    'function' => 'viewProduct',
                     'parameters' => []
                 ]
             ],
