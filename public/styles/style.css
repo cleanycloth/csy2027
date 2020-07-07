@@ -832,6 +832,7 @@ nav ul .dropdown:hover ul li a:active {
 }
 .pcolumn {
     margin: 0 auto;
+    width: 100%;
 }
 
 .pcolumn h1 {
@@ -851,7 +852,7 @@ nav ul .dropdown:hover ul li a:active {
     text-align: center;
     text-decoration: none;
     background-color: rgb(201, 201, 201);
-    padding: 2em;
+    padding: 2.5em;
     height: max-content;
     font-size: 1.2em;
 }
