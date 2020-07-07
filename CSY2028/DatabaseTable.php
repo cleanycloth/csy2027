@@ -39,6 +39,8 @@ class DatabaseTable {
         return $stmt->fetchAll();
     }
 
+    // Function for retrieiving with the specified ID from the databse.
+    // Source: https://www.mysqltutorial.org/php-mysql-blob/
     public function retrieveBlob($id) {
         $stmt = $this->pdo->prepare('SELECT mime, data FROM ' . $this->table . ' WHERE image_id = :id;');
 
@@ -80,6 +82,7 @@ class DatabaseTable {
     }
 
     // Function to insert a new blob into the specified database table.
+    // Source: https://www.mysqltutorial.org/php-mysql-blob/
     public function insertBlob($id, $filePath, $mime) {
         $blob = fopen($filePath, 'rb');
 
