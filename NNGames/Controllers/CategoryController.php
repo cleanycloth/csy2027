@@ -113,8 +113,6 @@ class CategoryController {
 
                 $this->categoriesTable->save($this->post['category']);
 
-                var_dump($this->post['category']);
-
                 $variables = [
                     'pageName' => $pageName,
                     'categoryName' => htmlspecialchars(strip_tags($this->post['category']['name']), ENT_QUOTES, 'UTF-8')
