@@ -237,7 +237,7 @@ header {
     grid-template-rows: 1fr;
     text-decoration: none;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Header - Logo */
@@ -279,6 +279,27 @@ header .search button:hover {
 header .search button:active {
     background-color: rgb(77, 85, 241);
 }
+
+header .search #search-results {
+    position: absolute;
+}
+header .search #search-results .result {
+    background-color: white;
+    border: none;
+    border-radius: unset;
+    width: 400px;
+    color: black;
+    text-align: left;
+    font-size: 1em;
+    display: block;
+    transition-duration: 0.2s;
+}
+header .search #search-results .result:hover {
+    background-color: rgb(235, 235, 235);
+    cursor: default;
+}
+
+
 /* Header - User Options */
 header .user-options {
     background-color: rgb(194, 194, 194);
