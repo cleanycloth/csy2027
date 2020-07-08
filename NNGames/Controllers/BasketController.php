@@ -15,17 +15,31 @@ class BasketController {
     public function addToBasket() {
         if (isset($_SESSION['basket'])) {
             $alreadyInBasket = false;
+            $limitReached = false;
             foreach ($_SESSION['basket'] as $key=>$basketItem) {
                 if ((int)$this->post['productId'] == $basketItem['productId']) {
-                    $_SESSION['basket'][$key]['quantity'] = (int)$this->post['quantity'];
-                    $alreadyInBasket = true;
-                    break;
+                    if ($_SESSION['basket'][$key]['quantity'] + (int)$this->post['quantity'] <= 99) {
+                        $_SESSION['basket'][$key]['quantity'] = $_SESSION['basket'][$key]['quantity']+(int)$this->post['quantity'];
+                        $alreadyInBasket = true;
+                        break;
+                    }
+                    else {
+                        $_SESSION['basket'][$key]['quantity'] = 99;
+                        $alreadyInBasket = true;
+                        $limitReached = true;
+                        break;
+                    }
                 }
             }
 
-            if ($alreadyInBasket) {
+            if ($alreadyInBasket && !$limitReached) {
                 $values = [
                     'status' => 'Quantity for product (ID: ' . $this->post['productId'] . ') updated in basket'
+                ];
+            }
+            else if ($alreadyInBasket && $limitReached) {
+                $values = [
+                    'status' => 'Could not update quantity for product (ID: ' . $this->post['productId'] . ') as there are already 99 of it in the basket.'
                 ];
             }
             else {
@@ -60,6 +74,36 @@ class BasketController {
         ];
     }
 
+    // Method for updating the quantity of an item in the user's basket.
+    public function updateItemQuantity() {
+        if (isset($_SESSION['basket'])) {
+            $alreadyInBasket = false;
+            foreach ($_SESSION['basket'] as $key=>$basketItem) {
+                if ((int)$this->post['productId'] == $basketItem['productId']) {
+                    $_SESSION['basket'][$key]['quantity'] = (int)$this->post['quantity'];
+                    $alreadyInBasket = true;
+                    break;
+                }
+            }
+
+            if ($alreadyInBasket) {
+                $values = [
+                    'status' => 'Quantity for product (ID: ' . $this->post['productId'] . ') updated in basket'
+                ];
+            }
+            else {
+                $values = [
+                    'status' => 'Item does not exist in basket.'
+                ];
+            }
+        }
+        else {
+            $values = [
+                'status' => 'User has no basket.'
+            ];
+        }
+    }
+
     // Method for retrieving all items currently in the user's basket.
     public function getBasketContents() {
         if (isset($_SESSION['basket'])) {
@@ -67,7 +111,7 @@ class BasketController {
                 foreach ($_SESSION['basket'] as $basketItem) {
                     $product = $this->productsTable->retrieveRecord('product_id', $basketItem['productId'])[0];
         
-                    $values[] = [
+                    $values['basket'][] = [
                         'productId' => $product->product_id,
                         'name' => $product->name,
                         'price' => $product->price,

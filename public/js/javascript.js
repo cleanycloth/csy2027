@@ -78,10 +78,16 @@ $(document).ready(function() {
         var quantity = $('#quantity').val();
         var url = $(this).attr('action');
 
-        $.post(url, {productId: productId, quantity: quantity}).
-            done(function() {
+        var outputMsg = $(this).find('output');
+
+        $.post(url, {productId: productId, quantity: quantity})
+            .done(function(xhr, status, error) {
+                outputMsg.val('Item has been added to your basket!');
                 fetchBasket();
-        });
+            })
+            .fail(function() {
+                outputMsg.val('An error has occurred.');
+            });
     });
 
     // Removing existing item from the basket.
@@ -129,33 +135,33 @@ $(document).ready(function() {
                 var basketTotal = 0.00;
 
                 // Check if there are any items in the basket.
-                if (data.length != null) {
+                if (data['basket'].length != null) {
                     // Append new 'basket-item' div elements to the basket for each product.
-                    $.map(data, function(post, i) {
+                    console.log(data['basket']);
+                    $.map(data['basket'], function(post, i) {
                         var basketItem = '<div class="basket-item">' +
                             '<div class="item-main-info">' +
-                                '<img src="' + data[i].imageUrl + '" alt="' + data[i].name + '">' +
-                                '<a class="product-name" href="/product?id=' + data[i].productId + '"><h4>' + data[i].name + '</h4></a>' +
+                                '<img src="' + data['basket'][i].imageUrl + '" alt="' + data['basket'][i].name + '">' +
+                                '<a class="product-name" href="/product?id=' + data['basket'][i].productId + '"><h4>' + data['basket'][i].name + '</h4></a>' +
                                 '<form action="/basket/remove" method="post">' +
-                                '   <input type="hidden" value="' + data[i].productId + '">' +
+                                '   <input type="hidden" value="' + data['basket'][i].productId + '">' +
                                 '   <button class="delete-button"><i class="fas fa-trash-alt"></i></button>' +
                                 '</form>' +
                             '</div>' +
                             '<div class="item-price-qty-info">' +
-                                '<p><b>Qty</b>' +
-                                    '<form action="/basket/add" method="post">' +
-                                        '<input type="hidden" value="' + data[i].productId + '">' +
-                                        '<input type="number" min="1" value="' + data[i].quantity + '">' + 
-                                        '<button class="update-button"><i class="fas fa-sync"></i></button>' +
-                                    '</form>' +
-
-                                '<p>£' + (data[i].price*data[i].quantity).toFixed(2) + '</p>' +
+                                '<form action="/basket/update" method="post">' +
+                                    '<input type="hidden" value="' + data['basket'][i].productId + '">' +
+                                    '<label><b>Qty</b></label>' +
+                                    '<input type="number" min="1" max="99" value="' + data['basket'][i].quantity + '">' + 
+                                    '<button class="update-button"><i class="fas fa-sync"></i></button>' +
+                                '</form>' +
+                                '<p>£' + (data['basket'][i].price*data['basket'][i].quantity).toFixed(2) + '</p>' +
                             '</div>' +
                         '</div>' +
                         '<hr>';
     
                         // Calculate the total cost of the basket.
-                        basketTotal = basketTotal + data[i].price*data[i].quantity;
+                        basketTotal = basketTotal + data['basket'][i].price*data['basket'][i].quantity;
 
                         // Append the div to the basket.
                         $('#basket-contents').append(basketItem);
