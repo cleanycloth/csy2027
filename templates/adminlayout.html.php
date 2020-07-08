@@ -25,7 +25,16 @@
 
         <!-- Main -->
         <main class="site-main">
-            <?=$output;?>
+            <div class="content">
+                <h1>Admin Panel</h1>
+
+                <!-- Admin Navigation Bar -->
+                <?php require 'adminnav.html.php'; ?>
+
+                <div class="admin-content">
+                    <?=$output;?>
+                </div>
+            </div>
         </main>
 
         <!-- Return To Top Button -->
