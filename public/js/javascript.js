@@ -97,10 +97,10 @@ $(document).ready(function() {
         var productId = $(this).find('input[type=hidden]').val();
         var url = $(this).attr('action');
 
-        $.post(url, {productId: productId}).
-            done(function(data) {
+        $.post(url, {productId: productId})
+            .done(function(data) {
                 fetchBasket();
-        });
+            });
 
         return false;
     });
@@ -180,6 +180,34 @@ $(document).ready(function() {
             }
         });
     }
+    
+    // Function for returning search results according to what was typed in the search bar.
+    $('.search').on('input', 'form', function(e) {
+        e.preventDefault();
+    
+        var search = $('#search').val();
+        var url = "/search";
+
+        $.get(url, {search: search})
+            .done(function(data) {
+                console.log(data['results']);
+                // Clear predictive search contents.
+                $('.search #search-results').empty();
+
+                $.map(data['results'], function(get, i) {
+                    if (i < 5)
+                        $('.search #search-results').append('<button class="result">' + data['results'][i]  + '</button>');
+                });
+            });
+    });
+
+    $('.search').on('click', '.result', function() {
+        // Fill search bar with contents from selected result.
+        $('.search form #search').val($(this).text());
+
+        // Clear predictive search contents.
+        $('.search #search-results').empty();
+    });
 
     // Carousels
     $('.main-carousel').slick({
