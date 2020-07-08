@@ -14,20 +14,6 @@ class SiteController {
         ];
     }
 
-    // Method for returning a test JSON response.
-    public function testResponse() {
-        $testArray['status'] = "User Created";
-
-        return [
-            'layout' => 'blanklayout.html.php',
-            'template' => 'json/response.html.php',
-            'variables' => [
-                'jsonResponse' => json_encode($testArray)
-            ],
-            'title' => 'Test Response'
-        ];
-    }
-
     // Error Page Methods
     public function error400() {
         return [
