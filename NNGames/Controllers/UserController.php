@@ -344,6 +344,7 @@ class UserController {
             unset($_SESSION['isOwner']);
             unset($_SESSION['isAdmin']);
             unset($_SESSION['isCustomer']);
+            unset($_SESSION['basket']);
             unset($_SESSION['username']);
             unset($_SESSION['id']);
     
