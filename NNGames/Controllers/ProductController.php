@@ -72,16 +72,22 @@ class ProductController {
         $filteredProducts = null;
         // Filter products by search term(s).
         if (isset($this->get['search']) && $this->get['search'] != '') {
-            $searchTerms = explode(" ", $this->get['search']);
-            foreach ($products as $product) {
-                for ($i=0; $i<count($searchTerms); $i++) {
-                    if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
-                        $searchFilteredProducts[] = $product;
-                        break;
+            $product = $this->productsTable->retrieveRecord('name', $this->get['search']);
+
+            if (!empty($product)) {
+                $searchFilteredProducts[] = $product[0]; 
+            }
+            else {
+                $searchTerms = explode(" ", $this->get['search']);            
+                foreach ($products as $product) {
+                    for ($i=0; $i<count($searchTerms); $i++) {
+                        if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
+                            $searchFilteredProducts[] = $product;
+                            break;
+                        }
                     }
                 }
             }
-
 
             if (isset($searchFilteredProducts)) {
                 $filteredProducts = $searchFilteredProducts;
@@ -303,6 +309,35 @@ class ProductController {
                 'products' => $products
             ],
             'title' => 'Admin Panel - Products'
+        ];
+    }
+
+    public function returnSearchResults() {
+        $products = $this->productsTable->retrieveAllRecords();
+
+        if (isset($this->get['search']) && $this->get['search'] != '') {
+            $searchTerms = explode(" ", $this->get['search']);
+            $searchResults['results'] = null;
+            foreach ($products as $product) {
+                for ($i=0; $i<count($searchTerms); $i++) {
+                    if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
+                        $searchResults['results'][] = $product->name;
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            $searchResults['results'] = null;
+        }
+
+        return [
+            'layout' => 'blanklayout.html.php',
+            'template' => 'json/response.html.php',
+            'variables' => [
+                'response' => json_encode($searchResults)
+            ],
+            'title' => 'JSON Response'
         ];
     }
 
