@@ -30,6 +30,7 @@ class Routes implements \CSY2028\Routes {
         $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
         $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $imagesTable, $_GET, $_POST);
+        $basketController = new \NNGames\Controllers\BasketController($this->productsTable, $_GET, $_POST);
 
         // Define routes.
         $routes = [
@@ -231,6 +232,28 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => []
                 ],
                 'login' => true
+            ],
+            // Basket Pages
+            'basket/add' => [
+                'POST' => [
+                    'controller' => $basketController,
+                    'function' => 'addToBasket',
+                    'parameters' => []
+                ]
+            ],
+            'basket/get' => [
+                'GET' => [
+                    'controller' => $basketController,
+                    'function' => 'getBasketContents',
+                    'parameters' => []
+                ]
+            ],
+            'basket/remove' => [
+                'POST' => [
+                    'controller' => $basketController,
+                    'function' => 'removeFromBasket',
+                    'parameters' => []
+                ]
             ],
             // Error Pages
             '400' => [
