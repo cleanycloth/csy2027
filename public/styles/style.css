@@ -30,7 +30,7 @@ body {
     transition-duration: 0.2s;
 }
 .basket-overlay.hidden {
-    right: -26em;
+    right: -30em;
     transition-duration: 0.2s;
 }
 
@@ -42,7 +42,7 @@ body {
     padding: 0 1.5em 0 0.5em;
     height: 4rem;
     top: 8rem;
-    right: 24rem;
+    right: 28rem;
     cursor: pointer;
     color: white;
     background-color: #535BFF;
@@ -70,12 +70,18 @@ body {
     position: relative;
     display: block;
     background-color: #fcfcfc;
-    width: 14em;
+    width: 18em;
     height: 100%;
     right: 12em;
     z-index: 4;
-    overflow: none;
+    overflow-y: scroll;
+    scrollbar-width: none;
     margin: 0;
+}
+
+.basket-overlay .basket a {
+    color: black;
+    font-size: 1.4em;
 }
 
 .basket-overlay .basket h3 {
@@ -83,6 +89,14 @@ body {
     padding: 0.6em;
     color: white;
     background-color: #535BFF;
+}
+
+.basket-overlay .basket #basket-contents {
+    padding: 0.4em;
+}
+.basket-overlay .basket #basket-contents .msg {
+    text-align: center;
+    margin: 1em;
 }
 
 .basket-overlay .basket .basket-item {
@@ -93,10 +107,27 @@ body {
 .basket-overlay .basket .basket-item:first-of-type {
     margin-top: 0.4em;
 }
-.basket-overlay .basket .basket-item .item-main-info .delete:hover {
+
+.basket-overlay .basket .basket-item .item-main-info form {
+    margin: 0 2em 2em 0;
+}
+.basket-overlay .basket .basket-item .item-main-info form .delete-button {
+    width: max-content;
+    height: max-content;
+    font-size: 1.4em;
+    color: black;
+    z-index: auto;
+    top: auto;
+    right: auto;
+    background-color: transparent;
+    border: none;
+}
+.basket-overlay .basket .basket-item .item-main-info .delete:hover,
+.basket-overlay .basket .basket-item .item-main-info form .delete-button:hover {
     color: red;
     transition-duration: 0.2s;
 }
+
 .basket-overlay .basket .basket-item .item-main-info,
 .basket-overlay .basket .basket-item .item-price-qty-info {
     display: flex;
@@ -107,10 +138,14 @@ body {
     margin: 0.4em 0;
     justify-content: space-between;
 }
+.basket-overlay .basket .basket-item .item-price-qty-info form {
+    position: absolute;
+    right: 10.5em;
+}
 .basket-overlay .basket .basket-item .item-price-qty-info form input[type=number] {
     position: relative;
     width: 4em;
-    right: 0.6em;
+    right: 0.4em;
 }
 .basket-overlay .basket .basket-item .item-price-qty-info form button {
     position: relative;
@@ -143,12 +178,15 @@ body {
     height: 100px;
     width: 100px;
 }
-.basket-overlay .basket .basket-item h4 {
+.basket-overlay .basket .basket-item h4, .basket-overlay .basket .basket-item .product-name {
     margin: 0 0.4em;
+    font-size: 1em;
 }
-.basket-overlay .basket a {
-    color: black;
-    font-size: 1.4em;
+.basket-overlay .basket .basket-item .product-name {
+    text-decoration: none;
+}
+.basket-overlay .basket .basket-item .product-name:hover {
+    text-decoration: underline;
 }
 .basket-overlay .basket hr {
     margin: 0 0.4em;
@@ -880,6 +918,13 @@ nav ul .dropdown:hover ul li a:active {
 
 .pcolumn .purchasebox form {
     width: max-content;
+}
+.pcolumn .purchasebox form label {
+    width: max-content;
+}
+.pcolumn .purchasebox form input[type=number] {
+    width: 8em;
+    padding: 0.4em;
 }
 
 .pcolumn .purchasebox a:hover {
