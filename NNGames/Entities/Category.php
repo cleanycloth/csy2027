@@ -5,12 +5,13 @@ class Category {
     public $parent_id;
     public $name;
 
+    private $pdo;
     private $categoriesTable;
     private $productsTable;
 
-    public function __construct() {
-        require '../dbConnection.php';
-        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category');
+    public function __construct($pdo = null) {
+        //require '../dbConnection.vagrant.php';
+        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$pdo]);
         $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id');
     }
 

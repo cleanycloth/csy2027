@@ -12,8 +12,7 @@ class Product {
 
     private $categoriesTable;
 
-    public function __construct() {
-        require '../dbConnection.php';
+    public function __construct($pdo = null) {
         $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category');
         $this->platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id');
         $this->genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id');
