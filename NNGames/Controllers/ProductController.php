@@ -80,27 +80,40 @@ class ProductController {
                         break;
                     }
                 }
-
-                if (isset($searchFilteredProducts)) {
-                    $filteredProducts = $searchFilteredProducts;
-                    $errorMsg = '';
-                }
-                else
-                    $errorMsg = 'No products match the specified search terms.';
-
-                $pageName = 'Search Results';
             }
+
+
+            if (isset($searchFilteredProducts)) {
+                $filteredProducts = $searchFilteredProducts;
+                $errorMsg = '';
+            }
+            else
+                $errorMsg = 'No products match the specified search terms.';
+
+            $pageName = 'Search Results';
+        }
+        else {
+            $pageName = 'Search Results';
+            $errorMsg = 'You have not entered any search terms.';
         }
 
         // Filter products by selected category.
         if (isset($this->get['category']) && $this->get['category'] != '') {
             if (isset($this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']))[0]))
                 $category = $this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']))[0];
+                $childCategories = $category->getChildCategories();
 
             if (!empty($category)) {
                 foreach ($products as $product) {
                     if ($product->category_id == $category->category_id)
                         $categoryFilteredProducts[] = $product;
+                    else {
+                        foreach ($childCategories as $childCategory) {
+                            if ($product->category_id == $childCategory->category_id) {
+                                $categoryFilteredProducts[] = $product;
+                            }
+                        }
+                    }
                 }
         
                 $pageName = $category->name;
