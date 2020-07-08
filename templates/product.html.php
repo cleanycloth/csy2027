@@ -21,8 +21,16 @@
         <div class="purchasebox">
             <h2>Price</h2>
             <p>£<?=$product->price;?></p>
-            <form action="" method="post">
-                <button>Add To Basket</button>
+            <form action="/basket/add" method="post">
+                <div class="fields">
+                    <input type="hidden" id="productId" value="<?=$product->product_id;?>">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" name="quantity" id="quantity" min="1" value="1">
+                </div>
+                
+                <div class="buttons">
+                    <button>Add To Basket</button>    
+                </div>
             </form>
         </div>
     </div>
