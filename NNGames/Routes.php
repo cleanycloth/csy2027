@@ -7,8 +7,8 @@ class Routes implements \CSY2028\Routes {
     private $slidesTable;
 
     public function getRoutes() {
-        require '../dbConnection.php';
-        //require '../dbConnection.vagrant.php';
+        //require '../dbConnection.php';
+        require '../dbConnection.vagrant.php';
 
         // Create new DatabaseTable objects.
         $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$pdo]);
@@ -235,6 +235,13 @@ class Routes implements \CSY2028\Routes {
                 'POST' => [
                     'controller' => $basketController,
                     'function' => 'addToBasket',
+                    'parameters' => []
+                ]
+            ],
+            'basket/update' => [
+                'POST' => [
+                    'controller' => $basketController,
+                    'function' => 'updateItemQuantity',
                     'parameters' => []
                 ]
             ],
