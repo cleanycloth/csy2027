@@ -11,16 +11,12 @@ class Routes implements \CSY2028\Routes {
         //require '../dbConnection.vagrant.php';
 
         // Create new DatabaseTable objects.
-        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category');
+        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$pdo]);
         $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id');
         $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
-        $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product');
-        $productReviewsTable = new \CSY2028\DatabaseTable($pdo, 'product_reviews', 'product_id');
+        $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product', [$pdo]);
         $platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id');
         $genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id');
-        $ordersTable = new \CSY2028\DatabaseTable($pdo, 'orders', 'order_id');
-        $orderDetailsTable = new \CSY2028\DatabaseTable($pdo, 'order_details', 'order_id');
-        $paymentsTable = new \CSY2028\DatabaseTable($pdo, 'payments', 'payment_id');
         $this->slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
         $imagesTable = new \CSY2028\DatabaseTable($pdo, 'images', 'image_id');
 
