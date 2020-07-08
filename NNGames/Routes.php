@@ -8,6 +8,7 @@ class Routes implements \CSY2028\Routes {
 
     public function getRoutes() {
         require '../dbConnection.php';
+        //require '../dbConnection.vagrant.php';
 
         // Create new DatabaseTable objects.
         $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category');
