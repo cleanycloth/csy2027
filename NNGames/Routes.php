@@ -230,7 +230,7 @@ class Routes implements \CSY2028\Routes {
                 ],
                 'login' => true
             ],
-            // Basket Pages
+            // Basket
             'basket/add' => [
                 'POST' => [
                     'controller' => $basketController,
@@ -256,6 +256,14 @@ class Routes implements \CSY2028\Routes {
                 'POST' => [
                     'controller' => $basketController,
                     'function' => 'removeFromBasket',
+                    'parameters' => []
+                ]
+            ],
+            // Predictive Search
+            'search' => [
+                'GET' => [
+                    'controller' => $productController,
+                    'function' => 'returnSearchResults',
                     'parameters' => []
                 ]
             ],
