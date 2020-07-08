@@ -1,4 +1,4 @@
-<div class="basket-overlay visible" id="basket">
+<div class="basket-overlay hidden" id="basket">
     <button id="basket-button"><i class="fas fa-shopping-cart"></i></button>
     <div class="basket">
         <h3><i class="fas fa-shopping-cart"></i> My Basket</h3>
