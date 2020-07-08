@@ -25,12 +25,14 @@
                 <div class="fields">
                     <input type="hidden" id="productId" value="<?=$product->product_id;?>">
                     <label for="quantity">Quantity</label>
-                    <input type="number" name="quantity" id="quantity" min="1" value="1">
+                    <input type="number" name="quantity" id="quantity" min="1" max="99" value="1">
                 </div>
                 
                 <div class="buttons">
                     <button>Add To Basket</button>    
                 </div>
+
+                <output></output>
             </form>
         </div>
     </div>
