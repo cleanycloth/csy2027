@@ -20,7 +20,7 @@
                 <tr>
                     <td><?=$product->product_id;?></td>
                     <td><a target="__blank" href="<?=$product->image;?>"><img style="height: 125px; width: 125px; background-color: white;" src="<?=$product->image;?>" alt="<?=($product->image != '/images/image-placeholder.jpg') ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>"></a></td>
-                    <td><?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?></td>
+                    <td><a href="/product?id=<?=$product->product_id;?>"><?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?></a></td>
                     <td>£<?=htmlspecialchars(strip_tags($product->price), ENT_QUOTES, 'UTF-8');?></td>
                     <td><?=htmlspecialchars(strip_tags($product->getCategoryName()), ENT_QUOTES, 'UTF-8');?></td>
                     <td><?=htmlspecialchars(strip_tags($product->getPlatformName()), ENT_QUOTES, 'UTF-8');?></td>

@@ -561,7 +561,13 @@ nav ul .dropdown:hover ul li a:active {
     overflow: hidden;
     height: 4em;
 }
-
+.site-main .content .admin-content table tbody tr td a {
+    color: black;
+    text-decoration: none;
+}
+.site-main .content .admin-content table tbody tr td a:hover {
+    text-decoration: underline;
+}
 .site-main .content .admin-content table tbody tr td img {
     height: 125px;
     width: 125px;
