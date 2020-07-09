@@ -318,14 +318,49 @@ class ProductController {
         $products = $this->productsTable->retrieveAllRecords();
 
         if (isset($this->get['search']) && $this->get['search'] != '') {
-            $searchTerms = explode(" ", $this->get['search']);
+            // Split up search terms into array.
+            $searchTerms = explode(' ', $this->get['search']);
+
+            // Declare blank $searchResults['result'] array.
             $searchResults['results'] = null;
+
+            // Loop through each of the products in the database.
             foreach ($products as $product) {
+                // Declare blank string for RegEx pattern.
+                $regExString = '';
+
+                // Loop through the $searchTerms array to compare product names against each term.
                 for ($i=0; $i<count($searchTerms); $i++) {
-                    if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
-                        $searchResults['results'][] = $product->name;
+                    // Add search terms to the variable $regExString to build a RegEx pattern.
+                    for ($j=0; $j<count($searchTerms); $j++) {
+                        if ($j != count($searchTerms)) {
+                            $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
+                            $regExString .= $searchTermNoSpecialChars . '|';
+                        }
+                        else {
+                            $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
+                            $regExString .= $searchTermNoSpecialChars;
+                        }
+                    }
+
+                    // Remove spaces (replaced with hyphens) and other special characters from product name.
+                    $productNameNoSpaces = str_replace(' ', '-', $product->name);
+                    $productNameNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $productNameNoSpaces);
+                    
+                    // Remove spaces (replaced with hyphens) and other special characters from search string.
+                    $searchStringNoSpaces = str_replace(' ', '-', $this->get['search']);
+                    $searchStringNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchStringNoSpaces);
+
+                    // Add search result to $searchResults['results'] array if the search string is inside the product name string.
+                    if (stripos($productNameNoSpecialChars, $searchStringNoSpecialChars) !== false) {
+                        $trimmedRegExString = rtrim($regExString, '|');
+                        $boldedName = preg_replace("/($trimmedRegExString)/i", '<b>$0</b>', $product->name);
+                        $searchResults['results'][] = $boldedName;
                         break;
                     }
+
+                    // Source: https://stackoverflow.com/questions/16733674/php-remove-symbols-from-string
+                    // Source: https://stackoverflow.com/questions/22730461/make-bold-specific-part-of-string
                 }
             }
         }
