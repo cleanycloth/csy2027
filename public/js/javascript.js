@@ -81,8 +81,8 @@ $(document).ready(function() {
         var outputMsg = $(this).find('output');
 
         $.post(url, {productId: productId, quantity: quantity})
-            .done(function(xhr, status, error) {
-                outputMsg.val('Item has been added to your basket!');
+            .done(function(data) {
+                outputMsg.val(data.status);
                 fetchBasket();
             })
             .fail(function() {
@@ -97,10 +97,10 @@ $(document).ready(function() {
         var productId = $(this).find('input[type=hidden]').val();
         var url = $(this).attr('action');
 
-        $.post(url, {productId: productId}).
-            done(function(data) {
+        $.post(url, {productId: productId})
+            .done(function(data) {
                 fetchBasket();
-        });
+            });
 
         return false;
     });
@@ -132,12 +132,11 @@ $(document).ready(function() {
                 $('#basket-contents').empty();
 
                 // Variable for storing the total cost of items in the basket.
-                var basketTotal = 0.00;
+                var basketTotal = 0.00;;
 
                 // Check if there are any items in the basket.
-                if (data['basket'].length != null) {
+                if (Array.isArray(data['basket'])) {
                     // Append new 'basket-item' div elements to the basket for each product.
-                    console.log(data['basket']);
                     $.map(data['basket'], function(post, i) {
                         var basketItem = '<div class="basket-item">' +
                             '<div class="item-main-info">' +
@@ -180,6 +179,34 @@ $(document).ready(function() {
             }
         });
     }
+    
+    // Function for returning search results according to what was typed in the search bar.
+    $('#search-box').on('input', 'form', function(e) {
+        e.preventDefault();
+    
+        var search = $('#search').val();
+        var url = "/search";
+
+        $.get(url, {search: search})
+            .done(function(data) {
+                console.log(data['results']);
+                // Clear predictive search contents.
+                $('#search-box #search-results').empty();
+
+                $.map(data['results'], function(get, i) {
+                    if (i < 5)
+                        $('#search-box #search-results').append('<button class="result">' + data['results'][i]  + '</button>');
+                });
+            });
+    });
+
+    $('#search-box').on('click', '.result', function() {
+        // Fill search bar with contents from selected result.
+        $('#search-box form #search').val($(this).text());
+
+        // Clear predictive search contents.
+        $('#search-box #search-results').empty();
+    });
 
     // Carousels
     $('.main-carousel').slick({

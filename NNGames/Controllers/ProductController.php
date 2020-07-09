@@ -72,16 +72,22 @@ class ProductController {
         $filteredProducts = null;
         // Filter products by search term(s).
         if (isset($this->get['search']) && $this->get['search'] != '') {
-            $searchTerms = explode(" ", $this->get['search']);
-            foreach ($products as $product) {
-                for ($i=0; $i<count($searchTerms); $i++) {
-                    if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
-                        $searchFilteredProducts[] = $product;
-                        break;
+            $product = $this->productsTable->retrieveRecord('name', $this->get['search']);
+
+            if (!empty($product)) {
+                $searchFilteredProducts[] = $product[0]; 
+            }
+            else {
+                $searchTerms = explode(" ", $this->get['search']);            
+                foreach ($products as $product) {
+                    for ($i=0; $i<count($searchTerms); $i++) {
+                        if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
+                            $searchFilteredProducts[] = $product;
+                            break;
+                        }
                     }
                 }
             }
-
 
             if (isset($searchFilteredProducts)) {
                 $filteredProducts = $searchFilteredProducts;
@@ -293,6 +299,7 @@ class ProductController {
         ];
     }
 
+    // Method for listing out products in the admin panel.
     public function listProductsAdmin() {
         $products = $this->productsTable->retrieveAllRecords();
 
@@ -306,6 +313,72 @@ class ProductController {
         ];
     }
 
+    // Method for returning product search results in JSON format.
+    public function returnSearchResults() {
+        $products = $this->productsTable->retrieveAllRecords();
+
+        if (isset($this->get['search']) && $this->get['search'] != '') {
+            // Split up search terms into array.
+            $searchTerms = explode(' ', $this->get['search']);
+
+            // Declare blank $searchResults['result'] array.
+            $searchResults['results'] = null;
+
+            // Loop through each of the products in the database.
+            foreach ($products as $product) {
+                // Declare blank string for RegEx pattern.
+                $regExString = '';
+
+                // Loop through the $searchTerms array to compare product names against each term.
+                for ($i=0; $i<count($searchTerms); $i++) {
+                    // Add search terms to the variable $regExString to build a RegEx pattern.
+                    for ($j=0; $j<count($searchTerms); $j++) {
+                        if ($j != count($searchTerms)) {
+                            $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
+                            $regExString .= $searchTermNoSpecialChars . '|';
+                        }
+                        else {
+                            $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
+                            $regExString .= $searchTermNoSpecialChars;
+                        }
+                    }
+
+                    // Remove spaces (replaced with hyphens) and other special characters from product name.
+                    $productNameNoSpaces = str_replace(' ', '-', $product->name);
+                    $productNameNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $productNameNoSpaces);
+                    
+                    // Remove spaces (replaced with hyphens) and other special characters from search string.
+                    $searchStringNoSpaces = str_replace(' ', '-', $this->get['search']);
+                    $searchStringNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchStringNoSpaces);
+
+                    // Add search result to $searchResults['results'] array if the search string is inside the product name string.
+                    if (stripos($productNameNoSpecialChars, $searchStringNoSpecialChars) !== false) {
+                        $trimmedRegExString = rtrim($regExString, '|');
+                        $boldedName = preg_replace("/($trimmedRegExString)/i", '<b>$0</b>', $product->name);
+                        $searchResults['results'][] = $boldedName;
+                        break;
+                    }
+
+                    // Source: https://stackoverflow.com/questions/16733674/php-remove-symbols-from-string
+                    // Source: https://stackoverflow.com/questions/22730461/make-bold-specific-part-of-string
+                }
+            }
+        }
+        else {
+            $searchResults['results'] = null;
+        }
+
+        return [
+            'layout' => 'blanklayout.html.php',
+            'template' => 'json/response.html.php',
+            'variables' => [
+                'response' => json_encode($searchResults)
+            ],
+            'title' => 'JSON Response'
+        ];
+    }
+
+    // Method for displaying the edit product form.
     public function editProductForm() {
         $categories = $this->categoriesTable->retrieveAllRecords();
         $platforms = $this->platformsTable->retrieveAllRecords();
