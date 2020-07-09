@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<phpunit>
+    <testsuites>
+        <testsuite name="tests">
+            <directory>tests/controllers</directory>
+            <directory>tests/entities</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <file>CSY2028/DatabaseTable.php</file>
+            <file>NNGames/Controllers/SiteController.php</file>
+            <file>NNGames/Controllers/UserController.php</file>
+            <file>NNGames/Controllers/AdminController.php</file>
+            <file>NNGames/Controllers/ProductController.php</file>
+            <file>NNGames/Controllers/CategoryController.php</file>
+            <file>NNGames/Controllers/SlideController.php</file>
+            <file>NNGames/Controllers/BasketController.php</file>
+            <file>NNGames/Entities/Product.php</file>
+            <file>NNGames/Entities/Category.php</file>
+        </whitelist>
+    </filter>
+</phpunit>
