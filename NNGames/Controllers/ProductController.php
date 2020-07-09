@@ -8,9 +8,10 @@ class ProductController {
     private $genresTable;
     private $get;
     private $post;
+    private $files;
 
     public function __construct(\CSY2028\DatabaseTable $productsTable, \CSY2028\DatabaseTable $imagesTable, \CSY2028\DatabaseTable $categoriesTable, 
-                                \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable, $get, $post) {
+                                \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable, $get, $post, $files) {
         $this->productsTable = $productsTable;
         $this->imagesTable = $imagesTable;
         $this->categoriesTable = $categoriesTable;
@@ -18,6 +19,7 @@ class ProductController {
         $this->genresTable = $genresTable;
         $this->get = $get;
         $this->post = $post;
+        $this->files = $files;
     }
 
     // Method for displaying the page for an individual product.
@@ -441,7 +443,7 @@ class ProductController {
             else
                 $product = '';
 
-            $uploadedFile = $_FILES['image']['tmp_name'];
+            $uploadedFile = $this->files['image']['tmp_name'];
 
             if ($uploadedFile == '') {
                 if ($this->post['product']['name'] != '') {
@@ -505,17 +507,17 @@ class ProductController {
                 if ($this->post['product']['genre_id'] == '')
                     unset($this->post['product']['genre_id']);
 
-                if ($_FILES['image']['tmp_name'] != '') {
+                if ($this->files['image']['tmp_name'] != '') {
                     if (isset($this->get['id'])) {
-                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($product->image, '/'));
+                        move_uploaded_file($this->files['image']['tmp_name'], ltrim($product->image, '/'));
 
                         $this->productsTable->save($this->post['product']);  
                     }
                     else {
-                        $parts = explode('.', $_FILES['image']['name']);
+                        $parts = explode('.', $this->files['image']['name']);
                         $extension = end($parts);
                         $filePath = '/images/products/' . uniqid() . '.' . $extension;
-                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($filePath, '/'));
+                        move_uploaded_file($this->files['image']['tmp_name'], ltrim($filePath, '/'));
 
                         $this->post['product']['image'] = $filePath;
                         $this->productsTable->save($this->post['product']);

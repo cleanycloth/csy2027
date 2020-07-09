@@ -27,9 +27,9 @@ class Routes implements \CSY2028\Routes {
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
         $adminController = new \NNGames\Controllers\AdminController();
-        $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
+        $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST, $_FILES);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
-        $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $imagesTable, $_GET, $_POST);
+        $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $imagesTable, $_GET, $_POST, $_FILES);
         $basketController = new \NNGames\Controllers\BasketController($this->productsTable, $_GET, $_POST);
 
         // Define routes.
