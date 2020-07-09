@@ -132,12 +132,11 @@ $(document).ready(function() {
                 $('#basket-contents').empty();
 
                 // Variable for storing the total cost of items in the basket.
-                var basketTotal = 0.00;
+                var basketTotal = 0.00;;
 
                 // Check if there are any items in the basket.
-                if (data['basket'].length != null) {
+                if (Array.isArray(data['basket'])) {
                     // Append new 'basket-item' div elements to the basket for each product.
-                    console.log(data['basket']);
                     $.map(data['basket'], function(post, i) {
                         var basketItem = '<div class="basket-item">' +
                             '<div class="item-main-info">' +
