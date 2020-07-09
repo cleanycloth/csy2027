@@ -302,7 +302,6 @@ header #search-box #search-results .result:hover {
     cursor: default;
 }
 
-
 /* Header - User Options */
 header .user-options {
     background-color: rgb(194, 194, 194);
@@ -930,6 +929,7 @@ nav ul .dropdown:hover ul li a:active {
     background-color: rgb(201, 201, 201);
     padding: 2.5em;
     height: 334px;
+    width: 304px;
     font-size: 1.2em;
 }
 
@@ -943,8 +943,7 @@ nav ul .dropdown:hover ul li a:active {
     font-size: 0.9em;
     font-style: unset;
     display: block;
-    width: 10em;
-    height: 40px;
+    width: 12em;
 }
 
 .pcolumn .purchasebox a{
