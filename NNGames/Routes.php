@@ -18,18 +18,18 @@ class Routes implements \CSY2028\Routes {
         $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
         $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product', [$this->categoriesTable, $platformsTable, $genresTable]);
         $this->slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
-        $imagesTable = new \CSY2028\DatabaseTable($pdo, 'images', 'image_id');
 
         // Redeclare $categoriesTable with new value;
+        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$this->categoriesTable, $this->productsTable]);
         $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$this->categoriesTable, $this->productsTable]);
 
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
         $adminController = new \NNGames\Controllers\AdminController();
-        $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST, $_FILES);
+        $productController = new \NNGames\Controllers\ProductController($this->productsTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST, $_FILES);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
-        $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $imagesTable, $_GET, $_POST, $_FILES);
+        $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $_GET, $_POST, $_FILES);
         $basketController = new \NNGames\Controllers\BasketController($this->productsTable, $_GET, $_POST);
 
         // Define routes.
