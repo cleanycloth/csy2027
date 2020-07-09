@@ -299,6 +299,7 @@ class ProductController {
         ];
     }
 
+    // Method for listing out products in the admin panel.
     public function listProductsAdmin() {
         $products = $this->productsTable->retrieveAllRecords();
 
@@ -312,6 +313,7 @@ class ProductController {
         ];
     }
 
+    // Method for returning product search results in JSON format.
     public function returnSearchResults() {
         $products = $this->productsTable->retrieveAllRecords();
 
@@ -341,6 +343,7 @@ class ProductController {
         ];
     }
 
+    // Method for displaying the edit product form.
     public function editProductForm() {
         $categories = $this->categoriesTable->retrieveAllRecords();
         $platforms = $this->platformsTable->retrieveAllRecords();
