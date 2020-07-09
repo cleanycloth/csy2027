@@ -293,6 +293,9 @@ header #search-box #search-results .result {
     font-size: 1em;
     display: block;
     transition-duration: 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 header #search-box #search-results .result:hover {
     background-color: rgb(235, 235, 235);
