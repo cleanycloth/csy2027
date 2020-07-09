@@ -2,14 +2,12 @@
 namespace NNGames\Controllers;
 class SlideController {
     private $slidesTable;
-    private $imagesTable;
     private $get;
     private $post;
     private $files;
 
-    public function __construct(\CSY2028\DatabaseTable $slidesTable, \CSY2028\DatabaseTable $imagesTable, $get, $post, $files) {
+    public function __construct(\CSY2028\DatabaseTable $slidesTable, $get, $post, $files) {
         $this->slidesTable = $slidesTable;
-        $this->imagesTable = $imagesTable;
         $this->get = $get;
         $this->post = $post;
         $this->files = $files;

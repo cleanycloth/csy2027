@@ -2,7 +2,6 @@
 namespace NNGames\Controllers;
 class ProductController {
     private $productsTable;
-    private $imagesTable;
     private $categoriesTable;
     private $platformsTable;
     private $genresTable;
@@ -10,10 +9,9 @@ class ProductController {
     private $post;
     private $files;
 
-    public function __construct(\CSY2028\DatabaseTable $productsTable, \CSY2028\DatabaseTable $imagesTable, \CSY2028\DatabaseTable $categoriesTable, 
+    public function __construct(\CSY2028\DatabaseTable $productsTable, \CSY2028\DatabaseTable $categoriesTable, 
                                 \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable, $get, $post, $files) {
         $this->productsTable = $productsTable;
-        $this->imagesTable = $imagesTable;
         $this->categoriesTable = $categoriesTable;
         $this->platformsTable = $platformsTable;
         $this->genresTable = $genresTable;
