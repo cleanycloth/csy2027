@@ -11,14 +11,17 @@ class Routes implements \CSY2028\Routes {
         require '../dbConnection.vagrant.php';
 
         // Create new DatabaseTable objects.
-        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$pdo]);
-        $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id');
-        $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
-        $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product', [$pdo]);
+        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id');
         $platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id');
         $genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id');
+        $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id');
+        $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
+        $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product', [$this->categoriesTable, $platformsTable, $genresTable]);
         $this->slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
         $imagesTable = new \CSY2028\DatabaseTable($pdo, 'images', 'image_id');
+
+        // Redeclare $categoriesTable with new value;
+        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$this->categoriesTable, $this->productsTable]);
 
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();

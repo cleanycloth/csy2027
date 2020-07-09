@@ -11,11 +11,13 @@ class Product {
     public $description;
 
     private $categoriesTable;
+    private $platformsTable;
+    private $genresTable;
 
-    public function __construct($pdo = null) {
-        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category');
-        $this->platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id');
-        $this->genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id');
+    public function __construct(\CSY2028\DatabaseTable $categoriesTable, \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable) {
+        $this->categoriesTable = $categoriesTable;
+        $this->platformsTable = $platformsTable;
+        $this->genresTable = $genresTable;
     }
 
     public function getCategoryName() {
