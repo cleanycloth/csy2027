@@ -34,12 +34,12 @@ class BasketController {
 
             if ($alreadyInBasket && !$limitReached) {
                 $values = [
-                    'status' => 'Quantity for product (ID: ' . $this->post['productId'] . ') updated in basket'
+                    'status' => 'Item has been added to your basket!'
                 ];
             }
             else if ($alreadyInBasket && $limitReached) {
                 $values = [
-                    'status' => 'Could not update quantity for product (ID: ' . $this->post['productId'] . ') as there are already 99 of it in the basket.'
+                    'status' => 'Item could not be added. (Max. Quantity: 99)'
                 ];
             }
             else {
@@ -49,7 +49,7 @@ class BasketController {
                 ];
         
                 $values = [
-                    'status' => 'Product added to basket'
+                    'status' => 'Item has been added to your basket!'
                 ]; 
             }
         }
