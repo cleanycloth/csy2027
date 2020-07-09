@@ -1,5 +1,6 @@
 <?php
 require 'NNGames/Controllers/AdminController.php';
+
 class AdminControllerTest extends \PHPUnit\Framework\TestCase {
     private $adminController;
 

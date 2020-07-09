@@ -1,5 +1,6 @@
 <?php
 require 'NNGames/Controllers/SiteController.php';
+
 class SiteControllerTest extends \PHPUnit\Framework\TestCase {
     private $siteController;
 
