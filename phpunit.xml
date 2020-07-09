@@ -18,6 +18,8 @@
             <file>NNGames/Controllers/BasketController.php</file>
             <file>NNGames/Entities/Product.php</file>
             <file>NNGames/Entities/Category.php</file>
+            <file>NNGames/Entities/Platform.php</file>
+            <file>NNGames/Entities/Genre.php</file>
         </whitelist>
     </filter>
 </phpunit>

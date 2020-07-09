@@ -7,13 +7,13 @@ class Routes implements \CSY2028\Routes {
     private $slidesTable;
 
     public function getRoutes() {
-        require '../dbConnection.php';
-        //require '../dbConnection.vagrant.php';
+        //require '../dbConnection.php';
+        require '../dbConnection.vagrant.php';
 
         // Create new DatabaseTable objects.
         $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id');
-        $platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id');
-        $genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id');
+        $platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id', '\NNGames\Entities\Platform');
+        $genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id', '\NNGames\Entities\Genre');
         $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id');
         $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
         $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product', [$this->categoriesTable, $platformsTable, $genresTable]);
