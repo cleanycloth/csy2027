@@ -182,7 +182,7 @@ $(document).ready(function() {
     }
     
     // Function for returning search results according to what was typed in the search bar.
-    $('.search').on('input', 'form', function(e) {
+    $('#search-box').on('input', 'form', function(e) {
         e.preventDefault();
     
         var search = $('#search').val();
@@ -192,21 +192,21 @@ $(document).ready(function() {
             .done(function(data) {
                 console.log(data['results']);
                 // Clear predictive search contents.
-                $('.search #search-results').empty();
+                $('#search-box #search-results').empty();
 
                 $.map(data['results'], function(get, i) {
                     if (i < 5)
-                        $('.search #search-results').append('<button class="result">' + data['results'][i]  + '</button>');
+                        $('#search-box #search-results').append('<button class="result">' + data['results'][i]  + '</button>');
                 });
             });
     });
 
-    $('.search').on('click', '.result', function() {
+    $('#search-box').on('click', '.result', function() {
         // Fill search bar with contents from selected result.
-        $('.search form #search').val($(this).text());
+        $('#search-box form #search').val($(this).text());
 
         // Clear predictive search contents.
-        $('.search #search-results').empty();
+        $('#search-box #search-results').empty();
     });
 
     // Carousels
