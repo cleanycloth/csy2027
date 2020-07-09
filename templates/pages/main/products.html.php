@@ -49,7 +49,7 @@
             </div>
 
             <div class="Pagecount">
-                <!-- Source: https://www.myprogrammingtutorials.com/create-pagination-with-php-and-mysql.html -->
+                <?php /* Source: https://www.myprogrammingtutorials.com/create-pagination-with-php-and-mysql.html */ ?>
                 <ul>
                     <?php 
                         if (stripos($_SERVER['REQUEST_URI'], '?page='))
