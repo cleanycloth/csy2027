@@ -60,7 +60,7 @@ class BasketController {
             ];
 
             $values = [
-                'status' => 'User has no basket. Initialising new basket.'
+                'status' => 'Item has been added to your basket!'
             ];
         }
 
