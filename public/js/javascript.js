@@ -81,8 +81,8 @@ $(document).ready(function() {
         var outputMsg = $(this).find('output');
 
         $.post(url, {productId: productId, quantity: quantity})
-            .done(function(xhr, status, error) {
-                outputMsg.val('Item has been added to your basket!');
+            .done(function(data) {
+                outputMsg.val(data.status);
                 fetchBasket();
             })
             .fail(function() {
