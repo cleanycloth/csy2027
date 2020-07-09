@@ -251,16 +251,16 @@ header .logo a {
     text-decoration: none;
 }
 /* Header - Search Bar */
-header .search {
+header #search-box {
     margin: auto 1rem auto 0;
     justify-self: center;
 }
-header .search input[type=search] {
+header #search-box input[type=search] {
     padding: 0.5em;
     font-size: 1.2em;
     width: 400px;
 }
-header .search button {
+header #search-box button {
     background-color: #535BFF;
     color: white;
     border: none;
@@ -273,17 +273,17 @@ header .search button {
     transition-duration: 0.1s;
     cursor: pointer;
 }
-header .search button:hover {
+header #search-box button:hover {
     background-color: rgb(83, 114, 255);
 }
-header .search button:active {
+header #search-box button:active {
     background-color: rgb(77, 85, 241);
 }
 
-header .search #search-results {
+header #search-box #search-results {
     position: absolute;
 }
-header .search #search-results .result {
+header #search-box #search-results .result {
     background-color: white;
     border: none;
     border-radius: unset;
@@ -294,7 +294,7 @@ header .search #search-results .result {
     display: block;
     transition-duration: 0.2s;
 }
-header .search #search-results .result:hover {
+header #search-box #search-results .result:hover {
     background-color: rgb(235, 235, 235);
     cursor: default;
 }
