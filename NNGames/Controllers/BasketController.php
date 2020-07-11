@@ -128,12 +128,12 @@ class BasketController {
     public function getBasketContents() {
         if (isset($_SESSION['basket'])) {
             if (count($_SESSION['basket']) > 0) {
+                $values = [
+                    'status' => 'Basket has ' . count($_SESSION['basket']) . ' product(s).'
+                ];
+
                 foreach ($_SESSION['basket'] as $basketItem) {
                     $product = $this->productsTable->retrieveRecord('product_id', $basketItem['productId'])[0];
-        
-                    $values = [
-                        'status' => 'Basket has ' . count($_SESSION['basket']) . ' product(s).'
-                    ];
 
                     $values['basket'][] = [
                         'productId' => $product->product_id,
