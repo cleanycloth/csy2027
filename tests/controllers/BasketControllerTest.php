@@ -13,7 +13,7 @@ class BasketControllerTest extends \PHPUnit\Framework\TestCase {
 
         $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id');
 
-        // Declare mock products table.#
+        // Declare mock products table.
         $this->mockProductsTable = $this->getMockBuilder('\CSY2028\DatabaseTable')->disableOriginalConstructor()->getMock();
     }
 
