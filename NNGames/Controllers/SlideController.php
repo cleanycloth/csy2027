@@ -39,16 +39,17 @@ class SlideController {
 
             if (empty($slide))
                 header('Location: /admin/slides');
-
-            return [
-                'layout' => 'adminlayout.html.php',
-                'template' => 'pages/admin/editslide.html.php',
-                'variables' => [
-                    'slide' => $slide,
-                    'pageName' => $pageName
-                ],
-                'title' => 'Admin Panel - ' . $pageName
-            ];   
+            else {
+                return [
+                    'layout' => 'adminlayout.html.php',
+                    'template' => 'pages/admin/editslide.html.php',
+                    'variables' => [
+                        'slide' => $slide,
+                        'pageName' => $pageName
+                    ],
+                    'title' => 'Admin Panel - ' . $pageName
+                ];   
+            }
         }
         else {
             return [
@@ -167,7 +168,8 @@ class SlideController {
                 $variables = [
                     'pageName' => $pageName,
                     'error' => $error,
-                    'slide' => $slide
+                    'slide' => $slide,
+                    'files' => $this->files
                 ];
             }
         }
