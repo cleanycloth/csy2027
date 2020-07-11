@@ -14,14 +14,14 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
         // Declare mock slide entities.
         $slideEntity1 = $this->getMockBuilder('\NNGames\Entities\Slide')->disableOriginalConstructor()->getMock();
         $slideEntity2 = $this->getMockBuilder('\NNGames\Entities\Slide')->disableOriginalConstructor()->getMock();
-        $slideEntity2 = $this->getMockBuilder('\NNGames\Entities\Slide')->disableOriginalConstructor()->getMock();
+        $slideEntity3 = $this->getMockBuilder('\NNGames\Entities\Slide')->disableOriginalConstructor()->getMock();
         
         // Setup value to be returned by retrieveAllRecords().
         $this->mockSlidesTable->expects($this->once())
             ->method('retrieveAllRecords')
-            ->will($this->returnValue([$slideEntity1, $slideEntity2, $slideEntity2]));
+            ->will($this->returnValue([$slideEntity1, $slideEntity2, $slideEntity3]));
 
-        // Declare CategoryController instance and execute editCategoryForm().
+        // Declare SlideController instance and execute listSlides().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, null, null);
         $result = $slideController->listSlides();
 
@@ -32,7 +32,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
 
     // editSlideForm() Tests
     function testEditSlideFormNoId() {
-        // Declare CategoryController instance and execute editSlideForm().
+        // Declare SlideController instance and execute editSlideForm().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, null, null);
         $result = $slideController->editSlideForm();
 
@@ -54,7 +54,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ->with($this->equalTo('slide_id'), $this->equalTo($testGetData['id']))
             ->will($this->returnValue([$slideEntity]));
 
-        // Declare CategoryController instance and execute editSlideForm().
+        // Declare SlideController instance and execute editSlideForm().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, $testGetData, null, null);
         $result = $slideController->editSlideForm();
 
@@ -74,7 +74,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ->with($this->equalTo('slide_id'), $this->equalTo($testGetData['id']))
             ->will($this->returnValue(null));
 
-        // Declare CategoryController instance and execute editSlideForm().
+        // Declare SlideController instance and execute editSlideForm().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, $testGetData, null, null);
         $slideController->editSlideForm();
 
@@ -89,7 +89,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             'slide' => 1
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -108,7 +108,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             'id' => 1
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, $testGetData, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -124,7 +124,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -141,7 +141,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -159,7 +159,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -177,7 +177,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -195,7 +195,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -218,7 +218,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, $testGetData, $testPostData, null);
         $result = $slideController->editSlideSubmit();
 
@@ -243,7 +243,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, $testFilesData);
         $result = $slideController->editSlideSubmit();
 
@@ -268,7 +268,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, $testFilesData);
         $result = $slideController->editSlideSubmit();
 
@@ -295,7 +295,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, $testFilesData);
         $result = $slideController->editSlideSubmit();
 
@@ -326,7 +326,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ]
         ];
 
-        // Declare CategoryController instance and execute editSlideSubmit().
+        // Declare SlideController instance and execute editSlideSubmit().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, $testGetData, $testPostData, $testFilesData);
         $result = @$slideController->editSlideSubmit();
 
@@ -358,7 +358,7 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
             ->method('deleteRecordById')
             ->with($this->equalTo($testPostData['slide']['slide_id']));
 
-        // Declare CategoryController instance and execute deleteSlides().
+        // Declare SlideController instance and execute deleteSlides().
         $slideController = new \NNGames\Controllers\SlideController($this->mockSlidesTable, null, $testPostData, null);
         @$slideController->deleteSlide();
 
