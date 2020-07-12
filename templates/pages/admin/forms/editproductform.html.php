@@ -26,7 +26,7 @@
             <option <?=(isset($product) && !empty($product) && $product->category_id == 0) ? 'selected="selected"' : '';?> value="">None</option>
             <?php foreach ($categories as $categoryChoice): ?>
                 <?php if ($categoryChoice->parent_id == null && count($categoryChoice->getChildCategories()) == 0 || $categoryChoice->parent_id != null): ?>
-                    <option value="<?=$categoryChoice->category_id;?>"><?=htmlspecialchars(strip_tags($categoryChoice->name), ENT_QUOTES, 'UTF-8');?></option>
+                    <option <?=(isset($product) && !empty($product) && $product->category_id == $categoryChoice->category_id) ? 'selected="selected"' : '';?> value="<?=$categoryChoice->category_id;?>"><?=htmlspecialchars(strip_tags($categoryChoice->name), ENT_QUOTES, 'UTF-8');?></option>
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
