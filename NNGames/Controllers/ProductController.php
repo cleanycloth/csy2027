@@ -107,13 +107,12 @@ class ProductController {
 
         // Filter products by selected category.
         if (isset($this->get['category']) && $this->get['category'] != '') {
-            if (isset($this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']))[0]))
-                $category = $this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']))[0];
-                $childCategories = $category->getChildCategories();
+            $category = $this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']));
 
             if (!empty($category)) {
+                $childCategories = $category[0]->getChildCategories();
                 foreach ($products as $product) {
-                    if ($product->category_id == $category->category_id)
+                    if ($product->category_id == $category[0]->category_id)
                         $categoryFilteredProducts[] = $product;
                     else {
                         foreach ($childCategories as $childCategory) {
@@ -124,7 +123,7 @@ class ProductController {
                     }
                 }
         
-                $pageName = $category->name;
+                $pageName = $category[0]->name;
 
                 if (isset($categoryFilteredProducts)) {
                     $filteredProducts = $categoryFilteredProducts;
