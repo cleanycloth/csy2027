@@ -495,13 +495,13 @@ class ProductController {
                 }
 
                 if ($this->post['product']['category_id'] == '')
-                    unset($this->post['product']['category_id']);
+                    $this->post['product']['category_id'] =  null;
 
                 if ($this->post['product']['platform_id'] == '')
-                    unset($this->post['product']['platform_id']);
+                    $this->post['product']['platform_id'] = null;
 
                 if ($this->post['product']['genre_id'] == '')
-                    unset($this->post['product']['genre_id']);
+                    $this->post['product']['genre_id'] = null;
 
                 if ($this->files['image']['tmp_name'] != '') {
                     if (isset($this->get['id'])) {
