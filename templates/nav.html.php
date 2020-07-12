@@ -1,4 +1,5 @@
 <nav class="site-nav">
+    <button><i class="fas fa-times-circle"></i></button>
     <ul>
         <?php foreach ($categories as $category): ?>
             <?php if (count($category->getChildCategories()) > 0): ?>
