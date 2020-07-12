@@ -24,39 +24,41 @@ class ProductController {
     public function viewProduct() {
         if (isset($this->get['id'])) {
             $product = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0];
-            $category = $this->categoriesTable->retrieveRecord('category_id', $product->category_id);
-            $platform = $this->platformsTable->retrieveRecord('platform_id', $product->platform_id);
-            $genre = $this->genresTable->retrieveRecord('genre_id', $product->genre_id);
 
             if (empty($product))
                 header('Location: /products');
+            else {
+                $category = $this->categoriesTable->retrieveRecord('category_id', $product->category_id);
+                $platform = $this->platformsTable->retrieveRecord('platform_id', $product->platform_id);
+                $genre = $this->genresTable->retrieveRecord('genre_id', $product->genre_id);
+            
+                if (!empty($category))
+                    $categoryName = $category[0]->name;
+                else
+                    $categoryName = 'N/A';
 
-            if (!empty($category))
-                $categoryName = $category[0]->name;
-            else
-                $categoryName = 'N/A';
+                if (!empty($platform))
+                    $platformName = $platform[0]->name;
+                else
+                    $platformName = 'N/A';
 
-            if (!empty($platform))
-                $platformName = $platform[0]->name;
-            else
-                $platformName = 'N/A';
+                if (!empty($genre))
+                    $genreName = $genre[0]->name;
+                else
+                    $genreName = 'N/A';
 
-            if (!empty($genre))
-                $genreName = $genre[0]->name;
-            else
-                $genreName = 'N/A';
-
-            return [ 
-                'layout' => 'layout.html.php',
-                'template' => 'product.html.php',
-                'variables' => [
-                    'product' => $product,
-                    'categoryName' => $categoryName,
-                    'platformName' => $platformName,
-                    'genreName' => $genreName
-                ],
-                'title' => 'Product - ' . $product->name
-            ];
+                return [ 
+                    'layout' => 'layout.html.php',
+                    'template' => 'product.html.php',
+                    'variables' => [
+                        'product' => $product,
+                        'categoryName' => $categoryName,
+                        'platformName' => $platformName,
+                        'genreName' => $genreName
+                    ],
+                    'title' => 'Product - ' . $product->name
+                ];
+            }
         }
         else
             header('Location: /products');
@@ -333,14 +335,8 @@ class ProductController {
                 for ($i=0; $i<count($searchTerms); $i++) {
                     // Add search terms to the variable $regExString to build a RegEx pattern.
                     for ($j=0; $j<count($searchTerms); $j++) {
-                        if ($j != count($searchTerms)) {
-                            $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
-                            $regExString .= $searchTermNoSpecialChars . '|';
-                        }
-                        else {
-                            $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
-                            $regExString .= $searchTermNoSpecialChars;
-                        }
+                        $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
+                        $regExString .= $searchTermNoSpecialChars . '|';
                     }
 
                     // Remove spaces (replaced with hyphens) and other special characters from product name.
