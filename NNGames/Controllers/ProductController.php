@@ -114,7 +114,7 @@ class ProductController {
                 foreach ($products as $product) {
                     if ($product->category_id == $category[0]->category_id)
                         $categoryFilteredProducts[] = $product;
-                    else {
+                    else if (!empty($childCategories)) {
                         foreach ($childCategories as $childCategory) {
                             if ($product->category_id == $childCategory->category_id) {
                                 $categoryFilteredProducts[] = $product;
@@ -141,12 +141,11 @@ class ProductController {
 
         // Filter products by selected platform.
         if (isset($this->get['platform']) && $this->get['platform'] != '') {
-            if (isset($this->platformsTable->retrieveRecord('name', urldecode($this->get['platform']))[0]))
-                $platform = $this->platformsTable->retrieveRecord('name', urldecode($this->get['platform']))[0];
+            $platform = $this->platformsTable->retrieveRecord('name', urldecode($this->get['platform']));
 
             if (!empty($filteredProducts) && !empty($platform)) {
                 foreach ($filteredProducts as $product) {
-                    if ($product->platform_id == $platform->platform_id) {
+                    if ($product->platform_id == $platform[0]->platform_id) {
                         $platformFilteredProducts[] = $product;
                     }
                 }
@@ -158,7 +157,7 @@ class ProductController {
             }
             else if (empty($filteredProducts) && !empty($platform)) {
                 foreach ($products as $product) {
-                    if ($product->platform_id == $platform->platform_id) {
+                    if ($product->platform_id == $platform[0]->platform_id) {
                         $platformFilteredProducts[] = $product;
                     }
                 }
@@ -168,12 +167,12 @@ class ProductController {
                 else
                     $filteredProducts = null;
 
-                if (!isset($pageName) && !isset($errorMsg) && !empty($filteredProducts)) {
-                    $pageName = $platform->name;
+                if (isset($pageName) && isset($errorMsg) && !empty($filteredProducts)) {
+                    $pageName = $platform[0]->name;
                     $errorMsg = '';   
                 }
                 else {
-                    $pageName = $platform->name;
+                    $pageName = $platform[0]->name;
                     $errorMsg = 'There are currently no products that match the selected filters.';
                 }
             }
@@ -186,12 +185,11 @@ class ProductController {
 
         // Filter products by selected genre.
         if (isset($this->get['genre']) && $this->get['genre'] != '') {
-            if (isset($this->genresTable->retrieveRecord('name', urldecode($this->get['genre']))[0]))
-                $genre = $this->genresTable->retrieveRecord('name', urldecode($this->get['genre']))[0];
+            $genre = $this->genresTable->retrieveRecord('name', urldecode($this->get['genre']));
 
             if (!empty($filteredProducts) && !empty($genre)) {
                 foreach ($filteredProducts as $product) {
-                    if ($product->genre_id == $genre->genre_id) {
+                    if ($product->genre_id == $genre[0]->genre_id) {
                         $genreFilteredProducts[] = $product;
                     }
                 }
@@ -203,7 +201,7 @@ class ProductController {
             }
             else if (empty($filteredProducts) && !empty($genre)) {
                 foreach ($products as $product) {
-                    if ($product->genre_id == $genre->genre_id) {
+                    if ($product->genre_id == $genre[0]->genre_id) {
                         $genreFilteredProducts[] = $product;
                     }
                 }
@@ -213,13 +211,13 @@ class ProductController {
                 else
                     $filteredProducts = null;
 
-                if (!isset($pageName) && !isset($errorMsg) && !empty($filteredProducts)) {
-                    $pageName = $genre->name;
+                if (isset($pageName) && isset($errorMsg) && !empty($filteredProducts)) {
+                    $pageName = $genre[0]->name;
                     $errorMsg = '';   
                 }
                 else {
-                    $pageName = $genre->name;
-                    $errorMsg = 'There are currently no products that match the selected filters.';
+                    $pageName = $genre[0]->name;
+                    $errorMsg = 'There are currently no products that match the specified filters.';
                 }
             }
             else {
@@ -237,44 +235,49 @@ class ProductController {
         else 
             $pageNumber = 1;
 
-        if ($pageNumber > 0)
+        if ($pageNumber > 0) {
             $offset = ($pageNumber-1) * $productsPerPage;
-        else
-            header('Location: ' . (str_replace("page=$pageNumber", "page=1", $_SERVER['REQUEST_URI'])));
-
-        if (!empty($filteredProducts)) {
-            for ($i=$offset; $i<$offset+$productsPerPage && $i<count($filteredProducts); $i++) {
-                $paginatedFilteredProducts[] = $filteredProducts[$i];
+            
+            if (!empty($filteredProducts)) {
+                for ($i=$offset; $i<$offset+$productsPerPage && $i<count($filteredProducts); $i++) {
+                    $paginatedFilteredProducts[] = $filteredProducts[$i];
+                }
+    
+                $totalProducts = count($filteredProducts);
+                $totalPages = ceil(count($filteredProducts) / $productsPerPage);
+            }
+            else {
+                for ($i=$offset; $i<$offset+$productsPerPage && $i<count($products); $i++) {
+                    $paginatedFilteredProducts[] = $products[$i];
+                }
+    
+                $totalProducts = count($products);
+                $totalPages = ceil(count($products) / $productsPerPage);
             }
 
-            $totalProducts = count($filteredProducts);
-            $totalPages = ceil(count($filteredProducts) / $productsPerPage);
+            // Display all products if no $_GET variables are declared.
+            if (!isset($this->get['search']) && !isset($this->get['category']) && !isset($this->get['platform']) && !isset($this->get['genre'])) {
+                $pageName = 'All Products';
+
+                if (count($products) > 0) { 
+                    if (isset($paginatedFilteredProducts)) {
+                        $filteredProducts = $paginatedFilteredProducts;
+                        $errorMsg = '';
+                    }
+                    else {
+                        $previousPageNumber = $pageNumber-1;
+                        header('Location: ' . (str_replace("page=$pageNumber", "page=$previousPageNumber", $_SERVER['REQUEST_URI'])));
+                    }
+                }
+                else 
+                    $errorMsg = 'There are currently no products.';
+            }
         }
         else {
-            for ($i=$offset; $i<$offset+$productsPerPage && $i<count($products); $i++) {
-                $paginatedFilteredProducts[] = $products[$i];
-            }
-
-            $totalProducts = count($products);
-            $totalPages = ceil(count($products) / $productsPerPage);
-        }
-
-        // Display all products if no $_GET variables are declared.
-        if (!isset($this->get['search']) && !isset($this->get['category']) && !isset($this->get['platform']) && !isset($this->get['genre'])) {
-            $pageName = 'All Products';
-
-            if (count($products) > 0) { 
-                if (isset($paginatedFilteredProducts)) {
-                    $filteredProducts = $paginatedFilteredProducts;
-                    $errorMsg = '';
-                }
-                else {
-                    $previousPageNumber = $pageNumber-1;
-                    header('Location: ' . (str_replace("page=$pageNumber", "page=$previousPageNumber", $_SERVER['REQUEST_URI'])));
-                }
-            }
-            else 
-                $errorMsg = 'There are currently no products.';
+            header('Location: ' . (str_replace("page=$pageNumber", "page=1", $_SERVER['REQUEST_URI'])));
+            $offset = 0;
+            $totalProducts = 0;
+            $totalPages = 0;
         }
 
         if (!empty($filteredProducts) > 0)
