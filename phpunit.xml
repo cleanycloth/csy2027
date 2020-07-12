@@ -2,6 +2,7 @@
 <phpunit>
     <testsuites>
         <testsuite name="tests">
+            <directory>tests/entrypoint</directory>
             <directory>tests/databasetable</directory>
             <directory>tests/controllers</directory>
             <directory>tests/entities</directory>
@@ -9,6 +10,7 @@
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
+            <file>CSY2028/EntryPoint.php</file>
             <file>CSY2028/DatabaseTable.php</file>
             <file>NNGames/Controllers/SiteController.php</file>
             <file>NNGames/Controllers/UserController.php</file>
