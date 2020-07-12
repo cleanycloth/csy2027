@@ -41,23 +41,24 @@ class CategoryController {
 
             if (empty($category))
                 header('Location: /admin/categories');
+            else {
+                if ($category->parent_id != null)
+                    $parentCategory = $this->categoriesTable->retrieveRecord('category_id', $category->parent_id)[0];
+                else
+                    $parentCategory = null;
 
-            if ($category->parent_id != null)
-                $parentCategory = $this->categoriesTable->retrieveRecord('category_id', $category->parent_id)[0];
-            else
-                $parentCategory = null;
-
-            return [
-                'layout' => 'adminlayout.html.php',
-                'template' => 'pages/admin/editcategory.html.php',
-                'variables' => [
-                    'category' => $category,
-                    'parentCategory' => $parentCategory,
-                    'categories' => $categories,
-                    'pageName' => $pageName
-                ],
-                'title' => 'Admin Panel - ' . $pageName
-            ];   
+                return [
+                    'layout' => 'adminlayout.html.php',
+                    'template' => 'pages/admin/editcategory.html.php',
+                    'variables' => [
+                        'category' => $category,
+                        'parentCategory' => $parentCategory,
+                        'categories' => $categories,
+                        'pageName' => $pageName
+                    ],
+                    'title' => 'Admin Panel - ' . $pageName
+                ];   
+            }
         }
         else {
             return [
@@ -80,13 +81,16 @@ class CategoryController {
             if (isset($this->get['id'])) {
                 $category = $this->categoriesTable->retrieveRecord('category_id', $this->get['id'])[0];
 
-                if (empty($category))
+                if (empty($category)) {
                     header('Location: /admin/categories');
-
-                if ($category->parent_id != null)
-                    $parentCategory = $this->categoriesTable->retrieveRecord('category_id', $category->parent_id)[0];
-                else
                     $parentCategory = null;
+                }
+                else {
+                    if ($category->parent_id != null)
+                        $parentCategory = $this->categoriesTable->retrieveRecord('category_id', $category->parent_id)[0];
+                    else
+                        $parentCategory = null;
+                }
             }
             else {
                 $category = '';

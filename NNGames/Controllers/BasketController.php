@@ -30,14 +30,25 @@ class BasketController {
                         break;
                     }
                 }
+                else {
+                    if ((int)$this->post['quantity'] > 99) {
+                        $limitReached = true;
+                        break;
+                    }
+                }
             }
 
-            if ($alreadyInBasket && !$limitReached) {
+            if ($alreadyInBasket && $limitReached) {
+                $values = [
+                    'status' => 'Item could not be added. (Max. Quantity: 99)'
+                ];
+            }
+            else if ($alreadyInBasket && !$limitReached) {
                 $values = [
                     'status' => 'Item has been added to your basket!'
                 ];
             }
-            else if ($alreadyInBasket && $limitReached) {
+            else if (!$alreadyInBasket && $limitReached) {
                 $values = [
                     'status' => 'Item could not be added. (Max. Quantity: 99)'
                 ];
@@ -60,7 +71,7 @@ class BasketController {
             ];
 
             $values = [
-                'status' => 'User has no basket. Initialising new basket.'
+                'status' => 'Item has been added to your basket!'
             ];
         }
 
@@ -88,7 +99,7 @@ class BasketController {
 
             if ($alreadyInBasket) {
                 $values = [
-                    'status' => 'Quantity for product (ID: ' . $this->post['productId'] . ') updated in basket'
+                    'status' => 'Quantity for product (ID: ' . $this->post['productId'] . ') updated in basket.'
                 ];
             }
             else {
@@ -102,15 +113,28 @@ class BasketController {
                 'status' => 'User has no basket.'
             ];
         }
+
+        return [
+            'layout' => 'blanklayout.html.php',
+            'template' => 'json/response.html.php',
+            'variables' => [
+                'response' => json_encode($values)
+            ],
+            'title' => 'JSON Response'
+        ];
     }
 
     // Method for retrieving all items currently in the user's basket.
     public function getBasketContents() {
         if (isset($_SESSION['basket'])) {
             if (count($_SESSION['basket']) > 0) {
+                $values = [
+                    'status' => 'Basket has ' . count($_SESSION['basket']) . ' product(s).'
+                ];
+
                 foreach ($_SESSION['basket'] as $basketItem) {
                     $product = $this->productsTable->retrieveRecord('product_id', $basketItem['productId'])[0];
-        
+
                     $values['basket'][] = [
                         'productId' => $product->product_id,
                         'name' => $product->name,

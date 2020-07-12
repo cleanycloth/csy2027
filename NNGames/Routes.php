@@ -6,27 +6,36 @@ class Routes implements \CSY2028\Routes {
     private $productsTable;
     private $slidesTable;
 
-    public function getRoutes() {
-        //require '../dbConnection.php';
-        require '../dbConnection.vagrant.php';
+    private $pdo;
 
+    public function __construct() {
+        //require dirname(__FILE__).'/../dbConnection.php';
+        require dirname(__FILE__).'/../dbConnection.vagrant.php';
+
+        $this->pdo = $pdo;
+    }
+
+    public function getRoutes() {
         // Create new DatabaseTable objects.
-        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$pdo]);
-        $this->usersTable = new \CSY2028\DatabaseTable($pdo, 'users', 'user_id');
-        $addressesTable = new \CSY2028\DatabaseTable($pdo, 'addresses', 'address_id');
-        $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id', '\NNGames\Entities\Product', [$pdo]);
-        $platformsTable = new \CSY2028\DatabaseTable($pdo, 'platforms', 'platform_id');
-        $genresTable = new \CSY2028\DatabaseTable($pdo, 'genres', 'genre_id');
-        $this->slidesTable = new \CSY2028\DatabaseTable($pdo, 'slides', 'slide_id');
-        $imagesTable = new \CSY2028\DatabaseTable($pdo, 'images', 'image_id');
+        $this->categoriesTable = new \CSY2028\DatabaseTable($this->pdo, 'categories', 'category_id');
+        $platformsTable = new \CSY2028\DatabaseTable($this->pdo, 'platforms', 'platform_id', '\NNGames\Entities\Platform');
+        $genresTable = new \CSY2028\DatabaseTable($this->pdo, 'genres', 'genre_id', '\NNGames\Entities\Genre');
+        $this->usersTable = new \CSY2028\DatabaseTable($this->pdo, 'users', 'user_id', '\NNGames\Entities\User');
+        $addressesTable = new \CSY2028\DatabaseTable($this->pdo, 'addresses', 'address_id');
+        $this->productsTable = new \CSY2028\DatabaseTable($this->pdo, 'products', 'product_id', '\NNGames\Entities\Product', [$this->categoriesTable, $platformsTable, $genresTable]);
+        $this->slidesTable = new \CSY2028\DatabaseTable($this->pdo, 'slides', 'slide_id', '\NNGames\Entities\Slide');
+
+        // Redeclare $categoriesTable with new value;
+        $this->categoriesTable = new \CSY2028\DatabaseTable($this->pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$this->categoriesTable, $this->productsTable]);
+        $this->categoriesTable = new \CSY2028\DatabaseTable($this->pdo, 'categories', 'category_id', '\NNGames\Entities\Category', [$this->categoriesTable, $this->productsTable]);
 
         // Create new controller objects.
         $siteController = new \NNGames\Controllers\SiteController();
         $userController = new \NNGames\Controllers\UserController($this->usersTable, $_GET, $_POST);
         $adminController = new \NNGames\Controllers\AdminController();
-        $productController = new \NNGames\Controllers\ProductController($this->productsTable, $imagesTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST);
+        $productController = new \NNGames\Controllers\ProductController($this->productsTable, $this->categoriesTable, $platformsTable, $genresTable, $_GET, $_POST, $_FILES);
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
-        $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $imagesTable, $_GET, $_POST);
+        $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $_GET, $_POST, $_FILES);
         $basketController = new \NNGames\Controllers\BasketController($this->productsTable, $_GET, $_POST);
 
         // Define routes.
@@ -334,7 +343,6 @@ class Routes implements \CSY2028\Routes {
     public function updateRole() {
         // Check if the session variable $_SESSION['id'] has been set.
         if (isset($_SESSION['id'])) {
-            require '../dbConnection.php';
             $user = $this->usersTable->retrieveRecord('user_id', $_SESSION['id'])[0];
     
             // Check the user's current role frm the database and update $_SESSION variables accordingly.

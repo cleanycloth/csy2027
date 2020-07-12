@@ -2,15 +2,15 @@
 namespace NNGames\Controllers;
 class SlideController {
     private $slidesTable;
-    private $imagesTable;
     private $get;
     private $post;
+    private $files;
 
-    public function __construct(\CSY2028\DatabaseTable $slidesTable, \CSY2028\DatabaseTable $imagesTable, $get, $post) {
+    public function __construct(\CSY2028\DatabaseTable $slidesTable, $get, $post, $files) {
         $this->slidesTable = $slidesTable;
-        $this->imagesTable = $imagesTable;
         $this->get = $get;
         $this->post = $post;
+        $this->files = $files;
     }
 
     public function listSlides() {
@@ -39,16 +39,17 @@ class SlideController {
 
             if (empty($slide))
                 header('Location: /admin/slides');
-
-            return [
-                'layout' => 'adminlayout.html.php',
-                'template' => 'pages/admin/editslide.html.php',
-                'variables' => [
-                    'slide' => $slide,
-                    'pageName' => $pageName
-                ],
-                'title' => 'Admin Panel - ' . $pageName
-            ];   
+            else {
+                return [
+                    'layout' => 'adminlayout.html.php',
+                    'template' => 'pages/admin/editslide.html.php',
+                    'variables' => [
+                        'slide' => $slide,
+                        'pageName' => $pageName
+                    ],
+                    'title' => 'Admin Panel - ' . $pageName
+                ];   
+            }
         }
         else {
             return [
@@ -73,7 +74,7 @@ class SlideController {
             else
                 $slide = '';
 
-            $uploadedFile = $_FILES['image']['tmp_name'];
+            $uploadedFile = $this->files['image']['tmp_name'];
 
             if ($uploadedFile == '') {
                 if ($this->post['slide']['name'] != '') {
@@ -128,17 +129,17 @@ class SlideController {
                     $template = 'pages/admin/success/editslidesuccess.html.php';
                 }
 
-                if ($_FILES['image']['tmp_name'] != '') {
+                if ($this->files['image']['tmp_name'] != '') {
                     if (isset($this->get['id'])) {
-                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($slide->image, '/'));
+                        move_uploaded_file($this->files['image']['tmp_name'], ltrim($slide->image, '/'));
 
                         $this->slidesTable->save($this->post['slide']);
                     }
                     else {
-                        $parts = explode('.', $_FILES['image']['name']);
+                        $parts = explode('.', $this->files['image']['name']);
                         $extension = end($parts);
                         $filePath = '/images/slides/' . uniqid() . '.' . $extension;
-                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($filePath, '/'));
+                        move_uploaded_file($this->files['image']['tmp_name'], ltrim($filePath, '/'));
 
                         $this->post['slide']['image'] = $filePath;
                         $this->slidesTable->save($this->post['slide']);
@@ -167,7 +168,8 @@ class SlideController {
                 $variables = [
                     'pageName' => $pageName,
                     'error' => $error,
-                    'slide' => $slide
+                    'slide' => $slide,
+                    'files' => $this->files
                 ];
             }
         }
