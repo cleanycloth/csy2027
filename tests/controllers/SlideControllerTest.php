@@ -275,7 +275,6 @@ class SlideControllerTest extends \PHPUnit\Framework\TestCase {
         // Check if error is returned as expected.
         $this->assertEquals('The image needs to have dimensions of 1920x500.', $result['variables']['error']);
     }
-
     
     function testEditSlideSubmitSuccessfulNoId() { 
         // Define POST data.
