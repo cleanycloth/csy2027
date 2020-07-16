@@ -2,7 +2,12 @@
 namespace NNGames\Controllers;
 class CheckoutController {
     public function checkoutReviewBasket() {
-        header('Location: /checkout/address');
+        return [
+            'layout' => 'layout.html.php',
+            'template' => 'pages/main/checkoutbasket.html.php',
+            'variables' => [],
+            'title' => 'Checkout - Review Basket'
+        ];
     }
 
     public function checkoutAddress() {
