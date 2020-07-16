@@ -6,6 +6,18 @@ class Routes implements \CSY2028\Routes {
     private $productsTable;
     private $slidesTable;
 
+<<<<<<< Updated upstream
+=======
+    private $pdo;
+
+    public function __construct() {
+        require dirname(__FILE__).'/../dbConnection.php';
+        //require dirname(__FILE__).'/../dbConnection.vagrant.php';
+
+        $this->pdo = $pdo;
+    }
+
+>>>>>>> Stashed changes
     public function getRoutes() {
         require '../dbConnection.php';
 
