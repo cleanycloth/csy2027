@@ -782,11 +782,7 @@ nav ul .dropdown:hover ul li a:active {
     overflow: hidden;
     width: 34vw;
 }
-.checkout form{
-    overflow: hidden;
-    width: 50vw;
-}
-.site-main form h2, .checkout form h2 {
+.site-main form h2, {
     text-align: center;
 }
 .site-main form output {
@@ -799,34 +795,24 @@ nav ul .dropdown:hover ul li a:active {
     text-align: center;
     word-wrap: break-word;
 }
-.checkout form output {
-    display: block;
-    color: red;
-    font-weight: bold;
-    font-style: italic;
-    margin: 0 auto 1em auto;
-    width: 24vw;
-    text-align: left;
-    word-wrap: break-word;
-}
-.site-main form .fields, .checkout form .fields{
+.site-main form .fields {
     display: grid;
     grid-template-columns: max-content max-content;
     gap: 0.8em;
 }
-.site-main form .buttons, .checkout form.buttons {
+.site-main form .buttons {
     width: max-content;
     display: block;
 }
-.site-main form div, .site-main form input[type=submit], .site-main form button, .checkout form input [type=submit],.checkout form div, .checkout form button {
+.site-main form div, .site-main form input[type=submit], .site-main form button {
     margin: 0 auto 0.6em auto;
 }
-.site-main form label, .checkout form label{
+.site-main form label {
     padding: 0.4em 0 0.4em 0;
     width: 18em;
     text-align: right;
 }
-.site-main form .required::after, .checkout form .required::after {
+.site-main form .required::after {
     color: red;
     content: ' *';
 }
@@ -834,24 +820,16 @@ nav ul .dropdown:hover ul li a:active {
     padding: 0.4em;
     width: 14vw;
 }
-.checkout form input[type=text], .checkout form input[type=password], .checkout form input[type=email], .checkout form input[type=date], .checkout form input[type=time], .checkout form input[type=tel], .checkout form input[type=url], .checkout form input[type=number] {
-    padding: 0.4em;
-    width: 14vw;
-}
-.site-main form input[type=file],.checkout form input [type=file]{
+.site-main form input[type=file] {
     padding: 0.4em 0;
 }
-.site-main form .card-date, .checkout form .card-date{
+.site-main form .card-date {
     margin: 0;
 }
-.site-main form .card-date input,.checkout form .card-date input {
+.site-main form .card-date input {
     width: 2.2em;
 }
 .site-main form .radio-buttons, .site-main form .checkboxes, .site-main form .checkboxes-row, .site-main form .radio-buttons-row {
-    margin: 0;
-    padding: 0.4em 0;
-}
-.checkout form .radio-buttons, .checkout form .checkboxes, .checkout form .checkboxes-row, .checkout form .radio-buttons-row {
     margin: 0;
     padding: 0.4em 0;
 }
@@ -860,16 +838,8 @@ nav ul .dropdown:hover ul li a:active {
     flex-direction: row;
     flex-wrap: wrap;
 }
-.checkout form .checkboxes-row, .checkout form .radio-buttons-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
 .site-main form .checkboxes-row .checkbox, .site-main form .radio-buttons-row .radio-button {
     margin: 0 1em 0 0;
-}
-.checkout form .checkboxes-row .checkbox, .checkout form .radio-buttons-row .radio-button {
-    margin-left: 2em;
 }
 .site-main form textarea {
     resize: none;
@@ -879,22 +849,6 @@ nav ul .dropdown:hover ul li a:active {
 .site-main form input[type=button], .site-main form input[type=submit], .site-main form input[type=reset], .site-main form button, .site-main .button {
     display: block;
     text-align: center;
-    text-decoration: none;
-    background-color: #535BFF;
-    color: white;
-    border: none;
-    font-size: 1em;
-    padding: 0.6em;
-    margin-top: 1em;
-    width: max-content;
-    border: 1px solid #535BFF;
-    border-radius: 8px;
-    transition-duration: 0.1s;
-    cursor: pointer;
-}
-.checkout form input[type=button], .checkout form input[type=submit], .checkout form input[type=reset], .checkout form button, .checkout .button {
-    display: block;
-    text-align: left;
     text-decoration: none;
     background-color: #535BFF;
     color: white;
@@ -935,6 +889,10 @@ nav ul .dropdown:hover ul li a:active {
 }
 .site-main form p a:hover {
     text-decoration: underline;
+}
+
+.checkout form {
+    margin: 0;
 }
 
 /* Product */
@@ -1241,13 +1199,12 @@ body::-webkit-scrollbar-thumb:horizontal {
 /* Checkout Pages */
 .checkout {
         background-color:rgb(211, 211, 211);
-        margin:0.3em;
-        border:0.3em;
-        border-color:white;
+        margin: 0.3em;
+        padding: 2em;
 }
 .currentpage {
-display: inline;
-color:blueviolet;
+    display: inline;
+    color:blueviolet;
 }
 
 .checkout p{
@@ -1263,9 +1220,9 @@ color:blueviolet;
     font-size:xx-large;
 }
 .checkout .completeform{
-text-align: center;
-align-content: center;
-font-family: sans-serif;
+    text-align: center;
+    align-content: center;
+    font-family: sans-serif;
 }
 .checkout .completeform h2{
     margin:0;
