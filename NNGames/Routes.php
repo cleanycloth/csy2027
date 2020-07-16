@@ -37,6 +37,8 @@ class Routes implements \CSY2028\Routes {
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
         $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $_GET, $_POST, $_FILES);
         $basketController = new \NNGames\Controllers\BasketController($this->productsTable, $_GET, $_POST);
+        $accountController = new \NNGames\Controllers\AccountController();
+        
 
         // Define routes.
         $routes = [
@@ -47,6 +49,43 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => [$this->productsTable->retrieveAllRecords(), $this->slidesTable->retrieveAllRecords()]
                 ]
             ],
+            // Account pages
+            'myaccount' => [
+                'GET' => [
+                    'controller' => $accountController,
+                    'function' => 'mainView',
+                    'parameters' => []
+                ]
+            ],
+            'myaccount/addresses' => [
+                'GET' => [
+                    'controller' => $accountController,
+                    'function' => 'addresses',
+                    'parameters' => []
+                ]
+                ],
+            'myaccount/payinfo' => [
+                'GET' => [
+                    'controller' => $accountController,
+                    'function' => 'payment',
+                    'parameters' => []
+                ]
+                ],
+            'myaccount/orders' => [
+                'GET' => [
+                    'controller' => $accountController,
+                    'function' => 'orders',
+                    'parameters' => []
+                ]
+                ],
+            'myaccount/settings' => [
+                'GET' => [
+                    'controller' => $accountController,
+                    'function' => 'settings',
+                    'parameters' => []
+                ]
+                ],
+            // Sign-in pages
             'login' => [
                 'GET' => [
                     'controller' => $userController,
@@ -78,6 +117,7 @@ class Routes implements \CSY2028\Routes {
                     'parameters' => []
                 ]
             ],
+            // Product pages
             'product' => [
                 'GET' => [
                     'controller' => $productController,
