@@ -3,11 +3,13 @@
         <a href="/"><h1>NNGames</h1></a>
     </div>
 
-    <div class="search">
-        <form action="/search" method="get">
-            <input type="search" name="search" placeholder="Search">
+    <div id="search-box">
+        <form autocomplete="off" action="/products" method="get">
+            <input type="search" name="search" id="search" placeholder="Search" value="<?=(isset($_GET['search'])) ? $_GET['search'] : '';?>">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>
+        <div id="search-results">
+        </div>
     </div>
 
     <div class="user-options">

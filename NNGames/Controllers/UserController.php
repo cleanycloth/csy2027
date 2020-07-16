@@ -45,16 +45,9 @@ class UserController {
     public function registerForm() {
         $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
 
-        if (rtrim($route, '/') == "/myaccount") {
-            $pageName = 'My Account';
-            $layout = 'layout.html.php';            
-            $template = 'pages/main/forms/registerform.html.php';
-        }
-        else {
-            $pageName = 'Sign Up';
-            $layout = 'layout.html.php';
-            $template = 'pages/main/forms/registerform.html.php';
-        }
+        $pageName = 'Sign Up';
+        $layout = 'layout.html.php';
+        $template = 'pages/main/forms/registerform.html.php';
         
         // Check whether the user is already logged in. If not, return the form.
         if (!isset($_SESSION['isLoggedIn'])) {
@@ -139,21 +132,22 @@ class UserController {
         if (isset($this->get['id'])) {
             $user = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0];
 
-            if (empty($user))
-                header('Location: /admin/users');
-
-            // Check if the user has permission to access the details of another user.
-            // Redirect the user back to /admin/users if not.
-            if (!empty($user) && (isset($_SESSION['isOwner'])) || $this->get['id'] == $_SESSION['id'] || isset($_SESSION['isAdmin']) && $user->user_type == 0) {
-                return [
-                    'layout' => 'adminlayout.html.php',
-                    'template' => 'pages/admin/edituser.html.php',
-                    'variables' => [
-                        'user' => $user,
-                        'pageName' => $pageName
-                    ],
-                    'title' => 'Admin Panel - ' . $pageName
-                ];
+            if (!empty($user)) {
+                // Check if the user has permission to access the details of another user.
+                // Redirect the user back to /admin/users if not.
+                if (isset($_SESSION['isOwner']) || $this->get['id'] == $_SESSION['id'] || isset($_SESSION['isAdmin']) && $user->user_type == 0) {
+                    return [
+                        'layout' => 'adminlayout.html.php',
+                        'template' => 'pages/admin/edituser.html.php',
+                        'variables' => [
+                            'user' => $user,
+                            'pageName' => $pageName
+                        ],
+                        'title' => 'Admin Panel - ' . $pageName
+                    ];
+                }
+                else
+                    header('Location: /admin/users');
             }
             else
                 header('Location: /admin/users');
@@ -194,11 +188,11 @@ class UserController {
                     $currentUsername = $this->usersTable->retrieveRecord('user_id', $this->get['id'])[0]->username;
 
                     if (!empty($existingUsername) && htmlspecialchars(strip_tags($this->post['user']['username']), ENT_QUOTES, 'UTF-8') != $currentUsername)
-                        $errors[] = 'The specified username already is already in use.';
+                        $errors[] = 'The specified username is already in use.';
                 }
                 else if ($route == 'register' || $route == 'admin/users/edit' && !isset($this->get['id'])) {
                     if (!empty($existingUsername))
-                        $errors[] = 'The specified username already is already in use.';
+                        $errors[] = 'The specified username is already in use.';
                 }
             }
             else
@@ -256,11 +250,6 @@ class UserController {
                     $layout = 'adminlayout.html.php';
                     $template = 'pages/admin/success/editusersuccess.html.php';
                 }
-                else if ($route == "myaccount") {
-                    $pageName = 'My Account';
-                    $layout = 'layout.html.php';
-                    $template = 'pages/main/success/updateuser.html.php';
-                }
                 else {
                     $pageName = 'Account Created';
                     $layout = 'layout.html.php';
@@ -302,11 +291,6 @@ class UserController {
                     $layout = 'adminlayout.html.php';
                     $template = 'pages/admin/forms/edituserform.html.php';
                 }
-                else if ($route == "myaccount") {
-                    $pageName = 'My Account';
-                    $layout = 'layout.html.php';
-                    $template = 'pages/main/forms/registerform.html.php';
-                }
                 else {
                     $pageName = 'Sign Up';
                     $layout = 'layout.html.php';
@@ -344,6 +328,7 @@ class UserController {
             unset($_SESSION['isOwner']);
             unset($_SESSION['isAdmin']);
             unset($_SESSION['isCustomer']);
+            unset($_SESSION['basket']);
             unset($_SESSION['username']);
             unset($_SESSION['id']);
     

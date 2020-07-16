@@ -2,25 +2,309 @@
 namespace NNGames\Controllers;
 class ProductController {
     private $productsTable;
-    private $imagesTable;
     private $categoriesTable;
     private $platformsTable;
     private $genresTable;
     private $get;
     private $post;
+    private $files;
 
-    public function __construct(\CSY2028\DatabaseTable $productsTable, \CSY2028\DatabaseTable $imagesTable, \CSY2028\DatabaseTable $categoriesTable, 
-                                \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable, $get, $post) {
+    public function __construct(\CSY2028\DatabaseTable $productsTable, \CSY2028\DatabaseTable $categoriesTable, 
+                                \CSY2028\DatabaseTable $platformsTable, \CSY2028\DatabaseTable $genresTable, $get, $post, $files) {
         $this->productsTable = $productsTable;
-        $this->imagesTable = $imagesTable;
         $this->categoriesTable = $categoriesTable;
         $this->platformsTable = $platformsTable;
         $this->genresTable = $genresTable;
         $this->get = $get;
         $this->post = $post;
+        $this->files = $files;
     }
 
+    // Method for displaying the page for an individual product.
+    public function viewProduct() {
+        if (isset($this->get['id'])) {
+            $product = $this->productsTable->retrieveRecord('product_id', $this->get['id'])[0];
+
+            if (empty($product))
+                header('Location: /products');
+            else {
+                $category = $this->categoriesTable->retrieveRecord('category_id', $product->category_id);
+                $platform = $this->platformsTable->retrieveRecord('platform_id', $product->platform_id);
+                $genre = $this->genresTable->retrieveRecord('genre_id', $product->genre_id);
+            
+                if (!empty($category))
+                    $categoryName = $category[0]->name;
+                else
+                    $categoryName = 'N/A';
+
+                if (!empty($platform))
+                    $platformName = $platform[0]->name;
+                else
+                    $platformName = 'N/A';
+
+                if (!empty($genre))
+                    $genreName = $genre[0]->name;
+                else
+                    $genreName = 'N/A';
+
+                return [ 
+                    'layout' => 'layout.html.php',
+                    'template' => 'product.html.php',
+                    'variables' => [
+                        'product' => $product,
+                        'categoryName' => $categoryName,
+                        'platformName' => $platformName,
+                        'genreName' => $genreName
+                    ],
+                    'title' => 'Product - ' . $product->name
+                ];
+            }
+        }
+        else
+            header('Location: /products');
+    }
+
+    // Method for listing out multiple products from the database.
     public function listProducts() {
+        // Retrieve all products, platforms and genres.
+        $products = $this->productsTable->retrieveAllRecords();
+        $platforms = $this->platformsTable->retrieveAllRecords();
+        $genres = $this->genresTable->retrieveAllRecords();
+
+        $filteredProducts = null;
+        // Filter products by search term(s).
+        if (isset($this->get['search']) && $this->get['search'] != '') {
+            $product = $this->productsTable->retrieveRecord('name', $this->get['search']);
+
+            if (!empty($product)) {
+                $searchFilteredProducts[] = $product[0]; 
+            }
+            else {
+                $searchTerms = explode(" ", $this->get['search']);            
+                foreach ($products as $product) {
+                    for ($i=0; $i<count($searchTerms); $i++) {
+                        if (strcasecmp($product->name, $this->get['search']) == 0 || stripos($product->name, $searchTerms[$i]) !== false) {
+                            $searchFilteredProducts[] = $product;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (isset($searchFilteredProducts)) {
+                $filteredProducts = $searchFilteredProducts;
+                $errorMsg = '';
+            }
+            else
+                $errorMsg = 'No products match the specified search terms.';
+
+            $pageName = 'Search Results';
+        }
+        else {
+            $pageName = 'Search Results';
+            $errorMsg = 'You have not entered any search terms.';
+        }
+
+        // Filter products by selected category.
+        if (isset($this->get['category']) && $this->get['category'] != '') {
+            $category = $this->categoriesTable->retrieveRecord('name', urldecode($this->get['category']));
+
+            if (!empty($category)) {
+                $childCategories = $category[0]->getChildCategories();
+                foreach ($products as $product) {
+                    if ($product->category_id == $category[0]->category_id)
+                        $categoryFilteredProducts[] = $product;
+                    else if (!empty($childCategories)) {
+                        foreach ($childCategories as $childCategory) {
+                            if ($product->category_id == $childCategory->category_id) {
+                                $categoryFilteredProducts[] = $product;
+                            }
+                        }
+                    }
+                }
+        
+                $pageName = $category[0]->name;
+
+                if (isset($categoryFilteredProducts)) {
+                    $filteredProducts = $categoryFilteredProducts;
+                    $errorMsg = '';
+                }
+                else 
+                    $errorMsg = 'This category currently has no products.';
+            }
+            else {
+                $filteredProducts = null;
+                $pageName = 'Category Does Not Exist';
+                $errorMsg = 'The specified category does not exist.';
+            }
+        }
+
+        // Filter products by selected platform.
+        if (isset($this->get['platform']) && $this->get['platform'] != '') {
+            $platform = $this->platformsTable->retrieveRecord('name', urldecode($this->get['platform']));
+
+            if (!empty($filteredProducts) && !empty($platform)) {
+                foreach ($filteredProducts as $product) {
+                    if ($product->platform_id == $platform[0]->platform_id) {
+                        $platformFilteredProducts[] = $product;
+                    }
+                }
+
+                if (isset($platformFilteredProducts))
+                    $filteredProducts = $platformFilteredProducts;
+                else
+                    $filteredProducts = null;
+            }
+            else if (empty($filteredProducts) && !empty($platform)) {
+                foreach ($products as $product) {
+                    if ($product->platform_id == $platform[0]->platform_id) {
+                        $platformFilteredProducts[] = $product;
+                    }
+                }
+
+                if (isset($platformFilteredProducts))
+                    $filteredProducts = $platformFilteredProducts;
+                else
+                    $filteredProducts = null;
+
+                if (isset($pageName) && isset($errorMsg) && !empty($filteredProducts)) {
+                    $pageName = $platform[0]->name;
+                    $errorMsg = '';   
+                }
+                else {
+                    $pageName = $platform[0]->name;
+                    $errorMsg = 'There are currently no products that match the selected filters.';
+                }
+            }
+            else {
+                $filteredProducts = null;
+                $pageName = 'Platform Does Not Exist';
+                $errorMsg = 'The specified platform does not exist.';
+            }
+        }
+
+        // Filter products by selected genre.
+        if (isset($this->get['genre']) && $this->get['genre'] != '') {
+            $genre = $this->genresTable->retrieveRecord('name', urldecode($this->get['genre']));
+
+            if (!empty($filteredProducts) && !empty($genre)) {
+                foreach ($filteredProducts as $product) {
+                    if ($product->genre_id == $genre[0]->genre_id) {
+                        $genreFilteredProducts[] = $product;
+                    }
+                }
+
+                if (isset($genreFilteredProducts))
+                    $filteredProducts = $genreFilteredProducts;
+                else
+                    $filteredProducts = null;
+            }
+            else if (empty($filteredProducts) && !empty($genre)) {
+                foreach ($products as $product) {
+                    if ($product->genre_id == $genre[0]->genre_id) {
+                        $genreFilteredProducts[] = $product;
+                    }
+                }
+                
+                if (isset($genreFilteredProducts))
+                    $filteredProducts = $genreFilteredProducts;
+                else
+                    $filteredProducts = null;
+
+                if (isset($pageName) && isset($errorMsg) && !empty($filteredProducts)) {
+                    $pageName = $genre[0]->name;
+                    $errorMsg = '';   
+                }
+                else {
+                    $pageName = $genre[0]->name;
+                    $errorMsg = 'There are currently no products that match the specified filters.';
+                }
+            }
+            else {
+                $filteredProducts = null;
+                $pageName = 'Genre Does Not Exist';
+                $errorMsg = 'The specified genre does not exist.';
+            }
+        }
+
+        // Display only X amount of products  according to page number
+        $productsPerPage = 9;
+
+        if (isset($this->get['page']) && $this->get['page'] != '')
+            $pageNumber = $this->get['page'];
+        else 
+            $pageNumber = 1;
+
+        if ($pageNumber > 0) {
+            $offset = ($pageNumber-1) * $productsPerPage;
+            
+            if (!empty($filteredProducts)) {
+                for ($i=$offset; $i<$offset+$productsPerPage && $i<count($filteredProducts); $i++) {
+                    $paginatedFilteredProducts[] = $filteredProducts[$i];
+                }
+    
+                $totalProducts = count($filteredProducts);
+                $totalPages = ceil(count($filteredProducts) / $productsPerPage);
+            }
+            else {
+                for ($i=$offset; $i<$offset+$productsPerPage && $i<count($products); $i++) {
+                    $paginatedFilteredProducts[] = $products[$i];
+                }
+    
+                $totalProducts = count($products);
+                $totalPages = ceil(count($products) / $productsPerPage);
+            }
+
+            // Display all products if no $_GET variables are declared.
+            if (!isset($this->get['search']) && !isset($this->get['category']) && !isset($this->get['platform']) && !isset($this->get['genre'])) {
+                $pageName = 'All Products';
+
+                if (count($products) > 0) { 
+                    if (isset($paginatedFilteredProducts)) {
+                        $filteredProducts = $paginatedFilteredProducts;
+                        $errorMsg = '';
+                    }
+                    else {
+                        $previousPageNumber = $pageNumber-1;
+                        header('Location: ' . (str_replace("page=$pageNumber", "page=$previousPageNumber", $_SERVER['REQUEST_URI'])));
+                    }
+                }
+                else 
+                    $errorMsg = 'There are currently no products.';
+            }
+        }
+        else {
+            header('Location: ' . (str_replace("page=$pageNumber", "page=1", $_SERVER['REQUEST_URI'])));
+            $offset = 0;
+            $totalProducts = 0;
+            $totalPages = 0;
+        }
+
+        if (!empty($filteredProducts) > 0)
+            $upperAmount = $offset+count($filteredProducts);
+        else
+            $upperAmount = 0;
+
+        return [
+            'layout' => 'layout.html.php',
+            'template' => 'pages/main/products.html.php',
+            'variables' => [
+                'pageName' => $pageName,
+                'errorMsg' => $errorMsg,
+                'lowerAmount' => $offset+1,
+                'upperAmount' => $upperAmount,
+                'totalProducts' => $totalProducts,
+                'totalPages' => $totalPages,
+                'products' => $filteredProducts,
+                'platforms' => $platforms,
+                'genres' => $genres
+            ],
+            'title' => 'Products - ' . $pageName
+        ];
+    }
+
+    // Method for listing out products in the admin panel.
+    public function listProductsAdmin() {
         $products = $this->productsTable->retrieveAllRecords();
 
         return [
@@ -33,6 +317,66 @@ class ProductController {
         ];
     }
 
+    // Method for returning product search results in JSON format.
+    public function returnSearchResults() {
+        $products = $this->productsTable->retrieveAllRecords();
+
+        if (isset($this->get['search']) && $this->get['search'] != '') {
+            // Split up search terms into array.
+            $searchTerms = explode(' ', $this->get['search']);
+
+            // Declare blank $searchResults['result'] array.
+            $searchResults['results'] = null;
+
+            // Loop through each of the products in the database.
+            foreach ($products as $product) {
+                // Declare blank string for RegEx pattern.
+                $regExString = '';
+
+                // Loop through the $searchTerms array to compare product names against each term.
+                for ($i=0; $i<count($searchTerms); $i++) {
+                    // Add search terms to the variable $regExString to build a RegEx pattern.
+                    for ($j=0; $j<count($searchTerms); $j++) {
+                        $searchTermNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchTerms[$j]);
+                        $regExString .= $searchTermNoSpecialChars . '|';
+                    }
+
+                    // Remove spaces (replaced with hyphens) and other special characters from product name.
+                    $productNameNoSpaces = str_replace(' ', '-', $product->name);
+                    $productNameNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $productNameNoSpaces);
+                    
+                    // Remove spaces (replaced with hyphens) and other special characters from search string.
+                    $searchStringNoSpaces = str_replace(' ', '-', $this->get['search']);
+                    $searchStringNoSpecialChars = preg_replace('/[^A-Za-z0-9\-]/', '', $searchStringNoSpaces);
+
+                    // Add search result to $searchResults['results'] array if the search string is inside the product name string.
+                    if (stripos($productNameNoSpecialChars, $searchStringNoSpecialChars) !== false) {
+                        $trimmedRegExString = rtrim($regExString, '|');
+                        $boldedName = preg_replace("/($trimmedRegExString)/i", '<b>$0</b>', $product->name);
+                        $searchResults['results'][] = $boldedName;
+                        break;
+                    }
+
+                    // Source: https://stackoverflow.com/questions/16733674/php-remove-symbols-from-string
+                    // Source: https://stackoverflow.com/questions/22730461/make-bold-specific-part-of-string
+                }
+            }
+        }
+        else {
+            $searchResults['results'] = null;
+        }
+
+        return [
+            'layout' => 'blanklayout.html.php',
+            'template' => 'json/response.html.php',
+            'variables' => [
+                'response' => json_encode($searchResults)
+            ],
+            'title' => 'JSON Response'
+        ];
+    }
+
+    // Method for displaying the edit product form.
     public function editProductForm() {
         $categories = $this->categoriesTable->retrieveAllRecords();
         $platforms = $this->platformsTable->retrieveAllRecords();
@@ -95,7 +439,7 @@ class ProductController {
             else
                 $product = '';
 
-            $uploadedFile = $_FILES['image']['tmp_name'];
+            $uploadedFile = $this->files['image']['tmp_name'];
 
             if ($uploadedFile == '') {
                 if ($this->post['product']['name'] != '') {
@@ -151,25 +495,25 @@ class ProductController {
                 }
 
                 if ($this->post['product']['category_id'] == '')
-                    unset($this->post['product']['category_id']);
+                    $this->post['product']['category_id'] =  null;
 
                 if ($this->post['product']['platform_id'] == '')
-                    unset($this->post['product']['platform_id']);
+                    $this->post['product']['platform_id'] = null;
 
                 if ($this->post['product']['genre_id'] == '')
-                    unset($this->post['product']['genre_id']);
+                    $this->post['product']['genre_id'] = null;
 
-                if ($_FILES['image']['tmp_name'] != '') {
+                if ($this->files['image']['tmp_name'] != '') {
                     if (isset($this->get['id'])) {
-                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($product->image, '/'));
+                        move_uploaded_file($this->files['image']['tmp_name'], ltrim($product->image, '/'));
 
                         $this->productsTable->save($this->post['product']);  
                     }
                     else {
-                        $parts = explode('.', $_FILES['image']['name']);
+                        $parts = explode('.', $this->files['image']['name']);
                         $extension = end($parts);
                         $filePath = '/images/products/' . uniqid() . '.' . $extension;
-                        move_uploaded_file($_FILES['image']['tmp_name'], ltrim($filePath, '/'));
+                        move_uploaded_file($this->files['image']['tmp_name'], ltrim($filePath, '/'));
 
                         $this->post['product']['image'] = $filePath;
                         $this->productsTable->save($this->post['product']);
@@ -224,16 +568,6 @@ class ProductController {
             unlink(ltrim($image, '/'));
 
         header('Location: /admin/products');
-    }
-
-    // Method for displaying the page for an individual product.
-    public function product() {
-        return [ 
-            'layout' => 'layout.html.php',
-            'template' => 'product.html.php',
-            'variables' => [],
-            'title' => 'Product'
-        ];
     }
 }
 ?>

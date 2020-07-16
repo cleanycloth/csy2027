@@ -30,7 +30,7 @@ body {
     transition-duration: 0.2s;
 }
 .basket-overlay.hidden {
-    right: -26em;
+    right: -30em;
     transition-duration: 0.2s;
 }
 
@@ -42,7 +42,7 @@ body {
     padding: 0 1.5em 0 0.5em;
     height: 4rem;
     top: 8rem;
-    right: 24rem;
+    right: 28rem;
     cursor: pointer;
     color: white;
     background-color: #535BFF;
@@ -69,20 +69,41 @@ body {
 .basket-overlay .basket {
     position: relative;
     display: block;
-    background-color: #fcfcfc;
-    width: 14em;
+    background-color: #d7d7d7;
+    width: 18em;
     height: 100%;
     right: 12em;
     z-index: 4;
-    overflow: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
     margin: 0;
+}
+
+.basket-overlay .basket a {
+    color: black;
+    font-size: 1.4em;
 }
 
 .basket-overlay .basket h3 {
     text-align: center;
+    width: 288px;
     padding: 0.6em;
     color: white;
     background-color: #535BFF;
+    z-index: 4;
+}
+.basket-overlay .basket h3.fixed {
+    position: fixed;
+}
+
+.basket-overlay .basket #basket-contents {
+    padding: 0.4em;
+    margin-top: 2.8em;
+}
+.basket-overlay .basket #basket-contents .msg {
+    text-align: center;
+    margin: 1em;
 }
 
 .basket-overlay .basket .basket-item {
@@ -93,10 +114,27 @@ body {
 .basket-overlay .basket .basket-item:first-of-type {
     margin-top: 0.4em;
 }
-.basket-overlay .basket .basket-item .item-main-info .delete:hover {
+
+.basket-overlay .basket .basket-item .item-main-info form {
+    margin: 0 2em 2em 0;
+}
+.basket-overlay .basket .basket-item .item-main-info form .delete-button {
+    width: max-content;
+    height: max-content;
+    font-size: 1.4em;
+    color: black;
+    z-index: auto;
+    top: auto;
+    right: auto;
+    background-color: transparent;
+    border: none;
+}
+.basket-overlay .basket .basket-item .item-main-info .delete:hover,
+.basket-overlay .basket .basket-item .item-main-info form .delete-button:hover {
     color: red;
     transition-duration: 0.2s;
 }
+
 .basket-overlay .basket .basket-item .item-main-info,
 .basket-overlay .basket .basket-item .item-price-qty-info {
     display: flex;
@@ -107,10 +145,10 @@ body {
     margin: 0.4em 0;
     justify-content: space-between;
 }
+
 .basket-overlay .basket .basket-item .item-price-qty-info form input[type=number] {
-    position: relative;
     width: 4em;
-    right: 0.6em;
+    margin: 0 0.6em;
 }
 .basket-overlay .basket .basket-item .item-price-qty-info form button {
     position: relative;
@@ -143,12 +181,15 @@ body {
     height: 100px;
     width: 100px;
 }
-.basket-overlay .basket .basket-item h4 {
+.basket-overlay .basket .basket-item h4, .basket-overlay .basket .basket-item .product-name {
     margin: 0 0.4em;
+    font-size: 1em;
 }
-.basket-overlay .basket a {
-    color: black;
-    font-size: 1.4em;
+.basket-overlay .basket .basket-item .product-name {
+    text-decoration: none;
+}
+.basket-overlay .basket .basket-item .product-name:hover {
+    text-decoration: underline;
 }
 .basket-overlay .basket hr {
     margin: 0 0.4em;
@@ -158,7 +199,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-top: 1em;
+    margin: 1em 0 2em 0;
 }
 .basket-overlay .basket .basket-total .button {
     display: block;
@@ -196,7 +237,7 @@ header {
     grid-template-rows: 1fr;
     text-decoration: none;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Header - Logo */
@@ -210,16 +251,16 @@ header .logo a {
     text-decoration: none;
 }
 /* Header - Search Bar */
-header .search {
+header #search-box {
     margin: auto 1rem auto 0;
     justify-self: center;
 }
-header .search input[type=search] {
+header #search-box input[type=search] {
     padding: 0.5em;
     font-size: 1.2em;
     width: 400px;
 }
-header .search button {
+header #search-box button {
     background-color: #535BFF;
     color: white;
     border: none;
@@ -232,12 +273,35 @@ header .search button {
     transition-duration: 0.1s;
     cursor: pointer;
 }
-header .search button:hover {
+header #search-box button:hover {
     background-color: rgb(83, 114, 255);
 }
-header .search button:active {
+header #search-box button:active {
     background-color: rgb(77, 85, 241);
 }
+
+header #search-box #search-results {
+    position: absolute;
+}
+header #search-box #search-results .result {
+    background-color: white;
+    border: none;
+    border-radius: unset;
+    width: 400px;
+    color: black;
+    text-align: left;
+    font-size: 1em;
+    display: block;
+    transition-duration: 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+header #search-box #search-results .result:hover {
+    background-color: rgb(235, 235, 235);
+    cursor: default;
+}
+
 /* Header - User Options */
 header .user-options {
     background-color: rgb(194, 194, 194);
@@ -520,7 +584,13 @@ nav ul .dropdown:hover ul li a:active {
     overflow: hidden;
     height: 4em;
 }
-
+.site-main .content .admin-content table tbody tr td a {
+    color: black;
+    text-decoration: none;
+}
+.site-main .content .admin-content table tbody tr td a:hover {
+    text-decoration: underline;
+}
 .site-main .content .admin-content table tbody tr td img {
     height: 125px;
     width: 125px;
@@ -878,10 +948,16 @@ nav ul .dropdown:hover ul li a:active {
 }
 .pcolumn {
     margin: 0 auto;
+    width: 100%;
 }
 
 .pcolumn h1 {
     margin: 0 auto;
+}
+
+.pcolumn img {
+    width: 275px;
+    height: 275px;
 }
 
 .pcolumn .product-carousel {
@@ -897,14 +973,25 @@ nav ul .dropdown:hover ul li a:active {
     text-align: center;
     text-decoration: none;
     background-color: rgb(201, 201, 201);
-    padding: 2em;
-    height: max-content;
+    padding: 2.5em;
+    height: 334px;
+    width: 304px;
     font-size: 1.2em;
 }
 
 .pcolumn .purchasebox p{
     margin-bottom: 1.2em;
 }
+.pcolumn .purchasebox output {
+    margin-bottom: 0;
+    color: red;
+    font-weight: bold;
+    font-size: 0.9em;
+    font-style: unset;
+    display: block;
+    width: 12em;
+}
+
 .pcolumn .purchasebox a{
     display: block;
     width: max-content;
@@ -917,6 +1004,18 @@ nav ul .dropdown:hover ul li a:active {
     border-radius: 8px;
     transition-duration: 0.1s;
 }
+
+.pcolumn .purchasebox form {
+    width: max-content;
+}
+.pcolumn .purchasebox form label {
+    width: max-content;
+}
+.pcolumn .purchasebox form input[type=number] {
+    width: 8em;
+    padding: 0.4em;
+}
+
 .pcolumn .purchasebox a:hover {
     background-color: #a0a0a0;
     border-color: #a0a0a0;
@@ -935,40 +1034,84 @@ nav ul .dropdown:hover ul li a:active {
     margin:0.3em;
   }
   
-  .FilterSide { 
+.FilterSide { 
     grid-area: FilterSide; 
-    background-color:#C9C9C9;
+    background-color:rgb(211, 211, 211);
     margin:0.3em;
     padding-left: 0.3em;
 }
-  
-  .ResultSide {
+.FilterSide h2 { padding: 1em 0 0.2em 1em; }
+
+.ResultSide {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.7fr 1fr 1fr 1fr 0.7fr;
+    grid-template-rows: 0.4fr 1fr 1fr 1fr 0.5fr;
     grid-template-areas: "Title Title Title" "Products Products Products" "Products Products Products" "Products Products Products" "Pagecount Pagecount Pagecount";
     grid-area: ResultSide;
-    background-color:#c9c9c9;
+    background-color:rgb(211, 211, 211);
     margin:0.3em;
-  }
-  
-  .Title { grid-area: Title; 
-    }
- .Title h1{
-     margin:0px;
- }
-  .Pagecount{ grid-area : Pagecount;
-    }
-  .Products {
+}
+
+.Title { 
+    grid-area: Title;
+    padding: 1em; 
+}
+.Title h1 { margin:0px; }
+
+.Pagecount { 
+    grid-area : Pagecount;
+    margin: 0 auto;
+}
+.Pagecount ul {
+    list-style-type: none;
+    margin-top: 4em;
+}
+.Pagecount ul li {
+    display: inline;
+}
+.Pagecount ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.6em;
+    padding: 0 0.6em;
+    text-align: center;
+}
+
+.Products {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: ". . ." ". . ." ". . .";
+    grid-row-gap: 2em;
     grid-area: Products;
     text-align: center;
-  }
-.dropdown-container ul, .dropdown-container a{
-margin-left : 1.5em;
+}
+
+.Products .product img {
+    height: 200px;
+    width: 200px;
+    background-color: white;
+}
+.Products .product p {
+    margin-top: 0.5rem;
+    color: black;
+}
+.Products .product a {
+    text-decoration: none;
+}
+
+.dropdown-container {
+    margin-bottom: 1em;
+}
+.dropdown-container.visible {
+    display: block;
+}
+.dropdown-container.hidden {
+    display: none;    
+}
+
+.dropdown-container ul, .dropdown-container a {
+    margin-left : 1.5em;
     color:black;
     text-decoration: none;
     list-style-type: none;
@@ -1093,7 +1236,7 @@ body::-webkit-scrollbar-thumb:horizontal {
     }
 }
 .return-to-top.extra-spacing {
-    left: 84%;
+    left: 81%;
 }
 /* Checkout Pages */
 .checkout {

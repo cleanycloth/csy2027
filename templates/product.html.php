@@ -1,29 +1,39 @@
-<h1>Product Name</h1> 
+<h1><?=htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8');?></h1> 
 <div class="productsec">  
     <div class="pcolumn">
         <div class="product-carousel slider">
             <div>
-                <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
-            </div>
-            <div>
-                <img src="https://via.placeholder.com/325x200" alt="Placeholder Image">
+                <img src="<?=$product->image;?>" alt="<?=($product->image != '/images/image-placeholder.jpg') ? htmlspecialchars(strip_tags($product->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
             </div>
         </div>
     </div>
 
     <div class="pcolumn">
         <h1>Description</h1>
-        <h4>Platform: Platform</h4>
-        <h4>Genre: Genre</h4>
+        <h4>Category: <?=htmlspecialchars(strip_tags($categoryName), ENT_QUOTES, 'UTF-8');?></h4>
+        <h4>Platform: <?=htmlspecialchars(strip_tags($platformName), ENT_QUOTES, 'UTF-8');?></h4>
+        <h4>Genre: <?=htmlspecialchars(strip_tags($genreName), ENT_QUOTES, 'UTF-8');?></h4>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p><?=htmlspecialchars(strip_tags($product->description), ENT_QUOTES, 'UTF-8');?></p>
     </div>
 
     <div class="pcolumn">
         <div class="purchasebox">
             <h2>Price</h2>
-            <p>£50.00</p>
-            <a href="#">Add to basket</a>
+            <p>£<?=$product->price;?></p>
+            <form action="/basket/add" method="post">
+                <div class="fields">
+                    <input type="hidden" id="productId" value="<?=$product->product_id;?>">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" name="quantity" id="quantity" min="1" max="99" value="1">
+                </div>
+                
+                <div class="buttons">
+                    <button>Add To Basket</button>    
+                </div>
+
+                <output></output>
+            </form>
         </div>
     </div>
 </div>

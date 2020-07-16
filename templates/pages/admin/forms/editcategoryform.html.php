@@ -18,9 +18,9 @@
             <option <?=(!isset($parentCategory) || isset($parentCategory) && empty($parentCategory)) ? 'selected="selected"' : '';?> value="">None</option>
 
             <?php foreach ($categories as $categoryChoice): ?>
-                <?php if ($categoryChoice->parent_id == null && count($categoryChoice->getChildCategories()) == 0 || $categoryChoice->parent_id != null): ?>
-                    <option value="<?=$categoryChoice->category_id;?>"><?=htmlspecialchars(strip_tags($categoryChoice->name), ENT_QUOTES, 'UTF-8');?></option>
-                <?php endif; ?>
+                    <?php if ($categoryChoice->parent_id == null && $categoryChoice->category_id != $category->parent_id): ?>
+                        <option value="<?=$categoryChoice->category_id;?>"><?=htmlspecialchars(strip_tags($categoryChoice->name), ENT_QUOTES, 'UTF-8');?></option>
+                    <?php endif; ?>
             <?php endforeach; ?>
         </select>
     </div>

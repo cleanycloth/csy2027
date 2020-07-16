@@ -25,7 +25,8 @@
         <div>
             <a href="/product?id=<?=$reversedProducts[$i]->product_id;?>">
                 <img src="<?=$reversedProducts[$i]->image;?>" alt="<?=($reversedProducts[$i]->image != '/images/image-placeholder.jpg') ? htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8') : 'Placeholder Image';?>">
-                <p><?=htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8');?></p>
+                <p><b><?=htmlspecialchars(strip_tags($reversedProducts[$i]->name), ENT_QUOTES, 'UTF-8');?></b></p>
+                <p>£<?=$reversedProducts[$i]->price;?></p>
             </a>
         </div>
     <?php endfor; ?>

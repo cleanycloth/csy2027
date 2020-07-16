@@ -8,10 +8,9 @@ class Category {
     private $categoriesTable;
     private $productsTable;
 
-    public function __construct() {
-        require '../dbConnection.php';
-        $this->categoriesTable = new \CSY2028\DatabaseTable($pdo, 'categories', 'category_id', '\NNGames\Entities\Category');
-        $this->productsTable = new \CSY2028\DatabaseTable($pdo, 'products', 'product_id');
+    public function __construct(\CSY2028\DatabaseTable $categoriesTable, \CSY2028\DatabaseTable $productsTable) {
+        $this->categoriesTable = $categoriesTable;
+        $this->productsTable = $productsTable;
     }
 
     public function getChildCategories() {

@@ -16,11 +16,8 @@ class DatabaseTable {
     }
 
     // Function to retrieve a single record from the specified database table.
-    public function retrieveRecord($field, $value, $order = '') {
-        $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $field . ' = :value';
-
-        if ($order != '')
-            $query .= ' ORDER BY ' . $order; 
+    public function retrieveRecord($field, $value) {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $field . ' = :value'; 
 
         $stmt = $this->pdo->prepare($query);
 
@@ -35,11 +32,8 @@ class DatabaseTable {
     }
 
     // Function to retrieve all records from the specified database table.
-    public function retrieveAllRecords($orderBy = '', $order = '') {
+    public function retrieveAllRecords() {
         $query = 'SELECT * FROM ' . $this->table;
-
-        if ($orderBy != '' && $order != '')
-            $query .= ' ORDER BY ' . $orderBy . ' ' . $order; 
 
         $stmt = $this->pdo->prepare($query);
 

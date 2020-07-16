@@ -25,7 +25,9 @@
         <select name="product[category_id]" id="category">
             <option <?=(isset($product) && !empty($product) && $product->category_id == 0) ? 'selected="selected"' : '';?> value="">None</option>
             <?php foreach ($categories as $categoryChoice): ?>
-                <option <?=(isset($product) && !empty($product) && $product->category_id == $categoryChoice->category_id) ? 'selected="selected"' : '';?> value="<?=$categoryChoice->category_id;?>"><?=htmlspecialchars(strip_tags($categoryChoice->name), ENT_QUOTES, 'UTF-8');?></option>
+                <?php if ($categoryChoice->parent_id == null && count($categoryChoice->getChildCategories()) == 0 || $categoryChoice->parent_id != null): ?>
+                    <option <?=(isset($product) && !empty($product) && $product->category_id == $categoryChoice->category_id) ? 'selected="selected"' : '';?> value="<?=$categoryChoice->category_id;?>"><?=htmlspecialchars(strip_tags($categoryChoice->name), ENT_QUOTES, 'UTF-8');?></option>
+                <?php endif; ?>
             <?php endforeach; ?>
         </select>
 
