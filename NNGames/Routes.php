@@ -12,7 +12,7 @@ class Routes implements \CSY2028\Routes {
         //require dirname(__FILE__).'/../dbConnection.php';
         require dirname(__FILE__).'/../dbConnection.vagrant.php';
 
-        $this->pdo = $pdo;
+        $this->pdo = $pdo; 
     }
 
     public function getRoutes() {
