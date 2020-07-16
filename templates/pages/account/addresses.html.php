@@ -15,8 +15,8 @@
 <td>1</td>
 <td>42 Scarcroft Road, Porthleven, Cornwall, TR13 4YH</td>
 <td>02079461153</td>
-<td><a class="button" style="color:white">Edit</a></td>
-<td><a class="button" style="background-color:red;color:white">Delete</a></td>
+<td><a class="button" style="color:white;display:grid;margin:auto">Edit</a></td>
+<td><a class="button" style="background-color:red;color:white;display:grid;margin:auto">Delete</a></td>
 </tr>
 </tbody>
 </table>
