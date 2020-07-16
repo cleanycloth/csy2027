@@ -6,8 +6,6 @@ class Routes implements \CSY2028\Routes {
     private $productsTable;
     private $slidesTable;
 
-<<<<<<< Updated upstream
-=======
     private $pdo;
 
     public function __construct() {
@@ -17,7 +15,6 @@ class Routes implements \CSY2028\Routes {
         $this->pdo = $pdo;
     }
 
->>>>>>> Stashed changes
     public function getRoutes() {
         require '../dbConnection.php';
 
