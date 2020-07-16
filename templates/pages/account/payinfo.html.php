@@ -19,8 +19,8 @@
 <td>VISA Debit</td>
 <td>************4031</td>
 <td>07/22</td>
-<td><a class="button" style="color:white;display:grid;margin:auto">Edit</a></td>
-<td><a class="button" style="background-color:red;color:white;display:grid;margin:auto">Delete</a></td>
+<td><a class="button" style="color:white;display:grid;margin:auto;border:none">Edit</a></td>
+<td><a class="button" style="background-color:red;color:white;display:grid;margin:auto;border:none">Delete</a></td>
 </tr>
 </tbody>
 </table>

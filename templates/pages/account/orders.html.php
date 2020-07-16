@@ -14,8 +14,8 @@
 <td>11425</td>
 <td>£95.23</td>
 <td>VISA Debit *4031</td>
-<td><a class="button" style="color:white;display:grid;margin:auto">View</a></td>
-<td><a class="button" style="background-color:red;color:white;display:grid;margin:auto">Hide</a></td>
+<td><a class="button" style="color:white;display:grid;margin:auto;border:none">View</a></td>
+<td><a class="button" style="background-color:red;color:white;display:grid;margin:auto;border:none">Hide</a></td>
 </tr>
 </tbody>
 </table>
