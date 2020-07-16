@@ -37,6 +37,7 @@ class Routes implements \CSY2028\Routes {
         $categoryController = new \NNGames\Controllers\CategoryController($this->categoriesTable, $_GET, $_POST);
         $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $_GET, $_POST, $_FILES);
         $basketController = new \NNGames\Controllers\BasketController($this->productsTable, $_GET, $_POST);
+        $checkoutController = new \NNGames\Controllers\CheckoutController();
 
         // Define routes.
         $routes = [
@@ -89,6 +90,34 @@ class Routes implements \CSY2028\Routes {
                 'GET' => [
                     'controller' => $productController,
                     'function' => 'listProducts',
+                    'parameters' => []
+                ]
+            ],
+            'checkout' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutReviewBasket',
+                    'parameters' => []
+                ]
+            ],
+            'checkout/address' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutAddress',
+                    'parameters' => []
+                ]
+            ],
+            'checkout/payment' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutPaymentDetails',
+                    'parameters' => []
+                ]
+            ],
+            'checkout/completed' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutCompleted',
                     'parameters' => []
                 ]
             ],
