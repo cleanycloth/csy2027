@@ -231,7 +231,9 @@ class Routes implements \CSY2028\Routes {
                     'controller' => $productController,
                     'function' => 'deleteProduct',
                     'parameters' => []
-                ]
+                ],
+                'login' => true,
+                'restricted' => true
             ],
             'admin/categories' => [
                 'GET' => [
@@ -261,14 +263,18 @@ class Routes implements \CSY2028\Routes {
                     'controller' => $categoryController,
                     'function' => 'deleteCategory',
                     'parameters' => []
-                ]
+                ],
+                'login' => true,
+                'restricted' => true
             ],
             'admin/categories/removechild' => [
                 'POST' => [
                     'controller' => $categoryController,
                     'function' => 'removeChildCategory',
                     'parameters' => []
-                ]
+                ],
+                'login' => true,
+                'restricted' => true
             ],
             'admin/slides' => [
                 'GET' => [
@@ -298,8 +304,9 @@ class Routes implements \CSY2028\Routes {
                     'controller' => $slideController,
                     'function' => 'deleteSlide',
                     'parameters' => []
-                ]
                 ],
+                'login' => true,
+                'restricted' => true
             'admin/access-restricted' => [
                 'GET' => [
                     'controller' => $adminController,
