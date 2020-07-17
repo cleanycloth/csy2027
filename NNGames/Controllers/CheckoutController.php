@@ -5,7 +5,7 @@ class CheckoutController {
         return [
             'layout' => 'layout.html.php',
             'template' => 'pages/main/checkoutbasket.html.php',
-            'variables' => []
+            'variables' => [],
             'title' => 'Checkout - Review Basket'
         ];
     }
