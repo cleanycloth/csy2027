@@ -1,10 +1,6 @@
 <?php
 namespace NNGames\Controllers;
 class AccountController {
-    private $get;
-    private $post;
-
-
     public function mainView() {
         return [
             'layout' => 'accountlayout.html.php',
@@ -50,6 +46,5 @@ class AccountController {
             'title' => 'My Account - Account Settings'
         ];
     }
-    
 }
 ?>
