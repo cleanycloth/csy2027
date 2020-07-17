@@ -9,8 +9,8 @@ class Routes implements \CSY2028\Routes {
     private $pdo;
 
     public function __construct() {
-        require dirname(__FILE__).'/../dbConnection.php';
-        //require dirname(__FILE__).'/../dbConnection.vagrant.php';
+        //require dirname(__FILE__).'/../dbConnection.php';
+        require dirname(__FILE__).'/../dbConnection.vagrant.php';
 
         $this->pdo = $pdo; 
     }
