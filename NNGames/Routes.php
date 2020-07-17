@@ -56,36 +56,41 @@ class Routes implements \CSY2028\Routes {
                     'controller' => $accountController,
                     'function' => 'mainView',
                     'parameters' => []
-                ]
+                ],
+                'login' => true
             ],
             'myaccount/addresses' => [
                 'GET' => [
                     'controller' => $accountController,
                     'function' => 'addresses',
                     'parameters' => []
-                ]
                 ],
+                'login' => true
+            ],
             'myaccount/payinfo' => [
                 'GET' => [
                     'controller' => $accountController,
                     'function' => 'payment',
                     'parameters' => []
-                ]
                 ],
+                'login' => true
+            ],
             'myaccount/orders' => [
                 'GET' => [
                     'controller' => $accountController,
                     'function' => 'orders',
                     'parameters' => []
-                ]
                 ],
+                'login' => true
+            ],
             'myaccount/settings' => [
                 'GET' => [
                     'controller' => $accountController,
                     'function' => 'settings',
                     'parameters' => []
-                ]
                 ],
+                'login' => true
+            ],
             // Sign-in pages
             'login' => [
                 'GET' => [
