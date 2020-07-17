@@ -21,6 +21,8 @@
             <file>NNGames/Controllers/CategoryController.php</file>
             <file>NNGames/Controllers/SlideController.php</file>
             <file>NNGames/Controllers/BasketController.php</file>
+            <file>NNGames/Controllers/AccountController.php</file>
+            <file>NNGames/Controllers/CheckoutController.php</file>
             <file>NNGames/Entities/User.php</file>
             <file>NNGames/Entities/Product.php</file>
             <file>NNGames/Entities/Category.php</file>
