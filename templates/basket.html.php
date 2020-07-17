@@ -31,7 +31,7 @@
         
         <div class="basket-total">
             <p><b>TOTAL</b>: £0.00</p>
-            <a class="button" href="#">Checkout</a>
+            <a class="button" href="/checkout">Checkout</a>
         </div>
     </div>
 </div>
