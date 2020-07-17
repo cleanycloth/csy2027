@@ -777,7 +777,7 @@ nav ul .dropdown:hover ul li a:active {
 }
 
 /* Main - Forms */
-.site-main form {
+.site-main form{
     margin: 0 auto;
     overflow: hidden;
     width: 34vw;
@@ -889,6 +889,10 @@ nav ul .dropdown:hover ul li a:active {
 }
 .site-main form p a:hover {
     text-decoration: underline;
+}
+
+.checkout form {
+    margin: 0;
 }
 
 /* Product */
@@ -1192,5 +1196,78 @@ body::-webkit-scrollbar-thumb:horizontal {
 .return-to-top.extra-spacing {
     left: 81%;
 }
+/* Checkout Pages */
+.checkout {
+        background-color:rgb(211, 211, 211);
+        margin: 0.3em;
+        padding: 2em;
+}
+.currentpage {
+    display: inline;
+    color:blue;
+}
 
+.checkout p{
+    text-align: center;
+}
+.checkout h1{
+    margin:0.5em;
+}
+.checkout h2{
+    margin-left:3em;
+}
+.checkout h3{
+    font-size:xx-large;
+}
+.checkout .completeform{
+    text-align: center;
+    align-content: center;
+    font-family: sans-serif;
+}
+.checkout .completeform h2{
+    margin:0;
+}
+.checkout .completeform .button{
+    margin-left: 46%;
+    text-align: center;
+}
+.checkoutbasket-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "checkoutbasket";
+
+}
+.checkoutbasket{
+    display: flex;
+    padding:0.2em;
+    border-style: solid;
+    border-color: black;
+    height: 5em;
+}
+.nameandprice{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+}
+.checkoutbasketimage{
+    height: 100%;
+    width: height;
+}
+.checkoutbasket .quantityfield{
+    padding-left: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.checkoutbasket .removefield{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;  
+}
+.checkoutbasket .removefield a{
+color: red;
+vertical-align: middle;
+}
 /* Mobile Layout */

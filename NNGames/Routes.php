@@ -9,10 +9,10 @@ class Routes implements \CSY2028\Routes {
     private $pdo;
 
     public function __construct() {
-        //require dirname(__FILE__).'/../dbConnection.php';
-        require dirname(__FILE__).'/../dbConnection.vagrant.php';
+        require dirname(__FILE__).'/../dbConnection.php';
+        //require dirname(__FILE__).'/../dbConnection.vagrant.php';
 
-        $this->pdo = $pdo;
+        $this->pdo = $pdo; 
     }
 
     public function getRoutes() {
@@ -38,7 +38,8 @@ class Routes implements \CSY2028\Routes {
         $slideController = new \NNGames\Controllers\SlideController($this->slidesTable, $_GET, $_POST, $_FILES);
         $basketController = new \NNGames\Controllers\BasketController($this->productsTable, $_GET, $_POST);
         $accountController = new \NNGames\Controllers\AccountController();
-        
+        $checkoutController = new \NNGames\Controllers\CheckoutController();
+
 
         // Define routes.
         $routes = [
@@ -129,6 +130,34 @@ class Routes implements \CSY2028\Routes {
                 'GET' => [
                     'controller' => $productController,
                     'function' => 'listProducts',
+                    'parameters' => []
+                ]
+            ],
+            'checkout' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutReviewBasket',
+                    'parameters' => []
+                ]
+            ],
+            'checkout/address' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutAddress',
+                    'parameters' => []
+                ]
+            ],
+            'checkout/payment' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutPaymentDetails',
+                    'parameters' => []
+                ]
+            ],
+            'checkout/completed' => [
+                'GET' => [
+                    'controller' => $checkoutController,
+                    'function' => 'checkoutCompleted',
                     'parameters' => []
                 ]
             ],
