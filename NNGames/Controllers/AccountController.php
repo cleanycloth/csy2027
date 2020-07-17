@@ -5,11 +5,7 @@ class AccountController {
     private $post;
 
 
-public function mainView() {
-    if (!isset($_SESSION['isLoggedIn'])) {
-        header('Location: /login');
-    }
-    else {
+    public function mainView() {
         return [
             'layout' => 'accountlayout.html.php',
             'template' => 'pages/account/account.html.php',
@@ -17,7 +13,7 @@ public function mainView() {
             'title' => 'My Account'
         ];
     }
-    }
+
     public function addresses() {
         return [
             'layout' => 'accountlayout.html.php',
@@ -27,6 +23,7 @@ public function mainView() {
         ];
     
     }
+
     public function payment () {
         return [
             'layout' => 'accountlayout.html.php',
@@ -35,6 +32,7 @@ public function mainView() {
             'title' => 'My Account - Payment Info'
         ];
     }
+
     public function orders () {
         return [
             'layout' => 'accountlayout.html.php',
@@ -43,6 +41,7 @@ public function mainView() {
             'title' => 'My Account - Order History'
         ];
     }
+
     public function settings () {
         return [
             'layout' => 'accountlayout.html.php',
@@ -53,7 +52,4 @@ public function mainView() {
     }
     
 }
-
-
-
 ?>
