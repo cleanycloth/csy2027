@@ -34,18 +34,18 @@
 
 <div class="featured">
     <div class="featured-item">
-        <img src="https://via.placeholder.com/390x270" alt="Placeholder Image">
-        <p>Featured Item 1</p>
-        <a href="#">Shop all</a>
+        <img src="/images/retro-game-cartridges.jpg" alt="Retro game catridges">
+        <p>Retro Games</p>
+        <a href="#">Show All</a>
     </div>
     <div class="featured-item">
-        <img src="https://via.placeholder.com/390x270" alt="Placeholder Image">
-        <p>Featured Item 2</p>
-        <a href="#">Pre-order now</a>
+        <img src="/images/tech-products.jpg" alt="An assortment of tech products">
+        <p>Pre-Owned Tech</p>
+        <a href="#">Show All</a>
     </div>
     <div class="featured-item">
-        <img src="https://via.placeholder.com/390x270" alt="Placeholder Image">
-        <p>Featured Item 3</p>
-        <a href="#">Find out more</a>
+        <img src="/images/virtual-reality-kid.jpg" alt="Kid with Virtual Reality Headset">
+        <p>Virtual Reality</p>
+        <a href="#">Show All</a>
     </div>
 </div>
